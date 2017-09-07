@@ -6,15 +6,14 @@
 
 </ion-header>
 
-
 <ion-content padding class="login-content">
   <ion-list>
     <ion-item>
-      <ion-input type="text" placeholder="Username"></ion-input>
+      <ion-input type="text" placeholder="Username" [(ngModel)]="user.name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
     </ion-item>
   </ion-list>
-  <button ion-button block>登录</button>
+  <button ion-button block (click)=login()>登录</button>
 </ion-content>
