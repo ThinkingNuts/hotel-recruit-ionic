@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ResourceService } from '../../api/resource';
+import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage'; 
 
 @Injectable()
@@ -17,9 +18,8 @@ export class AuthProvider {
 
   login(data: Object) {
     this.rs.Login(data).subscribe((res: Response) => {
-      console.log(res.json());
+      console.log(res.json().status);
       this.storage.set('AUTH_ACCESS_TOKEN', JSON.stringify(res.json()));
-      this.storage.set('AUTH_USER_ID', res.json());
       this.storage.set('AUTH_USER', JSON.stringify(res.json()));
     });
   }
