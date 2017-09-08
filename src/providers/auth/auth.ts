@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { ResourceService } from '../../api/resource'
-import { AppState} from '../../store/reducers';
+import { ResourceService } from '../../api/resource';
+import { Storage } from '@ionic/storage'; 
 
+@Injectable()
 export class AuthProvider {
-  constructor(public rs: ResourceService, public store: Store<AppState>,) {
+  
+  constructor(
+    public rs: ResourceService,
+    public storage: Storage
+  ) {
   }
 
-  login(data: Object):void {
+  auth_check() {
+    return this.storage.get('AUTH_USER_ID') !== null;
+  }
+
+  login(data: Object) {
     this.rs.Login(data).subscribe((res: Response) => {
-      this.store.dispatch(res.data);
+      console.log(res.json());
+      this.storage.set('AUTH_ACCESS_TOKEN', JSON.stringify(res.json()));
+      this.storage.set('AUTH_USER_ID', res.json());
+      this.storage.set('AUTH_USER', JSON.stringify(res.json()));
     });
   }
 }
