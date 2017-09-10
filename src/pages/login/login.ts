@@ -18,18 +18,18 @@ import { AuthProvider } from '../../providers';
 })
 export class LoginPage {
 
-  private user: UserViewModel = this.userViewModel;
+  private user: UserViewModel = new UserViewModel();
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public authProvider: AuthProvider,
-    public userViewModel: UserViewModel
   ) {
   }
   
-  login() {
+  login(): void {
     this.authProvider.login(this.user);
+    this.navCtrl.push('TabsPage');
   }
 
 }

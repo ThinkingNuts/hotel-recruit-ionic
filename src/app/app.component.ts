@@ -1,12 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { Platform, MenuController, Nav } from 'ionic-angular';
-
-import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AuthProvider } from '../providers';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,14 +11,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage = LoginPage;
+  rootPage = 'LoginPage';
   pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public authProvider: AuthProvider,
   ) {
     this.initializeApp();
   }
@@ -32,6 +30,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      // if (this.authProvider.auth_check()) {
+      //   this.nav.setRoot(RecruitCreatePage);
+      // } else {
+      //   this.nav.setRoot(RecruitCreatePage);
+      // }
     });
   }
 }
