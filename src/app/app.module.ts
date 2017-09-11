@@ -4,9 +4,10 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { MyApp } from './app.component';
-import { RecruitedPage } from '../pages/recruited/recruited';
-import { RecruitingPage } from '../pages/recruiting/recruiting';
 import { HomePage } from '../pages/home/home';
+import { RecruitedPage } from '../pages/recruited/recruited';
+import { RecruitCreatePage } from '../pages/recruit-create/recruit-create';
+import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,9 +23,10 @@ export function provideStorage() {
 @NgModule({
   declarations: [
     MyApp,
-    RecruitedPage,
-    RecruitingPage,
     HomePage,
+    RecruitedPage,
+    RecruitCreatePage,
+    LoginPage,
     TabsPage,
   ],
   imports: [
@@ -35,9 +37,10 @@ export function provideStorage() {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    RecruitedPage,
-    RecruitingPage,
     HomePage,
+    RecruitedPage,
+    RecruitCreatePage,
+    LoginPage,
     TabsPage,
   ],
   providers: [

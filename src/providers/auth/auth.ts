@@ -12,8 +12,8 @@ export class AuthProvider {
   }
 
   auth_check() {
-    
     this.storage.get('AUTH_USER_ID').then(res => {
+      console.log(res);
       if (res !== null) {
         return false;
       } else {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ResourceService } from '../../api/resource';
+import { RecruitViewModel } from '../../view-model/recruit-model';
 
 /**
  * Generated class for the RecruitCreatePage page.
@@ -15,13 +17,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RecruitCreatePage {
 
-  public event = {
-    timeStarts: (new Date()).toString(),
-    timeEnds: (new Date()).toString()
+  private recruit: RecruitViewModel = new RecruitViewModel();
+
+  public data = {
+    currentTime: (new Date()).toISOString(),
+    workTypes: '',
+    schedules: ''
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log((new Date()).toString());
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public rs: ResourceService,
+  ) {
+    this.rs.WorkTypes().subscribe((res) => {
+      this.data.workTypes = res.json();
+    });
+    this.rs.Schedules().subscribe((res) => {
+      this.data.schedules = res.json();
+    });
+  }
+
+  create(): void {
+    this.rs.RecruitCreate(this.recruit).subscribe((res) => {
+      if (res.json().state) {
+        this.navCtrl.push('TabsPage');
+      }
+    });
   }
 
 }

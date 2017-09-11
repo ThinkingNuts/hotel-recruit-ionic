@@ -36,8 +36,15 @@ export class ResourceService {
     return this.http.get(API_ROOT + 'articles')
   }
 
-  GetArticle(id): Observable<any> {
-    return this.http.get(API_ROOT + 'articles/' + id)
+  WorkTypes(): Observable<any> {
+    return this.http.post(API_ROOT + 'WorkType/WorkTypes', this.interceptor())
   }
 
+  Schedules(): Observable<any> {
+    return this.http.post(API_ROOT + 'Schedule/Schedules', this.interceptor())
+  }
+
+  RecruitCreate(data: Object): Observable<any> {
+    return this.http.post(API_ROOT + 'HotelOrder/Create', JSON.stringify(data), this.interceptor())
+  }
 }

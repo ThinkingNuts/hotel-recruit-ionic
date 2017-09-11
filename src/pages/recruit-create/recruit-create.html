@@ -17,40 +17,47 @@
   <ion-list>
 
     <ion-item>
-      <ion-label>名称</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label>标题</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Title"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>人数</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>单价</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>工种</ion-label>
-      <ion-select>
-        <ion-option value="nes">NES</ion-option>
-        <ion-option value="n64">Nintendo64</ion-option>
-        <ion-option value="ps">PlayStation</ion-option>
-        <ion-option value="genesis">Sega Genesis</ion-option>
-        <ion-option value="saturn">Sega Saturn</ion-option>
-        <ion-option value="snes">SNES</ion-option>
+      <ion-select [(ngModel)]="recruit.Billing">
+        <ion-option *ngFor="let item of data.workTypes" [value]="item.id">{{ item.text }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>工作排班</ion-label>
+      <ion-select [(ngModel)]="recruit.ScheduleId">
+        <ion-option *ngFor="let item of data.schedules" [value]="item.id">{{ item.text }}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>开始时间</ion-label>
-      <ion-datetime displayFormat="YYYY/MM/DD HH:mm" pickerFormat="YYYY MM DD HH" [(ngModel)]="event.timeStarts"></ion-datetime>
+      <ion-datetime displayFormat="YYYY/MM/DD HH:00" pickerFormat="YYYY MM DD HH:00" [min]="data.currentTime" [(ngModel)]="recruit.Start"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>结束时间</ion-label>
-      <ion-datetime displayFormat="YYYY/MM/DD HH:mm" pickerFormat="YYYY MM DD HH" [(ngModel)]="event.timeEnds"></ion-datetime>
+      <ion-datetime displayFormat="YYYY/MM/DD HH:00" pickerFormat="YYYY MM DD HH:00" [(ngModel)]="recruit.End"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>特殊要求</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Mark"></ion-input>
     </ion-item>
 
   </ion-list>
