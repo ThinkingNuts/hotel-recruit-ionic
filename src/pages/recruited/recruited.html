@@ -15,11 +15,18 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.title}}
-      </div>
-    </button>
+    <!-- <button ion-item *ngFor="let item of HotelOrders" (click)="itemTapped($event, item)">
+      {{item.Title}}
+    </button> -->
+    <ion-item-sliding *ngFor="let item of HotelOrders; let i = index">
+      <ion-item>
+        {{item.Title}}
+      </ion-item>
+
+      <ion-item-options>
+        <button ion-button color="secondary" (click)="modifyItem(i, item)"><ion-icon name="create"></ion-icon> 修改</button>
+        <button ion-button color="danger" (click)="removeItem(i, item)"><ion-icon name="trash"></ion-icon> 删除</button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

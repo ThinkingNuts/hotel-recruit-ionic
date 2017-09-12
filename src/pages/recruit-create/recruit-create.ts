@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the RecruitCreatePage page.
@@ -39,9 +40,10 @@ export class RecruitCreatePage {
   }
 
   create(): void {
+    this.recruit.HotelId = 1;
     this.rs.RecruitCreate(this.recruit).subscribe((res) => {
       if (res.json().state) {
-        this.navCtrl.push('TabsPage');
+        this.navCtrl.push(TabsPage);
       }
     });
   }

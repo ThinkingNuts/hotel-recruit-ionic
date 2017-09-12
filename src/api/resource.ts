@@ -12,7 +12,7 @@ export class ResourceService {
   headers: Headers = new Headers()
 
   constructor(public http: Http, public storage: Storage) {
-    this.headers.append('Content-Type', 'application/json')
+    this.headers.append('Content-Type', 'x-www-form-urlencoded')
   }
 
   interceptor(): RequestOptions {
@@ -27,13 +27,17 @@ export class ResourceService {
     return opts;
   }
 
+  ObjectToSerialize(data) {
+    let form_data: any;
+    for (let index in data) {
+      form_data += `&${index}=${data[index]}`;
+    }
+    return form_data.substring(10);
+  }
+
   //登录请求.
   Login(data: Object): Observable<any> {
     return this.http.post(API_ROOT + 'user/login', JSON.stringify(data), this.interceptor())
-  }
-
-  GetArticles(): Observable<any> {
-    return this.http.get(API_ROOT + 'articles')
   }
 
   WorkTypes(): Observable<any> {
@@ -45,6 +49,15 @@ export class ResourceService {
   }
 
   RecruitCreate(data: Object): Observable<any> {
-    return this.http.post(API_ROOT + 'HotelOrder/Create', JSON.stringify(data), this.interceptor())
+    data = this.ObjectToSerialize(data);
+    return this.http.post(API_ROOT + 'HotelOrder/Create', data, this.interceptor())
+  }
+
+  HotelOrders(): Observable<any> {
+    return this.http.post(API_ROOT + 'HotelOrder/List', this.interceptor())
+  }
+
+  DeleteOrder(item): Observable<any> {
+    return this.http.post(API_ROOT + 'HotelOrder/Remove', [item], this.interceptor())
   }
 }
