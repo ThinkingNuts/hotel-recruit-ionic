@@ -12,7 +12,7 @@ export class ResourceService {
   headers: Headers = new Headers()
 
   constructor(public http: Http, public storage: Storage) {
-    this.headers.append('Content-Type', 'x-www-form-urlencoded')
+    this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
   }
 
   interceptor(): RequestOptions {

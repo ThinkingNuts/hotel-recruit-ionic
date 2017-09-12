@@ -15,14 +15,14 @@ import { ResourceService } from '../../api/resource';
   templateUrl: 'recruited-list.html',
 })
 export class RecruitedListPage {
-  item: Object
+  HotelOrder: Object
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
   ) {
-    this.item = this.navParams.get('item');
+    this.HotelOrder = navParams.get('item');
     // this.rs.GetArticle(this.navParams.get('id')).subscribe((res) => {
     //   this.item = res.json().data;
     // });

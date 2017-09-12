@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RecruitedListPage } from '../recruited-list/recruited-list';
+import { RecruitCreatePage } from '../recruit-create/recruit-create';
 import { ResourceService } from '../../api/resource';
 
 /**
@@ -35,7 +36,10 @@ export class RecruitedPage {
     });
   }
 
-  modifyItem(index, id) {
+  modifyItem(index, item) {
+    this.navCtrl.push(RecruitCreatePage, {
+      item: item
+    });
   }
 
   removeItem(index, item) {

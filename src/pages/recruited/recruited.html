@@ -19,10 +19,9 @@
       {{item.Title}}
     </button> -->
     <ion-item-sliding *ngFor="let item of HotelOrders; let i = index">
-      <ion-item>
+      <button ion-item (click)="itemTapped(item)">
         {{item.Title}}
-      </ion-item>
-
+      </button>
       <ion-item-options>
         <button ion-button color="secondary" (click)="modifyItem(i, item)"><ion-icon name="create"></ion-icon> 修改</button>
         <button ion-button color="danger" (click)="removeItem(i, item)"><ion-icon name="trash"></ion-icon> 删除</button>

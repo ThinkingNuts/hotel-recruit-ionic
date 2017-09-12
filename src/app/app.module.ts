@@ -9,6 +9,7 @@ import { RecruitedPage } from '../pages/recruited/recruited';
 import { RecruitCreatePage } from '../pages/recruit-create/recruit-create';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { RecruitedListPage } from '../pages/recruited-list/recruited-list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +29,7 @@ export function provideStorage() {
     RecruitCreatePage,
     LoginPage,
     TabsPage,
+    RecruitedListPage
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ export function provideStorage() {
     RecruitCreatePage,
     LoginPage,
     TabsPage,
+    RecruitedListPage
   ],
   providers: [
     StatusBar,

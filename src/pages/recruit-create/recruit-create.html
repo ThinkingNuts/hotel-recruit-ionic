@@ -33,7 +33,7 @@
 
     <ion-item>
       <ion-label>工种</ion-label>
-      <ion-select [(ngModel)]="recruit.Billing">
+      <ion-select [(ngModel)]="recruit.WorkTypeId">
         <ion-option *ngFor="let item of data.workTypes" [value]="item.id">{{ item.text }}</ion-option>
       </ion-select>
     </ion-item>
