@@ -12,11 +12,15 @@ export class RecruitCreatePage {
 
   private recruit: RecruitViewModel = new RecruitViewModel();
 
+  public ToDate(date): string {
+    return new Date(+ new Date(date) + 8*3600*1000).toISOString()
+  }
+
   public data = {
-    currentTime: (new Date()).toISOString(),
+    currentTime: this.ToDate(new Date()),
     workTypes: '',
     schedules: '',
-    edit: false 
+    edit: false
   }
 
   constructor(
@@ -32,6 +36,8 @@ export class RecruitCreatePage {
     });
     if (navParams.get('item')) {
        this.recruit = navParams.get('item')
+       this.recruit.Start = this.ToDate(navParams.get('item').Start);
+       this.recruit.End = this.ToDate(navParams.get('item').End);
        this.data.edit = true
     }
   }
