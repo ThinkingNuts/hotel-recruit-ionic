@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { RecruitedPage } from '../recruited/recruited';
+import { RecruitedListPage } from '../recruited-list/recruited-list';
 import { RecruitCreatePage } from '../recruit-create/recruit-create';
 import { HomePage } from '../home/home';
 
@@ -9,7 +9,7 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = RecruitedPage;
+  tab1Root = RecruitedListPage;
   tab2Root = RecruitCreatePage;
   tab3Root = HomePage;
 

@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
 
-/**
- * Generated class for the RecruitCreatePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-recruit-create',
@@ -22,7 +15,8 @@ export class RecruitCreatePage {
   public data = {
     currentTime: (new Date()).toISOString(),
     workTypes: '',
-    schedules: ''
+    schedules: '',
+    edit: false 
   }
 
   constructor(
@@ -38,6 +32,7 @@ export class RecruitCreatePage {
     });
     if (navParams.get('item')) {
        this.recruit = navParams.get('item')
+       this.data.edit = true
     }
   }
 
@@ -46,6 +41,14 @@ export class RecruitCreatePage {
     this.rs.RecruitCreate(this.recruit).subscribe((res) => {
       if (res.json().state) {
         this.navCtrl.push('TabsPage');
+      }
+    });
+  }
+
+  edit(): void {
+    this.rs.RecruitEdit(this.recruit).subscribe((res) => {
+      if (res.json().state) {
+        this.navCtrl.pop();
       }
     });
   }

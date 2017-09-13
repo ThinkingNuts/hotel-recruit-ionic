@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { RecruitedPage } from '../pages/recruited/recruited';
+import { RecruitedDetailPage } from '../pages/recruited-detail/recruited-detail';
 import { RecruitCreatePage } from '../pages/recruit-create/recruit-create';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -25,7 +25,7 @@ export function provideStorage() {
   declarations: [
     MyApp,
     HomePage,
-    RecruitedPage,
+    RecruitedDetailPage,
     RecruitCreatePage,
     LoginPage,
     TabsPage,
@@ -40,7 +40,7 @@ export function provideStorage() {
   entryComponents: [
     MyApp,
     HomePage,
-    RecruitedPage,
+    RecruitedDetailPage,
     RecruitCreatePage,
     LoginPage,
     TabsPage,

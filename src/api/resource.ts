@@ -5,6 +5,7 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs'
 import * as querystring from 'querystring'
 import { API_ROOT } from './config'
 import { UserViewModel } from '../view-model/user-model'
+//import "angular-async-await";
  
 @Injectable()
 export class ResourceService {
@@ -14,7 +15,7 @@ export class ResourceService {
   constructor(public http: Http, public storage: Storage) {
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
   }
-
+  
   interceptor(): RequestOptions {
     const opts: RequestOptions = new RequestOptions()
     opts.headers = this.headers
@@ -26,8 +27,8 @@ export class ResourceService {
     });
     return opts;
   }
-
-  ObjectToSerialize(data) {
+  
+  ObjectToSerialize(data): string {
     let form_data: any;
     for (let index in data) {
       form_data += `&${index}=${data[index]}`;
@@ -51,6 +52,11 @@ export class ResourceService {
   RecruitCreate(data: Object): Observable<any> {
     data = this.ObjectToSerialize(data);
     return this.http.post(API_ROOT + 'HotelOrder/Create', data, this.interceptor())
+  }
+
+  RecruitEdit(data: Object): Observable<any> {
+    data = this.ObjectToSerialize(data);
+    return this.http.post(API_ROOT + 'HotelOrder/Update', data, this.interceptor())
   }
 
   HotelOrders(): Observable<any> {

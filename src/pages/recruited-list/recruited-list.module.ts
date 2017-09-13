@@ -4,7 +4,7 @@ import { RecruitedListPage } from './recruited-list';
 
 @NgModule({
   declarations: [
-    RecruitedListPage,
+    RecruitedListPage
   ],
   imports: [
     IonicPageModule.forChild(RecruitedListPage),
