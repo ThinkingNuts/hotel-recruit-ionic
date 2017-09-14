@@ -8,17 +8,15 @@ import { ResourceService } from '../../api/resource';
   templateUrl: 'recruited-detail.html',
 })
 export class RecruitedDetailPage {
-  HotelOrder: Object
+  item: Object
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
   ) {
-    this.HotelOrder = navParams.get('item');
-    // this.rs.GetArticle(this.navParams.get('id')).subscribe((res) => {
-    //   this.item = res.json().data;
-    // });
+    this.item = navParams.get('item');
+    console.log(this.item);
   }
 
 }
