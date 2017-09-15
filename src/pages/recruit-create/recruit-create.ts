@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
+import { RecruitedListPage } from '../recruited-list/recruited-list';
 
 @IonicPage()
 @Component({
@@ -46,7 +47,7 @@ export class RecruitCreatePage {
     this.recruit.HotelId = 1;
     this.rs.RecruitCreate(this.recruit).subscribe((res) => {
       if (res.json().state) {
-        this.navCtrl.push('TabsPage');
+        this.navCtrl.push(RecruitedListPage);
       }
     });
   }

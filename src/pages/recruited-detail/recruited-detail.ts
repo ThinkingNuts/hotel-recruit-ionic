@@ -8,15 +8,18 @@ import { ResourceService } from '../../api/resource';
   templateUrl: 'recruited-detail.html',
 })
 export class RecruitedDetailPage {
-  item: Object
+  RecruitedDetail: Object
+  items: any
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
   ) {
-    this.item = navParams.get('item');
-    console.log(this.item);
+    this.RecruitedDetail = navParams.get('item');
+    this.items = [
+      {PersonName: 'zhangmin', TimeStr: '2017-09-15 12:00:00', StatusStr: '待审核'}
+    ]
   }
 
 }

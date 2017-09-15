@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>用工详情</ion-title>
   </ion-navbar>
 
@@ -9,14 +9,28 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <div class="item-note" item-right>
-      <h2>{{item.Title}}</h2>
-      <p><span>招聘 {{item.Num}} 人</span><span style="padding-left: 10px">{{item.Billing}}</span></p>
-      <p>开始时间：{{item.Start}}</p>
-      <p>结束时间：{{item.End}}</p>
+  <ion-card>
+    <ion-card-header>
+      {{RecruitedDetail.Title}}
+    </ion-card-header>
+    <ion-card-content>
+      <p><span>招聘 {{RecruitedDetail.Num}} 人</span><span style="padding-left: 10px">{{RecruitedDetail.Billing}}</span></p>
+      <p>开始时间：{{RecruitedDetail.Start}}</p>
+      <p>结束时间：{{RecruitedDetail.End}}</p>
       <p>地点：浦东金桥</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-list>
+    <div ion-item *ngFor="let item of items">
+      <div class="recruit-title">
+        <p>{{ item.PersonName }}</p>
+        <p>申请时间：{{ item.TimeStr }}</p>
+      </div>
+      <div class="recruit-time">
+        <button>{{ item.StatusStr }}</button>
+      </div>
     </div>
   </ion-list>
-  
+
 </ion-content>

@@ -20,7 +20,6 @@ export class RecruitedListPage {
   ) {
     this.rs.HotelOrders().subscribe((res) => {
       this.HotelOrders = res.json();
-      console.log(this.HotelOrders);
     });
   }
 
@@ -54,7 +53,9 @@ export class RecruitedListPage {
           text: '是',
           handler: () => {
             this.HotelOrders.splice(index, 1);
-            // this.rs.DeleteOrder(item)
+            this.rs.DeleteOrder(item).subscribe((res) => {
+              console.log(res.json());
+            });
             console.log('Agree clicked');
           }
         }

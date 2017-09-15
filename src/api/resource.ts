@@ -5,7 +5,6 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs'
 import * as querystring from 'querystring'
 import { API_ROOT } from './config'
 import { UserViewModel } from '../view-model/user-model'
-//import "angular-async-await";
  
 @Injectable()
 export class ResourceService {
@@ -13,7 +12,8 @@ export class ResourceService {
   headers: Headers = new Headers()
 
   constructor(public http: Http, public storage: Storage) {
-    this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
+    //this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
+    this.headers.append('Content-Type', 'application/json')
   }
   
   interceptor(): RequestOptions {
