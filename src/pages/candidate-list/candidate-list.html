@@ -1,0 +1,34 @@
+<!--
+  Generated template for the CandidateListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>申请列表</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of HotelOrders; let i = index">
+      <button ion-item (click)="itemTapped(item)">
+        <div class="recruit-title">
+          <h2>{{item.Title}}</h2>
+          <p><span>招聘 {{item.Num}} 人</span><span style="padding-left: 10px">{{item.Billing}}</span></p>
+        </div>
+        <div class="recruit-time">
+          <p>{{item.TimeStr}}</p>
+        </div>
+      </button>
+      <ion-item-options>
+        <button ion-button color="secondary" (click)="modifyItem(i, item)">修改</button>
+        <button ion-button color="danger" (click)="removeItem(i, item)">删除</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
