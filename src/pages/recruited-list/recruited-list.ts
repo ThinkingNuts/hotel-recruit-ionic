@@ -18,6 +18,10 @@ export class RecruitedListPage {
     public rs: ResourceService,
     private alertCtrl: AlertController,
   ) {
+    this.getHotelOrders()
+  }
+
+  getHotelOrders() {
     this.rs.HotelOrders().subscribe((res) => {
       this.HotelOrders = res.json();
     });
@@ -37,6 +41,13 @@ export class RecruitedListPage {
 
   removeItem(index, item) {
     this.showConfirm(index, item);
+  }
+
+  doRefresh(refresher) {
+    this.rs.HotelOrders().subscribe((res) => {
+      this.HotelOrders = res.json();
+      refresher.complete();
+    });
   }
 
   showConfirm(index, item) {

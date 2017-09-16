@@ -11,7 +11,8 @@
 
   <ion-card>
     <ion-card-header>
-      {{RecruitedDetail.Title}}
+      <span>{{RecruitedDetail.Title}}</span>
+      <span style="float: right">已申请 {{Candidates.TotalApply}} 人</span>
     </ion-card-header>
     <ion-card-content>
       <p><span>招聘 {{RecruitedDetail.Num}} 人</span><span style="padding-left: 10px">{{RecruitedDetail.Billing}}</span></p>
@@ -20,17 +21,27 @@
       <p>地点：浦东金桥</p>
     </ion-card-content>
   </ion-card>
-  
+
   <ion-list>
-    <div ion-item *ngFor="let item of items">
-      <div class="recruit-title">
-        <p>{{ item.PersonName }}</p>
-        <p>申请时间：{{ item.TimeStr }}</p>
+    <ion-item-sliding *ngFor="let item of Candidates.Persons; let i = index">
+      <div ion-item>
+        <div class="recruit-title">
+          <p>{{ item.Person.RealName }}</p>
+          <p>申请时间：{{ item.Person.TimeStr }}</p>
+        </div>
+        <div class="recruit-time">
+          <button ion-button>{{ item.StatusStr }}</button>
+        </div>
       </div>
-      <div class="recruit-time">
-        <button>{{ item.StatusStr }}</button>
-      </div>
-    </div>
+      <ion-item-options>
+        <button ion-button color="secondary" 
+        *ngIf="item.Status === 1 || item.Status === 3" 
+        (click)="editStatus(item, i, 1)">通过</button>
+        <button ion-button color="danger" 
+        *ngIf="item.Status === 1 || item.Status === 2" 
+        (click)="editStatus(item, i, 0)">未通过</button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
 </ion-content>

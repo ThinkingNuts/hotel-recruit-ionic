@@ -12,8 +12,8 @@ export class ResourceService {
   headers: Headers = new Headers()
 
   constructor(public http: Http, public storage: Storage) {
-    //this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
-    this.headers.append('Content-Type', 'application/json')
+    this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
+    //this.headers.append('Content-Type', 'application/json')
   }
   
   interceptor(): RequestOptions {
@@ -66,4 +66,14 @@ export class ResourceService {
   DeleteOrder(item): Observable<any> {
     return this.http.post(API_ROOT + 'HotelOrder/Remove', [item], this.interceptor())
   }
+
+  PersonOrders(id): Observable<any> {
+    return this.http.post(API_ROOT + 'PersonOrder/Persons/' + id, this.interceptor())
+  }
+
+  OrderUpdate(data: Object): Observable<any> {
+    data = this.ObjectToSerialize(data);
+    return this.http.post(API_ROOT + 'PersonOrder/Update', data, this.interceptor())
+  }
+
 }

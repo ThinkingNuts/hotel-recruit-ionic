@@ -13,7 +13,7 @@ import { AuthProvider } from '../providers';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = TabsPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -31,11 +31,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      if (this.authProvider.auth_check()) {
-        this.nav.setRoot(LoginPage);
-      } else {
-        this.nav.setRoot(TabsPage);
-      }
+      // if (this.authProvider.auth_check()) {
+      //   this.nav.setRoot(LoginPage);
+      // } else {
+      //   this.nav.setRoot(TabsPage);
+      // }
     });
   }
 }
