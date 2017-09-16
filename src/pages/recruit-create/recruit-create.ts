@@ -12,7 +12,7 @@ import { RecruitedListPage } from '../recruited-list/recruited-list';
 export class RecruitCreatePage {
 
   private recruit: RecruitViewModel = new RecruitViewModel();
-
+  
   public ToDate(date): string {
     return new Date(+ new Date(date) + 8*3600*1000).toISOString()
   }
@@ -47,6 +47,7 @@ export class RecruitCreatePage {
     this.recruit.HotelId = 1;
     this.rs.RecruitCreate(this.recruit).subscribe((res) => {
       if (res.json().state) {
+        this.recruit = null
         this.navCtrl.push(RecruitedListPage);
       }
     });

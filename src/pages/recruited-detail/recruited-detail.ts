@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, App } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
 import { OrderModel } from '../../view-model/order-model';
+import { CandidateDetailPage } from '../candidate-detail/candidate-detail';
 
 @IonicPage()
 @Component({
@@ -18,17 +19,16 @@ export class RecruitedDetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private app: App,
   ) {
     this.RecruitedDetail = navParams.get('item');
     this.rs.PersonOrders(this.RecruitedDetail.Id).subscribe((res) => {
-      console.log(res.json());
       this.Candidates = res.json();
     });
   }
 
   editStatus(item: any, index: number, state: number) {
-    console.log(item);
     this.orderData.GUID = item.GUID
     this.orderData.OrderId = this.RecruitedDetail.Id
     this.orderData.Mark = this.RecruitedDetail.Mark
@@ -48,6 +48,13 @@ export class RecruitedDetailPage {
         this.presentToast();
       });
     }
+  }
+
+  itemTapped(item) {
+    this.app.getRootNav().push(CandidateDetailPage, {
+      item: item,
+      recruitedDetail: this.RecruitedDetail
+    });
   }
 
   presentToast = () => {

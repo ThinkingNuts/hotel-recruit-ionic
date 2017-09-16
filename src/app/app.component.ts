@@ -11,10 +11,8 @@ import { AuthProvider } from '../providers';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
-
+  
   rootPage: any = TabsPage;
-  pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,

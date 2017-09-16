@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, App } from 'ionic-angular';
 import { RecruitedDetailPage } from '../recruited-detail/recruited-detail';
 import { RecruitCreatePage } from '../recruit-create/recruit-create';
 import { ResourceService } from '../../api/resource';
@@ -17,6 +17,7 @@ export class RecruitedListPage {
     public navParams: NavParams,
     public rs: ResourceService,
     private alertCtrl: AlertController,
+    private app: App,
   ) {
     this.getHotelOrders()
   }
@@ -28,7 +29,7 @@ export class RecruitedListPage {
   }
 
   itemTapped(item) {
-    this.navCtrl.push(RecruitedDetailPage, {
+    this.app.getRootNav().push(RecruitedDetailPage, {
       item: item
     });
   }

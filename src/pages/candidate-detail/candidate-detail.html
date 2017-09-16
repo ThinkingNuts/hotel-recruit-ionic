@@ -1,0 +1,39 @@
+<!--
+  Generated template for the CandidateDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>申请人信息</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <span>{{ candidate.Person.RealName }}</span>
+      <span style="padding-left: 5%">{{ candidate.Person.Sex }}</span>
+    </ion-card-header>
+    <ion-card-content>
+      <p>联系电话：{{ candidate.Person.Phone }}</p>
+      <p>住址：{{ candidate.Person.Address }}</p>
+      <p>申请时间：{{ candidate.ApplyTime }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 3">
+        <button ion-button block (click)="editStatus(1)">通过</button>
+      </ion-col>
+      <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 2">
+        <button ion-button block color="danger" (click)="editStatus(0)">未通过</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
