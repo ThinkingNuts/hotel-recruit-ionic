@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { UserViewModel } from '../../view-model/user-model';
 import { AuthProvider } from '../../providers';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -29,7 +30,7 @@ export class LoginPage {
   
   login(): void {
     this.authProvider.login(this.user);
-    this.navCtrl.push('TabsPage');
+    this.navCtrl.push(TabsPage);
   }
 
 }

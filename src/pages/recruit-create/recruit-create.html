@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="secondary">
+  <ion-navbar color="define">
     <ion-title *ngIf="!data.edit">发布用工</ion-title>
     <ion-title *ngIf="data.edit">编辑用工</ion-title>
   </ion-navbar>
@@ -56,6 +56,6 @@
     </ion-item>
 
   </ion-list>
-  <button *ngIf="!data.edit" ion-button color="secondary" block (click)=create()>创建</button>
-  <button *ngIf="data.edit" ion-button color="secondary" block (click)=edit()>修改</button>
+  <button *ngIf="!data.edit" ion-button color="define" block (click)=create()>发布</button>
+  <button *ngIf="data.edit" ion-button color="define" block (click)=edit()>修改</button>
 </ion-content>

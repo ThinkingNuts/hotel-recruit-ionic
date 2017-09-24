@@ -1,19 +1,21 @@
 <ion-header>
 
-  <ion-navbar >
+  <ion-navbar color="define">
     <ion-title>登录</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding class="login-content">
+<ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-input type="text" placeholder="Username" [(ngModel)]="user.login"></ion-input>
+      <ion-input type="text" placeholder="用户名" [(ngModel)]="user.username" name="username" #username="ngModel" required></ion-input>
     </ion-item>
+    <p *ngIf="username.errors?.required">error message</p>
     <ion-item>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
+      <ion-input type="password" placeholder="密码" [(ngModel)]="user.password" name="password" #password="ngModel" required></ion-input>
     </ion-item>
+    <p *ngIf="password.errors?.required">error message</p>
   </ion-list>
-  <button ion-button block (click)=login()>登录</button>
+  <button ion-button color="define" block (click)=login()>登录</button>
 </ion-content>

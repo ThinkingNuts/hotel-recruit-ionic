@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -38,6 +40,8 @@ export function provideStorage() {
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
+    CustomFormsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

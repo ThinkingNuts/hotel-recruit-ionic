@@ -12,7 +12,7 @@ export class AuthProvider {
   }
 
   auth_check() {
-    this.storage.get('AUTH_USER_ID').then(res => {
+    this.storage.get('AUTH_TOKEN').then(res => {
       console.log(res);
       if (res !== null) {
         return false;
@@ -24,10 +24,9 @@ export class AuthProvider {
 
   login(data: Object) {
     this.rs.Login(data).subscribe((res) => {
-      if (res.json().status) {
-        this.storage.set('AUTH_ACCESS_TOKEN', JSON.stringify(res.json().data.jwt_token.access_token));
-        this.storage.set('AUTH_USER_ID', JSON.stringify(res.json().data.id));
-        this.storage.set('AUTH_USER', JSON.stringify(res.json().data));
+      console.log(res.json());
+      if (res.json().state) {
+        this.storage.set('AUTH_TOKEN', JSON.stringify(res.json().token));
       }
     });
   }

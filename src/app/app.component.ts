@@ -12,7 +12,8 @@ import { AuthProvider } from '../providers';
 })
 export class MyApp {
   
-  rootPage: any = TabsPage;
+  rootPage: any = LoginPage;
+  @ViewChild(Nav) nav: Nav;
 
   constructor(
     public platform: Platform,
@@ -29,11 +30,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      // if (this.authProvider.auth_check()) {
-      //   this.nav.setRoot(LoginPage);
-      // } else {
-      //   this.nav.setRoot(TabsPage);
-      // }
+      if (this.authProvider.auth_check()) {
+        this.nav.setRoot(LoginPage);
+      } else {
+        this.nav.setRoot(TabsPage);
+      }
     });
   }
 }

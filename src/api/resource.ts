@@ -19,7 +19,7 @@ export class ResourceService {
   interceptor(): RequestOptions {
     const opts: RequestOptions = new RequestOptions()
     opts.headers = this.headers
-    this.storage.get('ACCESS_TOKEN').then(res => {
+    this.storage.get('AUTH_TOKEN').then(res => {
       if (res && !opts.headers.get('Authorization')) {
         opts.headers.append('Authorization',
           'Bearer ' + res)
@@ -38,7 +38,8 @@ export class ResourceService {
 
   //登录请求.
   Login(data: Object): Observable<any> {
-    return this.http.post(API_ROOT + 'user/login', JSON.stringify(data), this.interceptor())
+    data = this.ObjectToSerialize(data);
+    return this.http.post(API_ROOT + 'Hotel/login', data, this.interceptor())
   }
 
   WorkTypes(): Observable<any> {

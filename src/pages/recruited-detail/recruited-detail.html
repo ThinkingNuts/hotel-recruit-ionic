@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="secondary">
+  <ion-navbar color="define">
     <ion-title>用工详情</ion-title>
   </ion-navbar>
 
@@ -34,7 +34,7 @@
         </div>
       </button>
       <ion-item-options>
-        <button ion-button color="secondary"
+        <button ion-button color="define"
         *ngIf="item.Status === 1 || item.Status === 3" 
         (click)="editStatus(item, i, 1)">通过</button>
         <button ion-button color="danger" 
