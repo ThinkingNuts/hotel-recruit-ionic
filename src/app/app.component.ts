@@ -32,21 +32,16 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.check_auth();
-      if (this.check) {
-        this.nav.setRoot(LoginPage);
-      } else {
-        this.nav.setRoot(TabsPage);
-      }
     });
   }
-  
+
   // 判断是否登录
-  async check_auth() {
-    await this.storage.get('AUTH_TOKEN').then(res => {
+  check_auth(): void {
+    this.storage.get('AUTH_TOKEN').then(res => {
       if (res != null) {
-        this.check = true;
+        this.nav.setRoot(TabsPage);
       } else {
-        this.check = false;
+        this.nav.setRoot(LoginPage);
       }
     })
   }

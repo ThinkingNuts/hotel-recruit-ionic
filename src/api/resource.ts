@@ -15,9 +15,7 @@ export class ResourceService {
   constructor(public http: Http, public storage: Storage) {
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
     //this.headers.append('Content-Type', 'application/json')
-  }
-  
-  interceptor(): void {
+
     this.opts.headers = this.headers
     this.storage.get('AUTH_TOKEN').then(res => {
       if (res && !this.opts.headers.get('Authorization')) {
@@ -60,7 +58,7 @@ export class ResourceService {
   }
 
   HotelOrders(): Observable<any> {
-    return this.http.post(API_ROOT + 'HotelOrder/List', this.interceptor())
+    return this.http.post(API_ROOT + 'HotelOrder/List', this.opts)
   }
 
   DeleteOrder(item): Observable<any> {

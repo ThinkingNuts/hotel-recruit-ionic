@@ -4,12 +4,23 @@
     <ion-title>用工详情</ion-title>
   </ion-navbar>
 
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="用工详情">
+        用工详情
+      </ion-segment-button>
+      <ion-segment-button value="申请人列表">
+        申请人列表
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 
 <ion-content padding>
-
-  <ion-card>
+    <div [ngSwitch]="pet">
+  <ion-card *ngSwitchCase="'用工详情'">
     <ion-card-header>
       <span>{{RecruitedDetail.Title}}</span>
       <span class="candidate">已申请 {{Candidates.TotalApply}} 人</span>
@@ -22,7 +33,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
+  <ion-list *ngSwitchCase="'申请人列表'">
     <ion-item-sliding *ngFor="let item of Candidates.Persons; let i = index">
       <button ion-item (click)="itemTapped(item)">
         <div class="recruit-title">
@@ -31,17 +42,13 @@
         </div>
         <div class="recruit-time">
           <button ion-button>{{ item.StatusStr }}</button>
-        </div>
+      </div>
       </button>
       <ion-item-options>
-        <button ion-button color="define"
-        *ngIf="item.Status === 1 || item.Status === 3" 
-        (click)="editStatus(item, i, 1)">通过</button>
-        <button ion-button color="danger" 
-        *ngIf="item.Status === 1 || item.Status === 2" 
-        (click)="editStatus(item, i, 0)">未通过</button>
+        <button ion-button color="define" *ngIf="item.Status === 1 || item.Status === 3" (click)="editStatus(item, i, 1)">通过</button>
+        <button ion-button color="danger" *ngIf="item.Status === 1 || item.Status === 2" (click)="editStatus(item, i, 0)">未通过</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
+</div>
 </ion-content>

@@ -14,6 +14,7 @@ export class RecruitedDetailPage {
 
   public RecruitedDetail: any
   public Candidates: any = new Object()
+  pet: string = "用工详情";
 
   constructor(
     public navCtrl: NavController,
