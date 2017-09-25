@@ -5,13 +5,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AuthProvider } from '../providers';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  
+  public check: boolean
+
   rootPage: any = LoginPage;
   @ViewChild(Nav) nav: Nav;
 
@@ -19,7 +20,7 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public authProvider: AuthProvider,
+    public storage: Storage
   ) {
     this.initializeApp();
   }
@@ -30,11 +31,24 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      if (this.authProvider.auth_check()) {
+      this.check_auth();
+      if (this.check) {
         this.nav.setRoot(LoginPage);
       } else {
         this.nav.setRoot(TabsPage);
       }
     });
   }
+  
+  // 判断是否登录
+  async check_auth() {
+    await this.storage.get('AUTH_TOKEN').then(res => {
+      if (res != null) {
+        this.check = true;
+      } else {
+        this.check = false;
+      }
+    })
+  }
+
 }

@@ -1,4 +1,4 @@
 export class UserViewModel {
-  public name: string;
+  public username: string;
   public password: string;
 }

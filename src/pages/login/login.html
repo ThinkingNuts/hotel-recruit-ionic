@@ -7,15 +7,30 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+  <form [formGroup]="loginForm" novalidate>
     <ion-item>
-      <ion-input type="text" placeholder="用户名" [(ngModel)]="user.username" name="username" #username="ngModel" required></ion-input>
+      <ion-input type="text" placeholder="用户名" [(ngModel)]="user.username" formControlName="username" required></ion-input>
     </ion-item>
-    <p *ngIf="username.errors?.required">error message</p>
+
+    <div class="alert alert-danger">
+      <div *ngIf="username.hasError('required') && username.touched">
+        用户名必填
+      </div>
+      <div *ngIf="username.hasError('minlength') && username.touched">
+        用户名至少4个字段
+      </div>
+    </div>
+
     <ion-item>
-      <ion-input type="password" placeholder="密码" [(ngModel)]="user.password" name="password" #password="ngModel" required></ion-input>
+      <ion-input type="password" placeholder="密码" [(ngModel)]="user.password" formControlName="password"></ion-input>
     </ion-item>
-    <p *ngIf="password.errors?.required">error message</p>
-  </ion-list>
-  <button ion-button color="define" block (click)=login()>登录</button>
+
+    <div class="alert alert-danger">
+      <div *ngIf="password.hasError('required') && password.touched">
+        密码必填
+      </div>
+    </div>
+
+    <button ion-button color="define" block (click)=login() [disabled]="!loginForm.valid">登录</button>
+  </form>
 </ion-content>
