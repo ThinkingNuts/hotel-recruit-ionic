@@ -13,6 +13,7 @@ import { handleTime } from '../../utils';
 })
 export class RecruitedListPage {
   HotelOrders: any
+  HotelOrders_copy: any
   preTime: string
 
   constructor(
@@ -38,6 +39,7 @@ export class RecruitedListPage {
       this.storage.set('PRE_TIME', current_time);
       this.rs.HotelOrders(this.preTime).subscribe((res) => {
         this.HotelOrders = res.json();
+        this.HotelOrders_copy = this.HotelOrders
       });
 
     });
@@ -59,11 +61,18 @@ export class RecruitedListPage {
     this.showConfirm(index, item);
   }
 
+  getItems(ev: any) {
+    let val = ev.target.value;
+    if (val && val.trim() !== '') {
+      this.HotelOrders = this.HotelOrders_copy.filter(function (item) {
+        return item.DepartName.includes(val);
+      });
+    }
+  }
+
   doRefresh(refresher) {
-    this.rs.HotelOrders().subscribe((res) => {
-      this.HotelOrders = res.json();
-      refresher.complete();
-    });
+    this.getHotelOrders()
+    refresher.complete();
   }
 
   showConfirm(index, item) {

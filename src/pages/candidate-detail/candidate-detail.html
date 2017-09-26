@@ -29,10 +29,10 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 3">
-        <button ion-button block (click)="editStatus(1)">通过</button>
+        <button ion-button block (click)="editStatus(1)">录用</button>
       </ion-col>
       <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 2">
-        <button ion-button block color="danger" (click)="editStatus(0)">未通过</button>
+        <button ion-button block color="danger" (click)="editStatus(0)">拒绝</button>
       </ion-col>
     </ion-row>
   </ion-grid>

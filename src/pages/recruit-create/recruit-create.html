@@ -15,32 +15,6 @@
       <ion-label>标题</ion-label>
       <ion-input type="text" [(ngModel)]="recruit.Title"></ion-input>
     </ion-item>
-
-    <ion-item>
-      <ion-label>人数</ion-label>
-      <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
-    </ion-item>
-
-
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-            <ion-item>
-                <ion-label>人数</ion-label>
-                <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
-              </ion-item>
-        </ion-col>
-        <ion-col>
-            <p>元/小时</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-item>
-      <ion-label>单价</ion-label>
-      <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
-    </ion-item>
-
     <ion-item>
       <ion-label>工种</ion-label>
       <ion-select [(ngModel)]="recruit.WorkTypeId">
@@ -54,7 +28,48 @@
         <ion-option *ngFor="let item of data.schedules" [value]="item.id">{{ item.text }}</ion-option>
       </ion-select>
     </ion-item>
+    <!-- <ion-item>
+      <ion-label>人数</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>单价</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
+    </ion-item> -->
+  </ion-list>
+
+  <ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-9 style="padding-left: 0; margin-left: 0">
+          <ion-item>
+            <ion-label>招聘人数</ion-label>
+            <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <p>人</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-9 style="padding-left: 0; margin-left: 0">
+          <ion-item>
+            <ion-label>单价</ion-label>
+            <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <p>元/小时</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+  <ion-list>
     <ion-item>
       <ion-label>开始时间</ion-label>
       <ion-datetime displayFormat="YYYY/MM/DD HH:00" pickerFormat="YYYY MM DD HH:00" [min]="data.currentTime" [(ngModel)]="recruit.Start"></ion-datetime>
@@ -66,7 +81,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>特殊要求</ion-label>
+      <ion-label>技能要求</ion-label>
       <ion-input type="text" [(ngModel)]="recruit.Mark"></ion-input>
     </ion-item>
 

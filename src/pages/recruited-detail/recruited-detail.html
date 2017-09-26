@@ -22,14 +22,15 @@
     <div [ngSwitch]="pet">
   <ion-card *ngSwitchCase="'用工详情'">
     <ion-card-header>
-      <span>{{RecruitedDetail.Title}}</span>
-      <span class="candidate">已申请 {{Candidates.TotalApply}} 人</span>
+      <span>{{RecruitedDetail.DepartName}} - {{RecruitedDetail.WorkTypeName}}</span>
+      <span class="candidate"><span>{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}</span>
     </ion-card-header>
     <ion-card-content>
-      <p><span>招聘 {{RecruitedDetail.Num}} 人</span><span style="padding-left: 10%">{{RecruitedDetail.Billing}}</span></p>
+      <p>酬劳：{{RecruitedDetail.Billing}}</p>
       <p>开始时间：{{RecruitedDetail.Start}}</p>
       <p>结束时间：{{RecruitedDetail.End}}</p>
       <p>地点：浦东金桥</p>
+      <p>技能要求：{{RecruitedDetail.Mark}}</p>
     </ion-card-content>
   </ion-card>
 
@@ -44,10 +45,10 @@
           <button ion-button>{{ item.StatusStr }}</button>
       </div>
       </button>
-      <ion-item-options>
+      <!-- <ion-item-options>
         <button ion-button color="define" *ngIf="item.Status === 1 || item.Status === 3" (click)="editStatus(item, i, 1)">通过</button>
         <button ion-button color="danger" *ngIf="item.Status === 1 || item.Status === 2" (click)="editStatus(item, i, 0)">未通过</button>
-      </ion-item-options>
+      </ion-item-options> -->
     </ion-item-sliding>
   </ion-list>
 </div>

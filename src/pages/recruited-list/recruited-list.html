@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="define">
-    <ion-title>用工列表</ion-title>
+    <ion-title>发布列表</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,8 +16,9 @@
     <ion-item-sliding *ngFor="let item of HotelOrders; let i = index">
       <button ion-item (click)="itemTapped(item)">
         <div class="recruit-title">
-          <h2>{{item.Title}}</h2>
-          <p><span>招聘 {{item.Num}} 人</span><span style="padding-left: 10px">{{item.Billing}}</span></p>
+          <h2>{{item.DepartName}} - {{item.WorkTypeName}}</h2>
+          <p><span style="color: red">{{item.AppliedNum}}</span> / <span>{{item.Num}}</span>
+            <span style="padding-left: 10px">酬劳：{{item.Billing}}</span></p>
         </div>
         <div class="recruit-time">
           <p>{{item.TimeStr | date:"yyyy-MM-dd"}}</p>

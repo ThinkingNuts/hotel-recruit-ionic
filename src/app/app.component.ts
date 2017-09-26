@@ -31,7 +31,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      //this.check_auth();
+      this.check_auth();
     });
   }
 

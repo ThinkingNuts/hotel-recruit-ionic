@@ -8,6 +8,8 @@ page-recruited-detail {
   }
   .candidate {
     float: right;
-    color: red
+    span {
+      color: red;
+    } 
   }
 }
