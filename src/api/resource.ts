@@ -5,37 +5,39 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs'
 import * as querystring from 'querystring'
 import { API_ROOT } from './config'
 import { UserViewModel } from '../view-model/user-model'
+import { objectToSerialize } from '../utils'
  
 @Injectable()
 export class ResourceService {
 
   headers: Headers = new Headers()
   opts: RequestOptions = new RequestOptions()
+  GUID: string
+  preTime: Date
 
   constructor(public http: Http, public storage: Storage) {
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
     //this.headers.append('Content-Type', 'application/json')
+    this.interceptor();
+  }
 
+  interceptor() {
     this.opts.headers = this.headers
     this.storage.get('AUTH_TOKEN').then(res => {
       if (res && !this.opts.headers.get('Authorization')) {
-        this.opts.headers.append('Authorization', 'Bearer ' + res)
+        this.opts.headers.append('Authorization', `Bearer ${res}`)
       }
     });
-  }
-  
-  // 转为表单数据类型
-  ObjectToSerialize(data): string {
-    let form_data: any;
-    for (let index in data) {
-      form_data += `&${index}=${data[index]}`;
-    }
-    return form_data.substring(10);
+    this.storage.get('AUTH_GUID').then(res => {
+      if (res) {
+        this.GUID = res
+      }
+    });
   }
 
   //登录请求.
   Login(data: Object): Observable<any> {
-    data = this.ObjectToSerialize(data);
+    data = objectToSerialize(data);
     return this.http.post(API_ROOT + 'Hotel/login', data, this.opts)
   }
 
@@ -48,17 +50,18 @@ export class ResourceService {
   }
 
   RecruitCreate(data: Object): Observable<any> {
-    data = this.ObjectToSerialize(data);
+    data = objectToSerialize(data);
     return this.http.post(API_ROOT + 'HotelOrder/Create', data, this.opts)
   }
 
   RecruitEdit(data: Object): Observable<any> {
-    data = this.ObjectToSerialize(data);
+    data = objectToSerialize(data);
     return this.http.post(API_ROOT + 'HotelOrder/Update', data, this.opts)
   }
 
-  HotelOrders(): Observable<any> {
-    return this.http.post(API_ROOT + 'HotelOrder/List', this.opts)
+  HotelOrders(preTime): Observable<any> {
+    let transformUrl = `${API_ROOT}HotelOrder/OrderDetail/${this.GUID}?preTime=${preTime}`.replace(/"/g,"");
+    return this.http.post(transformUrl, this.opts)
   }
 
   DeleteOrder(item): Observable<any> {
@@ -70,8 +73,7 @@ export class ResourceService {
   }
 
   OrderUpdate(data: Object): Observable<any> {
-    data = this.ObjectToSerialize(data);
+    data = objectToSerialize(data);
     return this.http.post(API_ROOT + 'PersonOrder/Update', data, this.opts)
   }
-
 }

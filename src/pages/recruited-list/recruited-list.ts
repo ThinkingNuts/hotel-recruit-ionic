@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController, App } from 'ionic
 import { RecruitedDetailPage } from '../recruited-detail/recruited-detail';
 import { RecruitCreatePage } from '../recruit-create/recruit-create';
 import { ResourceService } from '../../api/resource';
+import { Storage } from '@ionic/storage';
+import { handleTime } from '../../utils';
 
 @IonicPage()
 @Component({
@@ -11,20 +13,33 @@ import { ResourceService } from '../../api/resource';
 })
 export class RecruitedListPage {
   HotelOrders: any
+  preTime: string
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
-    private alertCtrl: AlertController,
-    private app: App,
+    public alertCtrl: AlertController,
+    public app: App,
+    public storage: Storage
   ) {
     this.getHotelOrders()
   }
 
   getHotelOrders() {
-    this.rs.HotelOrders().subscribe((res) => {
-      this.HotelOrders = res.json();
+    let current_time = handleTime("yyyy-MM-dd hh:mm:ss")
+    console.log(current_time);
+    this.storage.get('PRE_TIME').then(res => {
+      if (res) {
+        this.preTime = res;
+      } else {
+        this.preTime = current_time;
+      }
+      this.storage.set('PRE_TIME', current_time);
+      this.rs.HotelOrders(this.preTime).subscribe((res) => {
+        this.HotelOrders = res.json();
+      });
+
     });
   }
 
@@ -75,5 +90,5 @@ export class RecruitedListPage {
     });
     confirm.present();
   }
-  
+
 }

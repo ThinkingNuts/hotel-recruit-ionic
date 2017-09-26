@@ -48,6 +48,7 @@ export class LoginPage implements OnInit {
     this.rs.Login(this.user).subscribe((res) => {
       if (res.json().state) {
         this.storage.set('AUTH_TOKEN', JSON.stringify(res.json().token));
+        this.storage.set('AUTH_GUID', JSON.stringify(res.json().data.GUID));
         this.storage.set('AUTH_INFO', JSON.stringify(res.json().data));
         this.navCtrl.push(TabsPage);
       } else {
