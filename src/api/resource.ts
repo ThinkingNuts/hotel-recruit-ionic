@@ -49,6 +49,10 @@ export class ResourceService {
     return this.http.post(API_ROOT + 'Schedule/Schedules', this.opts)
   }
 
+  Department(): Observable<any> {
+    return this.http.post(API_ROOT + 'Department/Departments', this.opts)
+  }
+
   RecruitCreate(data: Object): Observable<any> {
     data = objectToSerialize(data);
     return this.http.post(API_ROOT + 'HotelOrder/Create', data, this.opts)

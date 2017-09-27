@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { AlertController } from 'ionic-angular';
 
 import { UserViewModel } from '../../view-model/user-model';
 import { ResourceService } from '../../api/resource';
@@ -31,7 +32,8 @@ export class LoginPage implements OnInit {
     public navParams: NavParams,
     public rs: ResourceService,
     private formBuilder: FormBuilder,
-    public storage: Storage
+    public storage: Storage,
+    public alertCtrl: AlertController
   ) {
   }
 
@@ -52,8 +54,17 @@ export class LoginPage implements OnInit {
         this.storage.set('AUTH_INFO', JSON.stringify(res.json().data));
         this.navCtrl.push(TabsPage);
       } else {
-        console.log('登录失败！');
+        this.showAlert(res.json().message);
       }
     });
+  }
+
+  showAlert(message) {
+    let alert = this.alertCtrl.create({
+      title: '登录失败！',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

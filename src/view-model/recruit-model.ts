@@ -1,5 +1,5 @@
 export class RecruitViewModel {
-  public Title: string;
+  public DepartID: number;
   public Num: number;
   public HotelId: number;
   public ScheduleId: number;

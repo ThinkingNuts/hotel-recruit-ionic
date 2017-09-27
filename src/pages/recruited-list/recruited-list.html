@@ -1,11 +1,10 @@
 <ion-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar color="light">
     <ion-title>发布列表</ion-title>
   </ion-navbar>
 
 </ion-header>
-
 
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
@@ -16,16 +15,16 @@
     <ion-item-sliding *ngFor="let item of HotelOrders; let i = index">
       <button ion-item (click)="itemTapped(item)">
         <div class="recruit-title">
-          <h2>{{item.DepartName}} - {{item.WorkTypeName}}</h2>
+          <h2>{{item.DepartMentName}} - {{item.WorkTypeName}}</h2>
           <p><span style="color: tomato">{{item.AppliedNum}}</span> / <span>{{item.Num}}</span>
             <span style="padding-left: 10px">酬劳：{{item.Billing}}</span></p>
         </div>
         <div class="recruit-time">
-          <p>{{item.TimeStr | date:"yyyy-MM-dd"}}</p>
+          <p>{{item.CreateTime | date:"yyyy-MM-dd"}}</p>
         </div>
       </button>
       <ion-item-options>
-        <button ion-button color="define" (click)="modifyItem(i, item)">修改</button>
+        <button ion-button color="light" style="color: tomato" (click)="modifyItem(i, item)">修改</button>
         <button ion-button color="danger" (click)="removeItem(i, item)">删除</button>
       </ion-item-options>
     </ion-item-sliding>

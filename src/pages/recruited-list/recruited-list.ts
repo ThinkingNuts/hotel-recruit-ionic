@@ -29,8 +29,8 @@ export class RecruitedListPage {
 
   getHotelOrders() {
     let current_time = handleTime("yyyy-MM-dd hh:mm:ss")
-    console.log(current_time);
     this.storage.get('PRE_TIME').then(res => {
+      console.log(res);
       if (res) {
         this.preTime = res;
       } else {

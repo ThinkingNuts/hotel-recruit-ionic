@@ -21,6 +21,7 @@ export class RecruitCreatePage {
     currentTime: this.ToDate(new Date()),
     workTypes: '',
     schedules: '',
+    Departments: '',
     edit: false
   }
 
@@ -34,6 +35,9 @@ export class RecruitCreatePage {
     });
     this.rs.Schedules().subscribe((res) => {
       this.data.schedules = res.json();
+    });
+    this.rs.Department().subscribe((res) => {
+      this.data.Departments = res.json();
     });
     if (navParams.get('item')) {
        this.recruit = navParams.get('item')
