@@ -28,7 +28,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 3">
+      <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 0">
         <button ion-button block (click)="editStatus(1)">录用</button>
       </ion-col>
       <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 2">

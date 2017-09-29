@@ -66,6 +66,8 @@ export class RecruitCreatePage {
   }
 
   edit(): void {
+    this.recruit.HotelId = 2;
+    this.recruit.Billing = this.recruit.Billing + this.data.unit;
     this.rs.RecruitEdit(this.recruit).subscribe((res) => {
       if (res.json().state) {
         this.navCtrl.pop();

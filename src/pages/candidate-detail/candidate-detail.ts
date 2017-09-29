@@ -41,14 +41,14 @@ export class CandidateDetailPage {
     if (state === 1) {
       this.orderData.Status = 2
       this.rs.OrderUpdate(this.orderData).subscribe((res) => {
-        this.candidate.StatusStr = '通过'
+        this.candidate.StatusStr = '录用'
         this.candidate.Status = 2
         this.presentToast();
       });
     } else {
-      this.orderData.Status = 3
+      this.orderData.Status = 0
       this.rs.OrderUpdate(this.orderData).subscribe((res) => {
-        this.candidate.StatusStr = '未通过'
+        this.candidate.StatusStr = '拒绝'
         this.candidate.Status = 3
         this.presentToast();
       });

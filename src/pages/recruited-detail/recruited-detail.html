@@ -43,7 +43,7 @@
                 <p>申请时间：{{ item.Person.CreateTime }}</p>
               </div>
               <div class="recruit-time">
-               <button ion-button>{{ item.StatusStr }}</button>
+               <button ion-button>{{ item.Status == 1 ? item.StatusStr : '已' + item.StatusStr }}</button>
             </div>
           </button>
         </ion-list>
