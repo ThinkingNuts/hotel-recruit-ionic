@@ -13,7 +13,7 @@ import { Storage } from '@ionic/storage';
 export class MyApp {
   public check: boolean
 
-  rootPage: any = LoginPage;
+  // rootPage: any = LoginPage;
   @ViewChild(Nav) nav: Nav;
 
   constructor(

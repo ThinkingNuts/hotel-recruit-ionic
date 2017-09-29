@@ -36,8 +36,8 @@
 
     <ion-list *ngSwitchCase="'申请人列表'">
       <div *ngIf="Candidates.TotalApply">
-        <ion-list *ngFor="let item of Candidates.Persons; let i = index">
-          <button ion-item (click)="itemTapped(item)">
+        <ion-list>
+          <button ion-item *ngFor="let item of Candidates.Persons; let i = index" (click)="itemTapped(item)">
               <div class="recruit-title">
                 <p>{{ item.Person.RealName }}</p>
                 <p>申请时间：{{ item.Person.CreateTime }}</p>

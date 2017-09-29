@@ -7,14 +7,13 @@
 
 </ion-header>
 
-
 <ion-content>
   <ion-list>
 
     <ion-item>
       <ion-label>部门：</ion-label>
       <ion-select [(ngModel)]="recruit.DepartID">
-        <ion-option *ngFor="let item of data.Departments" [value]="item.id">{{ item.text }}</ion-option>
+        <ion-option *ngFor="let item of data.departments" [value]="item.id">{{ item.text }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -31,35 +30,21 @@
       </ion-select>
     </ion-item>
 
-    <ion-grid style="padding-left: 0; margin-left: 0">
-      <ion-row>
-        <ion-col col-9 style="padding-left: 0; margin-left: 0">
-          <ion-item>
-            <ion-label>招聘人数：</ion-label>
-            <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-3>
-          <p>人</p>
-        </ion-col>
-      </ion-row>
+    <ion-item>
+      <ion-label>招聘人数：</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
+      <ion-select [(ngModel)]="data.num" clearInput>
+        <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-row>
-        <ion-col col-9 style="padding-left: 0; margin-left: 0">
-          <ion-item>
-            <ion-label>单价：</ion-label>
-            <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-3>
-          <ion-item>
-            <ion-select [(ngModel)]="recruit.WorkTypeId">
-              <ion-option *ngFor="let item of data.workTypes" [value]="item.id">{{ item.text }}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-item>
+      <ion-label>单价：</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
+      <ion-select [(ngModel)]="data.unit" clearInput>
+        <ion-option *ngFor="let item of data.units" [value]="item">{{ item }}</ion-option>
+      </ion-select>
+    </ion-item>
 
     <ion-item>
       <ion-label>开始时间：</ion-label>
@@ -75,16 +60,9 @@
       <ion-label>技能要求：</ion-label>
       <ion-input type="text" [(ngModel)]="recruit.Mark"></ion-input>
     </ion-item>
-    <!-- <ion-item>
-      <ion-label>人数</ion-label>
-      <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>单价</ion-label>
-      <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
-    </ion-item> -->
   </ion-list>
+
   <button *ngIf="!data.edit" ion-button block (click)=create()>发布</button>
   <button *ngIf="data.edit" ion-button block (click)=edit()>修改</button>
+
 </ion-content>

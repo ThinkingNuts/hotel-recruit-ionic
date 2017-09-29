@@ -41,7 +41,6 @@ export class RecruitedListPage {
         this.HotelOrders = res.json();
         this.HotelOrders_copy = this.HotelOrders
       });
-
     });
   }
 
@@ -52,6 +51,7 @@ export class RecruitedListPage {
   }
 
   modifyItem(index, item) {
+    console.log(item);
     this.navCtrl.push(RecruitCreatePage, {
       item: item
     });
@@ -65,7 +65,7 @@ export class RecruitedListPage {
     let val = ev.target.value;
     if (val && val.trim() !== '') {
       this.HotelOrders = this.HotelOrders_copy.filter(function (item) {
-        return item.DepartName.includes(val);
+        return item.DepartMentName.includes(val);
       });
     }
   }

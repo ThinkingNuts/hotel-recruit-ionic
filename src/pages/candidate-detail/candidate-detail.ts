@@ -29,6 +29,7 @@ export class CandidateDetailPage {
     public rs: ResourceService,
   ) {
     this.candidate = navParams.get('item');
+    console.log(this.candidate);
     this.RecruitedDetail = navParams.get('recruitedDetail');
   }
   
