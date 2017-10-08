@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
 import { RecruitedListPage } from '../recruited-list/recruited-list';
@@ -12,11 +13,9 @@ import { RecruitedListPage } from '../recruited-list/recruited-list';
 export class RecruitCreatePage {
 
   private recruit: RecruitViewModel = new RecruitViewModel();
-
   public ToDate(date): string {
     return new Date(+ new Date(date) + 8 * 3600 * 1000).toISOString()
   }
-
   public data = {
     currentTime: this.ToDate(new Date()),
     workTypes: '',
@@ -28,11 +27,14 @@ export class RecruitCreatePage {
     num: '/人',
     edit: false
   }
+  private createForm: FormGroup
+  private DepartID: any
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
+    private formBuilder: FormBuilder,
   ) {
     this.rs.WorkTypes().subscribe((res) => {
       this.data.workTypes = res.json();
@@ -53,10 +55,18 @@ export class RecruitCreatePage {
     }
   }
 
+  // ngOnInit() {
+  //   this.createForm = this.formBuilder.group({
+  //     DepartID: ['', [Validators.required]],
+  //   })
+  //   this.DepartID = this.createForm.controls['DepartID'];
+  // }
+
   create(): void {
+    if (this.recruit.Billing) {
+      this.recruit.Billing = this.recruit.Billing + this.data.unit;
+    }
     this.recruit.HotelId = 2;
-    this.recruit.Billing = this.recruit.Billing + this.data.unit;
-    console.log(this.recruit.Billing);
     this.rs.RecruitCreate(this.recruit).subscribe((res) => {
       if (res.json().state) {
         this.recruit = null

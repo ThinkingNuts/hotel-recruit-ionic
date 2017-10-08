@@ -15,7 +15,7 @@
     <ion-item-sliding *ngFor="let item of HotelOrders; let i = index">
       <button ion-item (click)="itemTapped(item)">
         <div class="recruit-title">
-          <h2>{{item.DepartMentName}} - {{item.WorkTypeName}}</h2>
+          <h2>{{item.DepartMentName}} - {{item.WorkTypeName}}<span *ngIf="item.NewApply" class="notify"><ion-badge item-end>{{item.NewApply}}</ion-badge></span></h2>
           <p><span style="color: tomato">{{item.AppliedNum}}</span> / <span>{{item.Num}}</span>
             <span style="padding-left: 10px">酬劳：{{item.Billing}}</span></p>
         </div>
