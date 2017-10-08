@@ -9,61 +9,60 @@
 
 <ion-content>
 
-    <ion-list>
-      <ion-item>
-        <ion-label><span class="color-need">*</span>部门：</ion-label>
-        <ion-select [(ngModel)]="recruit.DepartID">
-          <ion-option *ngFor="let item of data.departments" [value]="item.id">{{ item.text }}</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label><span class="color-need">*</span>工种：</ion-label>
-        <ion-select [(ngModel)]="recruit.WorkTypeId">
-          <ion-option *ngFor="let item of data.workTypes" [value]="item.id">{{ item.text }}</ion-option>
-        </ion-select>
-      </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label><span class="color-need">*</span>部门：</ion-label>
+      <ion-select [(ngModel)]="recruit.DepartID">
+        <ion-option *ngFor="let item of data.departments" [value]="item.id">{{ item.text }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="color-need">*</span>工种：</ion-label>
+      <ion-select [(ngModel)]="recruit.WorkTypeId">
+        <ion-option *ngFor="let item of data.workTypes" [value]="item.id">{{ item.text }}</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-item>
-        <ion-label><span class="color-need">*</span>工作排班：</ion-label>
-        <ion-select [(ngModel)]="recruit.ScheduleId">
-          <ion-option *ngFor="let item of data.schedules" [value]="item.id">{{ item.text }}</ion-option>
-        </ion-select>
-      </ion-item>
+    <ion-item>
+      <ion-label><span class="color-need">*</span>工作排班：</ion-label>
+      <ion-select [(ngModel)]="recruit.ScheduleId">
+        <ion-option *ngFor="let item of data.schedules" [value]="item.id">{{ item.text }}</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-item>
-        <ion-label><span class="color-need">*</span>招聘人数：</ion-label>
-        <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
-        <ion-select [(ngModel)]="data.num" clearInput>
-          <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
-        </ion-select>
-      </ion-item>
+    <ion-item>
+      <ion-label><span class="color-need">*</span>招聘人数：</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Num"></ion-input>
+      <ion-select [(ngModel)]="data.num" clearInput>
+        <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-item>
-        <ion-label><span class="color-need">*</span>单价：</ion-label>
-        <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
-        <ion-select [(ngModel)]="data.unit" clearInput>
-          <ion-option *ngFor="let item of data.units" [value]="item">{{ item }}</ion-option>
-        </ion-select>
-      </ion-item>
+    <ion-item>
+      <ion-label><span class="color-need">*</span>单价：</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Billing"></ion-input>
+      <ion-select [(ngModel)]="data.unit" clearInput>
+        <ion-option *ngFor="let item of data.units" [value]="item">{{ item }}</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-item>
-        <ion-label><span class="color-need">*</span>开始时间：</ion-label>
-        <ion-datetime displayFormat="YYYY/MM/DD HH:00" pickerFormat="YYYY MM DD HH:00" [min]="data.currentTime" [(ngModel)]="recruit.Start"></ion-datetime>
-      </ion-item>
+    <ion-item>
+      <ion-label><span class="color-need">*</span>开始时间：</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD HH:00" pickerFormat="YYYY MM DD HH:00" [min]="data.currentTime" [(ngModel)]="recruit.Start"></ion-datetime>
+    </ion-item>
 
-      <ion-item>
-        <ion-label><span class="color-need">*</span>结束时间：</ion-label>
-        <ion-datetime displayFormat="YYYY/MM/DD HH:00" pickerFormat="YYYY MM DD HH:00" [min]="recruit.Start" [(ngModel)]="recruit.End"></ion-datetime>
-      </ion-item>
+    <ion-item>
+      <ion-label><span class="color-need">*</span>结束时间：</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD HH:00" pickerFormat="YYYY MM DD HH:00" [min]="recruit.Start" [(ngModel)]="recruit.End"></ion-datetime>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>技能要求：</ion-label>
-        <ion-input type="text" [(ngModel)]="recruit.Mark"></ion-input>
-      </ion-item>
-    </ion-list>
+    <ion-item>
+      <ion-label>技能要求：</ion-label>
+      <ion-input type="text" [(ngModel)]="recruit.Mark"></ion-input>
+    </ion-item>
+  </ion-list>
 
-    <button *ngIf="!data.edit" ion-button block (click)=create()>发布</button>
-    <button *ngIf="data.edit" ion-button block (click)=edit()>修改</button>
-
+  <button *ngIf="!data.edit" ion-button block (click)=create()>发布</button>
+  <button *ngIf="data.edit" ion-button block (click)=edit()>修改</button>
 
 </ion-content>

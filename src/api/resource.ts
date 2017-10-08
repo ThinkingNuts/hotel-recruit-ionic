@@ -69,7 +69,8 @@ export class ResourceService {
   }
 
   DeleteOrder(item): Observable<any> {
-    return this.http.post(API_ROOT + 'HotelOrder/Remove', [item], this.opts)
+    //this.headers.append('Content-Type', 'application/json')
+    return this.http.post(API_ROOT + 'HotelOrder/Remove', [item])
   }
 
   PersonOrders(id): Observable<any> {

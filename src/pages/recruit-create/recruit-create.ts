@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
@@ -28,13 +28,14 @@ export class RecruitCreatePage {
     edit: false
   }
   private createForm: FormGroup
-  private DepartID: any
+  //private DepartID: any
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
     private formBuilder: FormBuilder,
+    public toastCtrl: ToastController,
   ) {
     this.rs.WorkTypes().subscribe((res) => {
       this.data.workTypes = res.json();
@@ -69,8 +70,10 @@ export class RecruitCreatePage {
     this.recruit.HotelId = 2;
     this.rs.RecruitCreate(this.recruit).subscribe((res) => {
       if (res.json().state) {
-        this.recruit = null
-        this.navCtrl.push(RecruitedListPage);
+        this.toastSuccess();
+        // this.navCtrl.push(RecruitedListPage);
+      } else {
+        this.toastError();
       }
     });
   }
@@ -83,6 +86,26 @@ export class RecruitCreatePage {
         this.navCtrl.pop();
       }
     });
+  }
+
+  toastSuccess = () => {
+    let toast = this.toastCtrl.create({
+      message: '发布成功',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
+
+  toastError = () => {
+    let toast = this.toastCtrl.create({
+      message: '表单验证失败',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 
 }

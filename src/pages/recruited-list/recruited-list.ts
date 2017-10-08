@@ -38,8 +38,8 @@ export class RecruitedListPage {
       }
       this.storage.set('PRE_TIME', current_time);
       this.rs.HotelOrders(this.preTime).subscribe((res) => {
+        console.log(res.json());
         this.HotelOrders = res.json();
-        console.log(this.HotelOrders);
         this.HotelOrders_copy = this.HotelOrders
       });
     });
