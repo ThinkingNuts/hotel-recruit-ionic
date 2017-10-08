@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
 import { RecruitedListPage } from '../recruited-list/recruited-list';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -36,6 +37,7 @@ export class RecruitCreatePage {
     public rs: ResourceService,
     private formBuilder: FormBuilder,
     public toastCtrl: ToastController,
+    public storage: Storage,
   ) {
     this.rs.WorkTypes().subscribe((res) => {
       this.data.workTypes = res.json();
@@ -67,25 +69,28 @@ export class RecruitCreatePage {
     if (this.recruit.Billing) {
       this.recruit.Billing = this.recruit.Billing + this.data.unit;
     }
-    this.recruit.HotelId = 2;
-    this.rs.RecruitCreate(this.recruit).subscribe((res) => {
-      if (res.json().state) {
-        this.toastSuccess();
-        this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
-        // this.navCtrl.push(RecruitedListPage);
-      } else {
-        this.toastError();
-      }
+    this.storage.get('AUTH_INFO').then((res) => {
+      this.recruit.HotelId = JSON.parse(res).Id;
+      this.rs.RecruitCreate(this.recruit).subscribe((res) => {
+        if (res.json().state) {
+          this.toastSuccess();
+          this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
+          // this.navCtrl.push(RecruitedListPage);
+        } else {
+          this.toastError();
+        }
+      });
     });
   }
 
   edit(): void {
-    this.recruit.HotelId = 2;
-    this.recruit.Billing = this.recruit.Billing + this.data.unit;
-    this.rs.RecruitEdit(this.recruit).subscribe((res) => {
-      if (res.json().state) {
-        this.navCtrl.pop();
-      }
+    this.storage.get('AUTH_INFO').then((res) => {
+      this.recruit.HotelId = JSON.parse(res).Id;
+      this.rs.RecruitEdit(this.recruit).subscribe((res) => {
+        if (res.json().state) {
+          this.navCtrl.pop();
+        }
+      });
     });
   }
 
