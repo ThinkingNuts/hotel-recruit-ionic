@@ -71,6 +71,7 @@ export class RecruitCreatePage {
     this.rs.RecruitCreate(this.recruit).subscribe((res) => {
       if (res.json().state) {
         this.toastSuccess();
+        this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
         // this.navCtrl.push(RecruitedListPage);
       } else {
         this.toastError();
