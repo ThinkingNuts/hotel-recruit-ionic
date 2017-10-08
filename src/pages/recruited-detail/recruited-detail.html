@@ -27,10 +27,10 @@
       </ion-card-header>
       <ion-card-content>
         <p>酬劳：{{RecruitedDetail.Billing}}</p>
-        <p>开始时间：{{RecruitedDetail.Start}}</p>
-        <p>结束时间：{{RecruitedDetail.End}}</p>
+        <p>开始时间：{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
+        <p>结束时间：{{RecruitedDetail.End | date:"yyyy-MM-dd"}}</p>
         <p>地点：{{RecruitedDetail.address}}</p>
-        <p>技能要求：{{RecruitedDetail.Mark}}</p>
+        <p *ngIf="RecruitedDetail.Mark !== null">技能要求：{{RecruitedDetail.Mark}}</p>
       </ion-card-content>
     </ion-card>
 

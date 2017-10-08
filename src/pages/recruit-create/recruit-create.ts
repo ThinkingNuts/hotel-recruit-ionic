@@ -75,7 +75,7 @@ export class RecruitCreatePage {
         if (res.json().state) {
           this.toastSuccess();
           this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
-          // this.navCtrl.push(RecruitedListPage);
+          this.navCtrl.push(RecruitedListPage);
         } else {
           this.toastError();
         }
@@ -84,10 +84,15 @@ export class RecruitCreatePage {
   }
 
   edit(): void {
+    if (this.recruit.Billing) {
+      this.recruit.Billing = this.recruit.Billing + this.data.unit;
+    }
     this.storage.get('AUTH_INFO').then((res) => {
       this.recruit.HotelId = JSON.parse(res).Id;
+      console.log(this.recruit);
       this.rs.RecruitEdit(this.recruit).subscribe((res) => {
         if (res.json().state) {
+          //this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
           this.navCtrl.pop();
         }
       });

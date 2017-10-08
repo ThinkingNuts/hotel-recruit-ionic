@@ -6,13 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar color="secondary">
-    <ion-title>home</ion-title>
+  <ion-navbar>
+    <ion-title>我的</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item (click)="itemSelected(item)">
+      关于
+    </button>  
+  </ion-list>
+  <button class="btn" ion-button block (click)=login()>退出</button>
 </ion-content>

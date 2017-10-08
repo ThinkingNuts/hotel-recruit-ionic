@@ -30,17 +30,19 @@ export class RecruitedListPage {
   getHotelOrders() {
     let current_time = handleTime("yyyy-MM-dd hh:mm:ss")
     this.storage.get('PRE_TIME').then(res => {
-      console.log(res);
       if (res) {
         this.preTime = res;
       } else {
         this.preTime = current_time;
       }
-      this.storage.set('PRE_TIME', current_time);
-      this.rs.HotelOrders(this.preTime).subscribe((res) => {
-        console.log(res.json());
-        this.HotelOrders = res.json();
-        this.HotelOrders_copy = this.HotelOrders
+      this.storage.get('AUTH_GUID').then(res => {
+        if (res) {
+          this.storage.set('PRE_TIME', current_time);
+          this.rs.HotelOrders(res, this.preTime).subscribe((res) => {
+            this.HotelOrders = res.json();
+            this.HotelOrders_copy = this.HotelOrders
+          });
+        }
       });
     });
   }
@@ -74,6 +76,10 @@ export class RecruitedListPage {
   doRefresh(refresher) {
     this.getHotelOrders()
     refresher.complete();
+  }
+
+  add() {
+    this.navCtrl.push(RecruitCreatePage);
   }
 
   showConfirm(index, item) {

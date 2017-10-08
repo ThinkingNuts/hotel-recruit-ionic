@@ -28,11 +28,6 @@ export class ResourceService {
         this.opts.headers.append('Authorization', `Bearer ${res}`)
       }
     });
-    this.storage.get('AUTH_GUID').then(res => {
-      if (res) {
-        this.GUID = res
-      }
-    });
   }
 
   //登录请求.
@@ -63,8 +58,8 @@ export class ResourceService {
     return this.http.post(API_ROOT + 'HotelOrder/Update', data, this.opts)
   }
 
-  HotelOrders(preTime): Observable<any> {
-    let transformUrl = `${API_ROOT}HotelOrder/OrderDetail/${this.GUID}?preTime=${preTime}`.replace(/"/g,"");
+  HotelOrders(GUID, preTime): Observable<any> {
+    let transformUrl = `${API_ROOT}HotelOrder/OrderDetail/${GUID}?preTime=${preTime}`.replace(/"/g,"");
     return this.http.post(transformUrl, this.opts)
   }
 
