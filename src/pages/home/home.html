@@ -15,9 +15,12 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item (click)="itemSelected(item)">
+    <button ion-item (click)="itemSelected()">
       关于
-    </button>  
+    </button>
+    <button ion-item>
+      我的资料
+    </button>
   </ion-list>
-  <button class="btn" ion-button block (click)=login()>退出</button>
+  <button class="btn" ion-button block (click)="login()">退出</button>
 </ion-content>

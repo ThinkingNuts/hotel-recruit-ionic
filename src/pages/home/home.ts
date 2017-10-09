@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController } from 'ionic-angular';
+import { AboutPage } from '../about/about';
 
 /**
  * Generated class for the HomePage page.
@@ -15,11 +16,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private app: App) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+  itemSelected() {
+    this.app.getRootNav().push(AboutPage);
   }
-
 }

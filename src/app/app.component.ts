@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav } from 'ionic-angular';
+import { Platform, MenuController, Nav, ToastController } from 'ionic-angular';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  public check: boolean
+  public static backButtonPressedOnceToExit = false; 
 
   // rootPage: any = LoginPage;
   @ViewChild(Nav) nav: Nav;
@@ -20,7 +20,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public storage: Storage
+    public storage: Storage,
+    public toastCtrl: ToastController
   ) {
     this.initializeApp();
   }
@@ -32,6 +33,23 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.check_auth();
+
+      this.platform.registerBackButtonAction(function(e){  
+        if(MyApp.backButtonPressedOnceToExit){  
+          this.platform.exitApp();  
+        }else{  
+          MyApp.backButtonPressedOnceToExit = true;  
+          let toast = this.toastCtrl.create({  
+            message: '再按一次退出',  
+            duration: 2000,  
+            position: 'bottom'  
+          });  
+          toast.present();  
+          setTimeout(function(){  
+            MyApp.backButtonPressedOnceToExit = false;  
+          },2000)  
+        }  
+      },101)  
     });
   }
 

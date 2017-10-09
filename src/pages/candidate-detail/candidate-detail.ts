@@ -49,7 +49,7 @@ export class CandidateDetailPage {
       this.orderData.Status = 0
       this.rs.OrderUpdate(this.orderData).subscribe((res) => {
         this.candidate.StatusStr = '拒绝'
-        this.candidate.Status = 3
+        this.candidate.Status = 0
         this.presentToast();
       });
     }
