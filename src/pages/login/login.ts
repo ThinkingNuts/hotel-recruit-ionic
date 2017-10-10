@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
@@ -26,6 +26,8 @@ export class LoginPage implements OnInit {
   private loginForm: FormGroup
   private username: any
   private password: any
+  canLeave: boolean = false;
+  GUID: string;
 
   constructor(
     public navCtrl: NavController,
@@ -33,8 +35,10 @@ export class LoginPage implements OnInit {
     public rs: ResourceService,
     private formBuilder: FormBuilder,
     public storage: Storage,
+    private platform: Platform,
     public alertCtrl: AlertController
   ) {
+    this.canLeave = false;
   }
 
   ngOnInit() {
@@ -46,10 +50,37 @@ export class LoginPage implements OnInit {
     this.password = this.loginForm.controls['password'];
   }
 
+  ionViewWillEnter() {
+    this.canLeave = false;
+    this.storage.get('AUTH_TOKEN').then((res) => {
+      this.GUID = res;
+    });
+  }
+
+  ionViewCanLeave(): boolean {
+    let bool = !!this.GUID;
+    if (this.canLeave || bool) {
+      return true;
+    } else {
+      this.alertCtrl.create({
+        title: '确认退出软件？',
+        buttons: [{text: '取消'},
+          {
+            text: '确定',
+            handler: () => {
+              this.platform.exitApp();
+            }
+          }
+        ]
+      }).present();
+      return false;
+    }
+  }
+
   login() {
     this.rs.Login(this.user).subscribe((res) => {
       if (res.json().state) {
-        console.log(res.json());
+        this.GUID = res.json().token;
         this.storage.set('AUTH_TOKEN', JSON.stringify(res.json().token));
         this.storage.set('AUTH_GUID', JSON.stringify(res.json().data.GUID));
         this.storage.set('AUTH_INFO', JSON.stringify(res.json().data));

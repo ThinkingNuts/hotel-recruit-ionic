@@ -13,7 +13,9 @@ import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { RecruitedListPage } from '../pages/recruited-list/recruited-list';
 import { CandidateDetailPage } from '../pages/candidate-detail/candidate-detail';
-import { AboutPage } from '../pages/about/about';
+import { AboutPage } from '../pages/home/about/about';
+import { SettingsPage } from '../pages/home/settings/settings';
+import { MinePage } from '../pages/home/mine/mine';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,7 +37,9 @@ export function provideStorage() {
     WelcomePage,
     RecruitedListPage,
     CandidateDetailPage,
-    AboutPage
+    AboutPage,
+    SettingsPage,
+    MinePage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ export function provideStorage() {
     WelcomePage,
     RecruitedListPage,
     CandidateDetailPage,
-    AboutPage
+    AboutPage,
+    SettingsPage,
+    MinePage
   ],
   providers: [
     StatusBar,

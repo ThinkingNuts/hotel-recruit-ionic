@@ -1,26 +1,44 @@
-<!--
-  Generated template for the HomePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>我的</ion-title>
+    <ion-title>
+      我的
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content>
-  <ion-list>
-    <button ion-item (click)="itemSelected()">
-      关于
-    </button>
-    <button ion-item>
-      我的资料
+<ion-content class="content-background">
+  <ion-list class="mine-header">
+    <button ion-item (click)="edit()">
+      <ion-thumbnail item-left (click)="viewAvatar();$event.stopPropagation()">
+        <img src="../../assets/icon/avatar.jpg">
+      </ion-thumbnail>
+      <div>{{userInfo?.Name}}</div>
     </button>
   </ion-list>
-  <button class="btn" ion-button block (click)="login()">退出</button>
+  <ion-list>
+    <button ion-item (click)="setting()">
+      <ion-icon name="settings" item-left color="primary"></ion-icon>
+      设置
+    </button>
+    <button ion-item (click)="map()">
+      <ion-icon name="map" item-left color="bright"></ion-icon>
+      所在位置
+    </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="exitSoftware()" detail-none>
+      <ion-icon name="log-out" item-left color="danger"></ion-icon>
+      退出软件
+    </button>
+    <button ion-item (click)="loginOut()" detail-none>
+      <ion-icon name="log-in" item-left color="danger"></ion-icon>
+      重新登录
+    </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="about()">
+      <ion-icon name="information-circle" item-left color="secondary"></ion-icon>
+      关于
+    </button>
+  </ion-list>
 </ion-content>
