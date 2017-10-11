@@ -7,7 +7,7 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content class="content-background">
 
   <ion-list>
     <ion-item>
@@ -62,7 +62,7 @@
     </ion-item>
   </ion-list>
 
-  <button *ngIf="!data.edit" ion-button block (click)=create()>发布</button>
-  <button *ngIf="data.edit" ion-button block (click)=edit()>修改</button>
+  <button *ngIf="!data.edit" ion-button class="btn" (click)=create()>发布</button>
+  <button *ngIf="data.edit" ion-button class="btn" (click)=edit()>修改</button>
 
 </ion-content>

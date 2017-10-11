@@ -65,6 +65,12 @@ export class RecruitCreatePage {
   //   this.DepartID = this.createForm.controls['DepartID'];
   // }
 
+  ionViewCanLeave(): void {
+    if (this.recruit.Billing.indexOf('/') === -1) {
+      this.recruit.Billing = this.recruit.Billing + this.data.unit;
+    }
+  }
+
   create(): void {
     if (this.recruit.Billing) {
       this.recruit.Billing = this.recruit.Billing + this.data.unit;

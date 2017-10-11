@@ -34,7 +34,6 @@ export class HomePage {
     this.storage.get('AUTH_INFO').then(res => {
       if (res) {
         this.userInfo = JSON.parse(res);
-        console.log(this.userInfo);
       }
     });
   }

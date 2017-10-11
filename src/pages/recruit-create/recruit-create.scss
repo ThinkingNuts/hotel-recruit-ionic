@@ -1,5 +1,12 @@
 page-recruit-create {
-  .color-need {
-    color: red;  
+  .content-background {
+    background-color: #f4f4f4;
+    .color-need {
+      color: red;  
+    }
+    .btn {
+      width: 94%;
+      margin-left: 3%
+    }
   }
 }

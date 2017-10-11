@@ -35,6 +35,7 @@ export class RecruitedListPage {
       } else {
         this.preTime = current_time;
       }
+      console.log(this.preTime);
       this.storage.get('AUTH_GUID').then(res => {
         if (res) {
           this.storage.set('PRE_TIME', current_time);

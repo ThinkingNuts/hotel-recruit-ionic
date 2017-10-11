@@ -6,9 +6,9 @@
 
 </ion-header>
 
-<ion-content color="light">
-  <form [formGroup]="loginForm" novalidate>
-    <ion-item>
+<ion-content class="content-background">
+  <form [formGroup]="loginForm" novalidate style="margin-top: 5%">
+    <ion-item style="background: rgba(255, 255, 255, 0);">
       <ion-input type="text" placeholder="用户名" [(ngModel)]="user.username" formControlName="username" required></ion-input>
     </ion-item>
 
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <ion-item>
+    <ion-item style="background: rgba(255, 255, 255, 0);">
       <ion-input type="password" placeholder="密码" [(ngModel)]="user.password" formControlName="password"></ion-input>
     </ion-item>
 
@@ -31,6 +31,6 @@
       </div>
     </div>
 
-    <button class="btn" ion-button block (click)=login() [disabled]="!loginForm.valid">登录</button>
+    <button class="btn" ion-button class="btn" (click)=login() [disabled]="!loginForm.valid">登录</button>
   </form>
 </ion-content>
