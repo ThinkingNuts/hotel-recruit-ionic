@@ -24,8 +24,6 @@ export class LoginPage implements OnInit {
 
   private user: UserViewModel = new UserViewModel()
   private loginForm: FormGroup
-  private username: any
-  private password: any
   canLeave: boolean = false;
   GUID: string;
 
@@ -46,8 +44,6 @@ export class LoginPage implements OnInit {
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required]],
     })
-    this.username = this.loginForm.controls['username'];
-    this.password = this.loginForm.controls['password'];
   }
 
   ionViewWillEnter() {

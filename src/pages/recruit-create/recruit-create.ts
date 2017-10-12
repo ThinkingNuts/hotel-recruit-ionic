@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
@@ -29,14 +29,13 @@ export class RecruitCreatePage {
     edit: false
   }
   private createForm: FormGroup
-  //private DepartID: any
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
     private formBuilder: FormBuilder,
-    public toastCtrl: ToastController,
+    private alertCtrl: AlertController,
     public storage: Storage,
   ) {
     this.rs.WorkTypes().subscribe((res) => {
@@ -58,14 +57,25 @@ export class RecruitCreatePage {
     }
   }
 
-  // ngOnInit() {
-  //   this.createForm = this.formBuilder.group({
-  //     DepartID: ['', [Validators.required]],
-  //   })
-  //   this.DepartID = this.createForm.controls['DepartID'];
-  // }
+  ngOnInit() {
+    this.createForm = this.formBuilder.group({
+      DepartID: ['', [Validators.required]],
+      WorkTypeId: ['', [Validators.required]],
+      ScheduleId: ['', [Validators.required]],
+      num: ['', [Validators.required]],
+      unit: ['', [Validators.required]],
+      Start: ['', [Validators.required]],
+      End: ['', [Validators.required]],
+      Mark: ['', [Validators.required]],
+      Billing: ['', [Validators.required]],
+      Num: ['', [Validators.required]],
+    });
+  }
 
-  ionViewCanLeave(): void {
+  ionViewCanLeave(): Boolean {
+    if (!this.recruit.Billing) {
+      return true;
+    }
     if (this.recruit.Billing.indexOf('/') === -1) {
       this.recruit.Billing = this.recruit.Billing + this.data.unit;
     }
@@ -79,11 +89,11 @@ export class RecruitCreatePage {
       this.recruit.HotelId = JSON.parse(res).Id;
       this.rs.RecruitCreate(this.recruit).subscribe((res) => {
         if (res.json().state) {
-          this.toastSuccess();
+          this.alertMessage('发布成功');
           this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
           this.navCtrl.push(RecruitedListPage);
         } else {
-          this.toastError();
+          this.alertMessage('表单验证失败');
         }
       });
     });
@@ -99,30 +109,20 @@ export class RecruitCreatePage {
       this.rs.RecruitEdit(this.recruit).subscribe((res) => {
         if (res.json().state) {
           //this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
+          this.alertMessage('修改成功');
           this.navCtrl.pop();
+        } else {
+          this.alertMessage('修改失败');
         }
       });
     });
   }
 
-  toastSuccess = () => {
-    let toast = this.toastCtrl.create({
-      message: '发布成功',
-      duration: 3000,
-      position: 'top'
+  alertMessage = (mes) => {
+    let alert = this.alertCtrl.create({
+      title: mes,
+      buttons: ['OK']
     });
-  
-    toast.present();
+    alert.present();
   }
-
-  toastError = () => {
-    let toast = this.toastCtrl.create({
-      message: '表单验证失败',
-      duration: 3000,
-      position: 'top'
-    });
-  
-    toast.present();
-  }
-
 }
