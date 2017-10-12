@@ -121,7 +121,7 @@ export class RecruitCreatePage {
   alertMessage = (mes) => {
     let alert = this.alertCtrl.create({
       title: mes,
-      buttons: ['OK']
+      buttons: ['确定']
     });
     alert.present();
   }
