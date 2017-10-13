@@ -60,6 +60,7 @@ export class ResourceService {
 
   HotelOrders(GUID, preTime): Observable<any> {
     let transformUrl = `${API_ROOT}HotelOrder/OrderDetail/${GUID}?preTime=${preTime}`.replace(/"/g,"");
+    console.log(transformUrl);
     return this.http.post(transformUrl, this.opts)
   }
 

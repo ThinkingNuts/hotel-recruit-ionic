@@ -37,6 +37,7 @@ export class RecruitedListPage {
       }
       this.storage.get('AUTH_GUID').then(res => {
         if (res) {
+          console.log(current_time);
           this.storage.set('PRE_TIME', current_time);
           this.rs.HotelOrders(res, this.preTime).subscribe((res) => {
             this.HotelOrders = res.json();
