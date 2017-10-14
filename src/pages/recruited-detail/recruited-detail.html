@@ -23,7 +23,7 @@
     <ion-card *ngSwitchCase="'用工详情'">
       <ion-card-header>
         <span>{{RecruitedDetail.DepartMentName}} - {{RecruitedDetail.WorkTypeName}}</span>
-        <span class="candidate"><span>{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}</span>
+        <span class="candidate"><span style="color: #47FF66">{{RecruitedDetail.EmployNum}}</span> / <span>{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}</span>
       </ion-card-header>
       <ion-card-content>
         <p>酬劳：{{RecruitedDetail.Billing}}</p>
