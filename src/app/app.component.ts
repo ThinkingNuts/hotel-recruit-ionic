@@ -37,7 +37,7 @@ export class MyApp {
       this.splashScreen.hide();
       this.check_auth();
       //注册返回键事件
-      this.registerBackButtonAction();
+      //this.registerBackButtonAction();
     });
   }
 
@@ -96,7 +96,7 @@ export class MyApp {
         position: 'top'
       }).present();
       this.backButtonPressed = true;
-      setTimeout(() => this.backButtonPressed = false, 2000);//2秒内没有再次点击返回则将触发标志标记为false
+      setTimeout(() => this.backButtonPressed = false, 2000); //2秒内没有再次点击返回则将触发标志标记为false
     }
   }
 }
