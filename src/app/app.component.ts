@@ -36,7 +36,7 @@ export class MyApp {
       this.splashScreen.hide();
       this.check_auth();
       //注册返回键事件
-      this.registerBackButtonAction();
+      //this.registerBackButtonAction();
     });
   }
 
