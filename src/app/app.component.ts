@@ -23,7 +23,7 @@ export class MyApp {
     public storage: Storage,
     public toastCtrl: ToastController,
     private keyboard: Keyboard,
-    public ionicApp: IonicApp,
+    public ionicApp: IonicApp
   ) {
     this.initializeApp();
   }
