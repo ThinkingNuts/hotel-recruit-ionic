@@ -38,6 +38,7 @@ export class RecruitCreatePage {
     private alertCtrl: AlertController,
     public storage: Storage,
   ) {
+    this.recruit.Mark = '';
     this.rs.WorkTypes().subscribe((res) => {
       this.data.workTypes = res.json();
     });
@@ -87,6 +88,7 @@ export class RecruitCreatePage {
     }
     this.storage.get('AUTH_INFO').then((res) => {
       this.recruit.HotelId = JSON.parse(res).Id;
+      console.log(this.recruit);
       this.rs.RecruitCreate(this.recruit).subscribe((res) => {
         if (res.json().state) {
           this.alertMessage('发布成功');

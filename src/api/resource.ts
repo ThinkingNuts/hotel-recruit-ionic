@@ -50,6 +50,7 @@ export class ResourceService {
 
   RecruitCreate(data: Object): Observable<any> {
     data = objectToSerialize(data);
+    console.log(data);
     return this.http.post(API_ROOT + 'HotelOrder/Create', data, this.opts)
   }
 

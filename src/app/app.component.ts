@@ -36,23 +36,8 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.check_auth();
-
-      this.platform.registerBackButtonAction(function(e){  
-        if(MyApp.backButtonPressedOnceToExit){  
-          this.platform.exitApp();  
-        }else{  
-          MyApp.backButtonPressedOnceToExit = true;  
-          let toast = this.toastCtrl.create({  
-            message: '再按一次退出',  
-            duration: 2000,  
-            position: 'bottom'  
-          });  
-          toast.present();  
-          setTimeout(function(){  
-            MyApp.backButtonPressedOnceToExit = false;  
-          },2000)  
-        }  
-      },101)  
+      //注册返回键事件
+      this.registerBackButtonAction();
     });
   }
 
