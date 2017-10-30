@@ -12,7 +12,6 @@
 
 </ion-header>
 
-
 <ion-content>
   <ion-card>
     <ion-card-header>
@@ -28,8 +27,11 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 0">
-        <button ion-button block (click)="editStatus(1)">录用</button>
+      <ion-col *ngIf="candidate.Status === 1">
+        <button ion-button block (click)="editStatus(1)">预录用</button>
+      </ion-col>
+      <ion-col *ngIf="candidate.Status === 2">
+        <button ion-button block (click)="editStatus(2)">录用</button>
       </ion-col>
       <ion-col *ngIf="candidate.Status === 1 || candidate.Status === 2">
         <button ion-button block color="danger" (click)="editStatus(0)">拒绝</button>

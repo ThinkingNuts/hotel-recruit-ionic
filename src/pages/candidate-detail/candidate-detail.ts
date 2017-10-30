@@ -29,35 +29,40 @@ export class CandidateDetailPage {
     public rs: ResourceService,
   ) {
     this.candidate = navParams.get('item');
-    console.log(this.candidate);
     this.RecruitedDetail = navParams.get('recruitedDetail');
   }
   
   editStatus(state: number) {
-    this.orderData.GUID = this.candidate.GUID
     this.orderData.OrderId = this.RecruitedDetail.Id
-    this.orderData.Mark = this.RecruitedDetail.Mark
     this.orderData.PersonId = this.candidate.Person.Id
-    if (state === 1) {
-      this.orderData.Status = 2
-      this.rs.OrderUpdate(this.orderData).subscribe((res) => {
-        this.candidate.StatusStr = '录用'
-        this.candidate.Status = 2
-        this.presentToast();
+    if (state === 0) {
+      this.orderData.Status = 4
+      this.rs.OrderUpdate(this.candidate.GUID, this.orderData).subscribe((res) => {
+        this.candidate.StatusStr = '拒绝'
+        this.candidate.Status = 4
+        this.presentToast('修改申请状态成功');
       });
     } else {
-      this.orderData.Status = 0
-      this.rs.OrderUpdate(this.orderData).subscribe((res) => {
-        this.candidate.StatusStr = '拒绝'
-        this.candidate.Status = 0
-        this.presentToast();
+      this.orderData.Status = state + 1
+      this.rs.OrderUpdate(this.candidate.GUID, this.orderData).subscribe((res) => {
+        if (state == 1) {
+          this.candidate.StatusStr = '预录用'
+        } else {
+          if (!res.json().state) {
+            this.presentToast(res.json().message);
+            return;
+          }
+          this.candidate.StatusStr = '录用'
+        }
+        this.candidate.Status = state + 1
+        this.presentToast('修改申请状态成功');
       });
     }
   }
 
-  presentToast = () => {
+  presentToast = (mes) => {
     let toast = this.toastCtrl.create({
-      message: '修改申请状态成功',
+      message: mes,
       duration: 3000,
       position: 'top'
     });

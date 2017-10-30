@@ -88,15 +88,14 @@ export class RecruitCreatePage {
     }
     this.storage.get('AUTH_INFO').then((res) => {
       this.recruit.HotelId = JSON.parse(res).Id;
-      console.log(this.recruit);
       this.rs.RecruitCreate(this.recruit).subscribe((res) => {
         if (res.json().state) {
           this.alertMessage('发布成功');
-          this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
           this.navCtrl.push(RecruitedListPage);
         } else {
-          this.alertMessage('表单验证失败');
+          this.alertMessage(res.json().message);
         }
+        this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
       });
     });
   }

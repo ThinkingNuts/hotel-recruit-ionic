@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { LoginPage } from '../login/login';
 import { SettingsPage } from './settings/settings';
 import { MinePage } from './mine/mine';
+import { CandidateListPage } from './candidate-list/candidate-list';
 
 /**
  * Generated class for the HomePage page.
@@ -73,6 +74,10 @@ export class HomePage {
 
   map() {
 
+  }
+
+  candidate_list() {
+    this.navCtrl.push(CandidateListPage);
   }
 
   setting() {

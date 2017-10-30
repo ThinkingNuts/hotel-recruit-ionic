@@ -12,11 +12,9 @@ export class ResourceService {
 
   headers: Headers = new Headers()
   opts: RequestOptions = new RequestOptions()
-  GUID: string
   preTime: Date
 
   constructor(public http: Http, public storage: Storage) {
-    this.headers.append('Content-Type', 'application/x-www-form-urlencoded')
     //this.headers.append('Content-Type', 'application/json')
     this.interceptor();
   }
@@ -33,6 +31,7 @@ export class ResourceService {
   //登录请求.
   Login(data: Object): Observable<any> {
     data = objectToSerialize(data);
+    this.opts.headers.append('Content-Type', 'application/x-www-form-urlencoded')
     return this.http.post(API_ROOT + 'Hotel/login', data, this.opts)
   }
 
@@ -48,10 +47,11 @@ export class ResourceService {
     return this.http.post(API_ROOT + 'Department/Departments', this.opts)
   }
 
+  // 酒店发布用工
   RecruitCreate(data: Object): Observable<any> {
-    data = objectToSerialize(data);
-    console.log(data);
-    return this.http.post(API_ROOT + 'HotelOrder/Create', data, this.opts)
+    //this.opts.headers.append('Content-Type', 'application/x-www-form-urlencoded')
+    //data = objectToSerialize(data);
+    return this.http.post(API_ROOT + 'api/HotelWorkOrder', data, this.opts)
   }
 
   RecruitEdit(data: Object): Observable<any> {
@@ -59,10 +59,9 @@ export class ResourceService {
     return this.http.post(API_ROOT + 'HotelOrder/Update', data, this.opts)
   }
 
-  HotelOrders(GUID, preTime): Observable<any> {
-    let transformUrl = `${API_ROOT}HotelOrder/OrderDetail/${GUID}?preTime=${preTime}`.replace(/"/g,"");
-    console.log(transformUrl);
-    return this.http.post(transformUrl, this.opts)
+  HotelOrders(GUID: string, preTime): Observable<any> {
+    let transformUrl = `${API_ROOT}api/HotelWorkOrder?HotelGUID=${GUID}&preTime=${preTime}`.replace(/"/g,"");
+    return this.http.get(transformUrl, this.opts)
   }
 
   DeleteOrder(item): Observable<any> {
@@ -73,9 +72,14 @@ export class ResourceService {
   PersonOrders(id): Observable<any> {
     return this.http.post(API_ROOT + 'PersonOrder/Persons/' + id, this.opts)
   }
+  
+  // 酒店更新用户申请状态
+  OrderUpdate(GUID: string, data: Object): Observable<any> {
+    return this.http.put(API_ROOT + 'api/HotelWorkOrder/' + GUID, data, this.opts)
+  }
 
-  OrderUpdate(data: Object): Observable<any> {
-    data = objectToSerialize(data);
-    return this.http.post(API_ROOT + 'PersonOrder/Update', data, this.opts)
+  // 获取酒店用工列表
+  HotelEmploy(GUID: string): Observable<any> {
+    return this.http.get(`${API_ROOT}api/HotelEmploy/${GUID}`.replace(/"/g,""), this.opts)
   }
 }

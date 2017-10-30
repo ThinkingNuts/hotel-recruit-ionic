@@ -20,36 +20,58 @@
 
 <ion-content>
   <div [ngSwitch]="pet">
-    <ion-card *ngSwitchCase="'用工详情'">
-      <ion-card-header>
-        <span>{{RecruitedDetail.DepartMentName}} - {{RecruitedDetail.WorkTypeName}}</span>
-        <span class="candidate"><span style="color: #47FF66">{{RecruitedDetail.EmployNum}}</span> / <span>{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}</span>
-      </ion-card-header>
-      <ion-card-content>
-        <p>酬劳：{{RecruitedDetail.Billing}}</p>
-        <p>开始时间：{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
-        <p>结束时间：{{RecruitedDetail.End | date:"yyyy-MM-dd"}}</p>
-        <p>地点：{{RecruitedDetail.address}}</p>
-        <p *ngIf="RecruitedDetail.Mark !== null">技能要求：{{RecruitedDetail.Mark}}</p>
-      </ion-card-content>
-    </ion-card>
+    <div *ngSwitchCase="'用工详情'">
+      <div class="recruited-detail">
+        <h3>{{RecruitedDetail.DepartMentName}} - {{RecruitedDetail.WorkTypeName}}</h3>
+        <small style="color: #999">创建于 {{RecruitedDetail.CreateTime | date:"yyyy-MM-dd HH:mm"}} </small>
+        <h6 class="billing">{{RecruitedDetail.Billing}}</h6>
+      </div>
+    
+      <ion-item-group>
+        <ion-item-divider color="light">
+          <h6>
+            <ion-icon class="icon-color" name="paper-outline"></ion-icon> 详情：
+          </h6>
+        </ion-item-divider>
+        <div class="recruited-detail">
+          <p>已录用人数：<span style="color: red">{{RecruitedDetail.EmployNum}}</span></p>
+          <p>已申请人数：<span style="color: tomato">{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}</p>
+          <p>工作排班：{{RecruitedDetail.ScheduleName}}</p>
+          <p>工作类型：{{RecruitedDetail.WorkTypeName}}</p>
+          <p>工作地点：{{RecruitedDetail.address}}</p>
+          <p *ngIf="RecruitedDetail.Mark !== null">技能要求：{{RecruitedDetail.Mark}}</p>
+        </div>
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item-divider color="light">
+          <h6>
+            <ion-icon class="icon-color" name="time-outline"></ion-icon> 工作时间：
+          </h6> 
+        </ion-item-divider>
+        <div class="recruited-detail">
+          <p>开始时间：{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
+          <p>结束时间：{{RecruitedDetail.End | date:"yyyy-MM-dd"}}</p>
+        </div>
+      </ion-item-group>
+    </div>
 
     <ion-list *ngSwitchCase="'申请人列表'">
       <div *ngIf="Candidates.TotalApply">
         <ion-list>
           <button ion-item *ngFor="let item of Candidates.Persons; let i = index" (click)="itemTapped(item)">
-              <div class="recruit-title">
-                <p>{{ item.Person.RealName }}</p>
-                <p>申请时间：{{ item.Person.CreateTime }}</p>
-              </div>
-              <div class="recruit-time">
-               <button ion-button>{{ item.Status == 1 ? item.StatusStr : '已' + item.StatusStr }}</button>
+            <div class="recruit-title">
+              <p>{{ item.Person.RealName }}</p>
+              <p>申请时间：{{ item.Person.CreateTime }}</p>
+            </div>
+            <div class="recruit-time">
+              <button ion-button>{{ item.Status == 3 ? '已' + item.StatusStr : item.StatusStr }}</button>
             </div>
           </button>
         </ion-list>
       </div>
       <div *ngIf="! Candidates.TotalApply" class="candidate-apply">
-        <p>暂时还没有人申请该职位~</p>
+      <p>暂时还没有人申请该职位~</p>
       </div>
     </ion-list>
   </div>
