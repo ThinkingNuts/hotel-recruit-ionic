@@ -14,13 +14,26 @@
 
 
 <ion-content>
-  <ion-item-group *ngFor="let item of hotelEmploy">
+  <ion-item-group *ngFor="let hotelEmploy of hotelEmploies; let i = index">
     <ion-item-divider color="light">
       <h6>
-        <ion-icon class="icon-color" name="paper-outline"></ion-icon> {{item.DepartmentName}}
+        <ion-icon class="icon-color" name="paper-outline"></ion-icon> {{hotelEmploy.DepartmentName}}
       </h6>
     </ion-item-divider>
-    <div class="recruited-detail">
-    </div>
+    <ion-list>
+      <ion-item-sliding *ngFor="let person of hotelEmploy.Employs; let j = index">
+        <button ion-item (click)="itemTapped(person)">
+          <div class="recruit-title">
+            <p>{{ person.Person.RealName }}</p>
+          </div>
+          <div class="recruit-time">
+            <p>申请时间：{{person.CreateTime | date:"yyyy-MM-dd"}}</p>
+          </div>
+        </button>
+        <ion-item-options>
+          <button ion-button color="danger" (click)="removeItem(i, j, person)">终止用工</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
   </ion-item-group>
 </ion-content>

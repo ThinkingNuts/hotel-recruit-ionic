@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ResourceService } from '../../../api/resource';
 import { Storage } from '@ionic/storage';
 
@@ -16,21 +16,50 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'candidate-list.html',
 })
 export class CandidateListPage {
-  public hotelEmploy
+  public hotelEmploies
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
-    public storage: Storage
+    public storage: Storage,
+    public alertCtrl: AlertController
   ) {
     this.storage.get('AUTH_GUID').then(res => {
       if (res) {
         this.rs.HotelEmploy(res).subscribe((res) => {
-          this.hotelEmploy = res.json();
+          this.hotelEmploies = res.json();
         });
       }
     });
   }
 
+  removeItem(i, j, item) {
+    this.showConfirm(i, j, item);
+  }
+
+  showConfirm(i, j, item) {
+    let confirm = this.alertCtrl.create({
+      title: '确定删除?',
+      buttons: [
+        {
+          text: '否',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: '是',
+          handler: () => {
+            this.hotelEmploies.splice(j, 1);
+            this.rs.DeleteOrder(item).subscribe((res) => {
+              console.log(res.json());
+            });
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 }
