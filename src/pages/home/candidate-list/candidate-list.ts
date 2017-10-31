@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, App } from 'ionic-angular';
 import { ResourceService } from '../../../api/resource';
 import { Storage } from '@ionic/storage';
+import { EmployDetailPage } from '../employ-detail/employ-detail';
 
 /**
  * Generated class for the CandidataListPage page.
@@ -23,7 +24,8 @@ export class CandidateListPage {
     public navParams: NavParams,
     public rs: ResourceService,
     public storage: Storage,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private app: App,
   ) {
     this.storage.get('AUTH_GUID').then(res => {
       if (res) {
@@ -34,13 +36,19 @@ export class CandidateListPage {
     });
   }
 
+  itemTapped(item) {
+    this.app.getRootNav().push(EmployDetailPage, {
+      item: item
+    });
+  }
+
   removeItem(i, j, item) {
     this.showConfirm(i, j, item);
   }
 
   showConfirm(i, j, item) {
     let confirm = this.alertCtrl.create({
-      title: '确定删除?',
+      title: '确定终止?',
       buttons: [
         {
           text: '否',
@@ -51,8 +59,8 @@ export class CandidateListPage {
         {
           text: '是',
           handler: () => {
-            this.hotelEmploies.splice(j, 1);
-            this.rs.DeleteOrder(item).subscribe((res) => {
+            this.rs.HotelEmployUpdate(item.GUID).subscribe((res) => {
+              //this.hotelEmploies[i].Employs.splice(j, 1);
               console.log(res.json());
             });
             console.log('Agree clicked');

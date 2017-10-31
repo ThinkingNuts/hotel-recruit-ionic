@@ -1,0 +1,35 @@
+<!--
+  Generated template for the EmployDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+    <ion-navbar color="light">
+      <ion-title>申请人信息</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content>
+    <ion-card>
+      <ion-card-header>
+        <span>{{ employ.Person.RealName }}</span>
+        <span style="padding-left: 5%">{{ employ.Person.Sex }}</span>
+      </ion-card-header>
+      <ion-card-content>
+        <p>联系电话：{{ employ.Person.Phone }}</p>
+        <p>住址：{{ employ.Person.Address }}</p>
+        <p>申请时间：{{ employ.CreateTime | date:"yyyy-MM-dd HH:mm" }}</p>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button block (click)="removeItem()">终止用工</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

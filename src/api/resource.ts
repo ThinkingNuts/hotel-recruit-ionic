@@ -82,4 +82,9 @@ export class ResourceService {
   HotelEmploy(GUID: string): Observable<any> {
     return this.http.get(`${API_ROOT}api/HotelEmploy/${GUID}`.replace(/"/g,""), this.opts)
   }
+
+  HotelEmployUpdate(GUID: string): Observable<any> {
+    return this.http.put(`${API_ROOT}api/HotelEmploy/${GUID}`.replace(/"/g,""), this.opts)
+  }
+  
 }
