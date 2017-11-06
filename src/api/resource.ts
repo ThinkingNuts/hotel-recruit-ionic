@@ -1,10 +1,8 @@
 import { Injectable, Inject } from '@angular/core'
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http'
+import { Http, Headers, RequestOptions } from '@angular/http'
 import { Storage } from '@ionic/storage';
-import { Subject, BehaviorSubject, Observable } from 'rxjs'
-import * as querystring from 'querystring'
+import { Observable } from 'rxjs'
 import { API_ROOT } from './config'
-import { UserViewModel } from '../view-model/user-model'
 import { objectToSerialize } from '../utils'
  
 @Injectable()
@@ -30,9 +28,9 @@ export class ResourceService {
 
   //登录请求.
   Login(data: Object): Observable<any> {
-    data = objectToSerialize(data);
-    this.opts.headers.append('Content-Type', 'application/x-www-form-urlencoded')
-    return this.http.post(API_ROOT + 'Hotel/login', data, this.opts)
+    //data = objectToSerialize(data);
+    //this.opts.headers.append('Content-Type', 'application/x-www-form-urlencoded')
+    return this.http.post(API_ROOT + 'api/HotelLogin', data, this.opts)
   }
 
   WorkTypes(): Observable<any> {
@@ -65,7 +63,6 @@ export class ResourceService {
   }
 
   DeleteOrder(item): Observable<any> {
-    //this.headers.append('Content-Type', 'application/json')
     return this.http.post(API_ROOT + 'HotelOrder/Remove', [item])
   }
 

@@ -17,7 +17,9 @@
   <ion-item-group *ngFor="let hotelEmploy of hotelEmploies; let i = index">
     <ion-item-divider color="light">
       <h6>
-        <ion-icon class="icon-color" name="paper-outline"></ion-icon> {{hotelEmploy.DepartmentName}}
+        <ion-icon class="icon-color" name="paper-outline"></ion-icon>
+         {{hotelEmploy.DepartmentName}} - {{hotelEmploy.WorkTypeName}}
+         <span style="padding-left: 5%">{{hotelEmploy.CreateTime | amLocale:'zh-cn' | amTimeAgo}}</span> 
       </h6>
     </ion-item-divider>
     <ion-list>
@@ -25,13 +27,14 @@
         <button ion-item (click)="itemTapped(person)">
           <div class="recruit-title">
             <p>{{ person.Person.RealName }}</p>
+            <p>申请时间：{{person.CreateTime | date:"yyyy-MM-dd HH:mm"}}</p>
           </div>
           <div class="recruit-time">
-            <p>申请时间：{{person.CreateTime | date:"yyyy-MM-dd HH:mm"}}</p>
+            <button *ngIf="!person.Status" ion-button>已终止</button>
           </div>
         </button>
         <ion-item-options>
-          <button ion-button color="default" (click)="removeItem(i, j, person)">终止用工</button>
+          <button *ngIf="person.Status" ion-button color="default" (click)="removeItem(i, j, person)">终止用工</button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

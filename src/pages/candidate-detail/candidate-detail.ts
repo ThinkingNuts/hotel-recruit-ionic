@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { RecruitedDetailPage } from '../recruited-detail/recruited-detail';
 import { ResourceService } from '../../api/resource';
 import { OrderModel } from '../../view-model/order-model';
 
@@ -64,7 +63,7 @@ export class CandidateDetailPage {
     let toast = this.toastCtrl.create({
       message: mes,
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     });
   
     toast.present();

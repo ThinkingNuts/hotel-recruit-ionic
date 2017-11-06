@@ -31,6 +31,7 @@ export class CandidateListPage {
       if (res) {
         this.rs.HotelEmploy(res).subscribe((res) => {
           this.hotelEmploies = res.json();
+          console.log(this.hotelEmploies);
         });
       }
     });

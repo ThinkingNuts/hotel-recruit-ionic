@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav, ToastController, IonicApp, Keyboard } from 'ionic-angular';
+import { Platform, Nav, ToastController, IonicApp, Keyboard } from 'ionic-angular';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { NativeService } from "../providers/NativeService";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -12,9 +13,9 @@ import { Storage } from '@ionic/storage';
 })
 export class MyApp {
   backButtonPressed: boolean = false;
+  @ViewChild('myNav') nav: Nav;
 
   // rootPage: any = LoginPage;
-  @ViewChild(Nav) nav: Nav;
 
   constructor(
     public platform: Platform,
@@ -23,7 +24,8 @@ export class MyApp {
     public storage: Storage,
     public toastCtrl: ToastController,
     private keyboard: Keyboard,
-    public ionicApp: IonicApp
+    public ionicApp: IonicApp,
+    private nativeService: NativeService
   ) {
     this.initializeApp();
   }
@@ -34,9 +36,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.check_auth();
       //注册返回键事件
-      //this.registerBackButtonAction();
+      this.registerBackButtonAction();//注册返回按键事件
+      this.assertNetwork();//检测网络
+      this.check_auth();
     });
   }
 
@@ -51,36 +54,37 @@ export class MyApp {
     })
   }
 
-  registerBackButtonAction() {
-    this.platform.registerBackButtonAction(() => {
-      console.log("Back button pressed. ");
+  assertNetwork() {
+    if (!this.nativeService.isConnecting()) {
+      this.toastCtrl.create({
+        message: '未检测到网络,请连接网络',
+        showCloseButton: true,
+        closeButtonText: '确定'
+      }).present();
+    }
+  }
 
-      //如果键盘开启则隐藏键盘
-      if (this.keyboard.isOpen()) {
+  registerBackButtonAction() {
+    if (!this.nativeService.isAndroid()) {
+      return;
+    }
+    this.platform.registerBackButtonAction(() => {
+      if (this.keyboard.isOpen()) {//如果键盘开启则隐藏键盘
         this.keyboard.close();
         return;
       }
-
       //如果想点击返回按钮隐藏toast或loading或Overlay就把下面加上
-      // this.ionicApp._toastPortal.getActive() || this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive()
+      // this.ionicApp._toastPortal.getActive() ||this.ionicApp._loadingPortal.getActive()|| this.ionicApp._overlayPortal.getActive()
       let activePortal = this.ionicApp._modalPortal.getActive();
       if (activePortal) {
-        activePortal.dismiss().catch(() => { });
-        activePortal.onDidDismiss(() => { });
+        activePortal.dismiss();
         return;
       }
       let activeVC = this.nav.getActive();
-      let page = activeVC.instance;
-      console.log("App page: " + this.nav.getActive().name);
-
-      if (page instanceof LoginPage) {
-        this.platform.exitApp();
-        return;
-      }
-
-      let tabs = page.tabs;
+      let tabs = activeVC.instance.tabs;
       let activeNav = tabs.getSelected();
-      return activeNav.canGoBack() ? activeNav.pop() : this.showExit()
+      return activeNav.canGoBack() ? activeNav.pop() : this.nativeService.minimize();//this.showExit()
+
     }, 1);
   }
 
@@ -89,13 +93,11 @@ export class MyApp {
     if (this.backButtonPressed) { //当触发标志为true时，即2秒内双击返回按键则退出APP
       this.platform.exitApp();
     } else {
-      this.toastCtrl.create({
-        message: '再按一次退出应用',
-        duration: 2000,
-        position: 'top'
-      }).present();
+      this.nativeService.showToast('再按一次退出应用');
       this.backButtonPressed = true;
-      setTimeout(() => this.backButtonPressed = false, 2000);//2秒内没有再次点击返回则将触发标志标记为false
+      setTimeout(() => { //2秒内没有再次点击返回则将触发标志标记为false
+        this.backButtonPressed = false;
+      }, 2000)
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
 import { OrderModel } from '../../view-model/order-model';
 import { CandidateDetailPage } from '../candidate-detail/candidate-detail';
@@ -21,7 +21,6 @@ export class RecruitedDetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public rs: ResourceService,
-    private toastCtrl: ToastController,
     private app: App,
     public storage: Storage,
   ) {

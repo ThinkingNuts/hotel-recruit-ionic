@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler, NavController } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FormsModule } from '@angular/forms';
 
@@ -23,7 +23,12 @@ import { FinishWorkPage } from '../pages/home/finish-work/finish-work';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ResourceService } from '../api/resource';
-import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
+import { NativeService } from "../providers/NativeService";
+import { Toast } from "@ionic-native/toast";
+import { AppMinimize } from "@ionic-native/app-minimize";
+import { Network } from "@ionic-native/network";
+import { HttpModule } from '@angular/http';
+import { MomentModule } from 'angular2-moment';
 
 export function provideStorage() {
   return new Storage({});
@@ -52,6 +57,7 @@ export function provideStorage() {
     HttpModule,
     FormsModule,
     IonicModule.forRoot(MyApp),
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -75,6 +81,10 @@ export function provideStorage() {
     StatusBar,
     SplashScreen,
     ResourceService,
+    NativeService,
+    Toast,
+    AppMinimize,
+    Network,
     { provide: Storage, useFactory: provideStorage },
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
