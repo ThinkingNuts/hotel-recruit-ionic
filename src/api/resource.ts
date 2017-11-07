@@ -67,7 +67,7 @@ export class ResourceService {
   }
 
   PersonOrders(id): Observable<any> {
-    return this.http.post(API_ROOT + 'PersonOrder/Persons/' + id, this.opts)
+    return this.http.get(API_ROOT + 'api/HotelOrderPerson/' + id, this.opts)
   }
   
   // 酒店更新用户申请状态

@@ -26,7 +26,7 @@
         <small style="color: #999">创建于 {{RecruitedDetail.CreateTime | date:"yyyy-MM-dd HH:mm"}} </small>
         <h6 class="billing">{{RecruitedDetail.Billing}}</h6>
       </div>
-    
+
       <ion-item-group>
         <ion-item-divider color="light">
           <h6>
@@ -47,7 +47,7 @@
         <ion-item-divider color="light">
           <h6>
             <ion-icon class="icon-color" name="time-outline"></ion-icon> 工作时间：
-          </h6> 
+          </h6>
         </ion-item-divider>
         <div class="recruited-detail">
           <p>开始时间：{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
@@ -60,18 +60,21 @@
       <div *ngIf="Candidates.TotalApply">
         <ion-list>
           <button ion-item *ngFor="let item of Candidates.Persons; let i = index" (click)="itemTapped(item)">
+            <ion-avatar item-start>
+              <img [src]="'http://123.56.15.145:5000/' + item.Person.Icon">
+            </ion-avatar>
             <div class="recruit-title">
               <p>{{ item.Person.RealName }}</p>
-              <p>申请时间：{{ item.Person.CreateTime }}</p>
+              <p>申请时间：{{ item.Person.CreateTime | date:"yyyy-MM-dd HH:mm"}}</p>
             </div>
             <div class="recruit-time">
               <button ion-button>{{ item.Status == 3 ? '已' + item.StatusStr : item.StatusStr }}</button>
             </div>
           </button>
         </ion-list>
-      </div>
+       </div>
       <div *ngIf="! Candidates.TotalApply" class="candidate-apply">
-      <p>暂时还没有人申请该职位~</p>
+        <p>暂时还没有人申请该职位~</p>
       </div>
     </ion-list>
   </div>

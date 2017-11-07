@@ -31,6 +31,7 @@ export class RecruitedDetailPage {
     });
     this.rs.PersonOrders(this.RecruitedDetail.Id).subscribe((res) => {
       this.Candidates = res.json();
+      console.log(this.Candidates);
     });
   }
 
