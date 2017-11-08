@@ -65,7 +65,7 @@
       </ion-item>
     </ion-list>
 
-    <button *ngIf="!data.edit" ion-button class="btn" (click)=create()>发布</button>
-    <button *ngIf="data.edit" ion-button class="btn" (click)=edit()>修改</button>
+    <button *ngIf="!data.edit" block ion-button (click)=create()>发布</button>
+    <button *ngIf="data.edit" block ion-button (click)=edit()>修改</button>
   </form>
 </ion-content>

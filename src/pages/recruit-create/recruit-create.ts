@@ -94,6 +94,7 @@ export class RecruitCreatePage {
           this.navCtrl.push(RecruitedListPage);
         } else {
           this.alertMessage(res.json().message);
+          return;
         }
         this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
       });

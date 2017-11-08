@@ -20,6 +20,7 @@ import { CandidateListPage } from '../pages/home/candidate-list/candidate-list';
 import { EmployDetailPage } from '../pages/home/employ-detail/employ-detail';
 import { FinishWorkPage } from '../pages/home/finish-work/finish-work';
 import { MessagePage } from '../pages/message/message';
+import { UpdatePasswordPage } from '../pages/home/update-password/update-password';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -52,7 +53,8 @@ export function provideStorage() {
     CandidateListPage,
     EmployDetailPage,
     FinishWorkPage,
-    MessagePage
+    MessagePage,
+    UpdatePasswordPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ export function provideStorage() {
     CandidateListPage,
     EmployDetailPage,
     FinishWorkPage,
-    MessagePage
+    MessagePage,
+    UpdatePasswordPage
   ],
   providers: [
     StatusBar,

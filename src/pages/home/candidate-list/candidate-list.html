@@ -13,13 +13,13 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="content-background">
   <ion-item-group *ngFor="let hotelEmploy of hotelEmploies; let i = index">
     <ion-item-divider color="light">
       <h6>
         <ion-icon class="icon-color" name="paper-outline"></ion-icon>
-         {{hotelEmploy.DepartmentName}} - {{hotelEmploy.WorkTypeName}}
-         <span style="padding-left: 5%">{{hotelEmploy.CreateTime | amLocale:'zh-cn' | amTimeAgo}}</span> 
+          {{hotelEmploy.DepartmentName}} - {{hotelEmploy.WorkTypeName}}
+          <span style="padding-left: 5%">{{hotelEmploy.CreateTime | date:"yyyy-MM-dd HH:mm"}}</span> 
       </h6>
     </ion-item-divider>
     <ion-list>

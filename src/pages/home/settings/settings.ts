@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { LoginPage } from '../../login/login';
+import { UpdatePasswordPage } from '../update-password/update-password';
 
 /**
  * Generated class for the SettingsPage page.
@@ -43,7 +44,7 @@ export class SettingsPage {
   }
 
   changePassword() {
-
+    this.app.getRootNav().push(UpdatePasswordPage);
   }
 
 }

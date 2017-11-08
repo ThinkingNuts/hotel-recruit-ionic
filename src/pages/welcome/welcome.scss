@@ -1,17 +1,29 @@
 page-welcome {
-  h2, h3 {
-    text-align: center;
+  .icons-basic-page {
+    background: #F4F4F4;
   }
-  .home-content {
-    background-image: url(../assets/icon/home_bg.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    margin-top: 10%;
-  }
-  .home-content-text {
-    padding-top: 90%;
+  .grid-menu {
     width: 100%;
-    color: #fff;
-    font-weight: bold;     
+    margin-top: 5%;
+    text-align: center;
+    .row {
+      width: 90%;
+      text-align: center;
+      margin: auto 5%;
+      .col-title{
+        font-size: 12px;
+      }
+    }
+    .avatars-icon{
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .avatars-img {
+      border-radius: 50%;
+      overflow: hidden;
+      margin-top: 4px;
+      width: 65%;
+      text-align: center;
+    }
   }
 }
