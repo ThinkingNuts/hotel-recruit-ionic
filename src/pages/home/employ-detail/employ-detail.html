@@ -13,22 +13,31 @@
   </ion-header>
   
   <ion-content>
-    <ion-card>
-      <ion-card-header>
-        <span>{{ employ.Person.RealName }}</span>
-        <span style="padding-left: 5%">{{ employ.Person.Sex }}</span>
-      </ion-card-header>
-      <ion-card-content>
+
+    <ion-card class="adv-map">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="API_ROOT + employ.Person.Icon">
+        </ion-avatar>
+        <h2>
+          {{ employ.Person.RealName }}
+          <span style="padding-left: 5%">{{ employ.Person.Sex }}</span>
+          <span *ngIf="employ.Comment || employ.Evaluate" style="color: tomato">已评价</span>
+        </h2>
         <p>联系电话：{{ employ.Person.Phone }}</p>
+      </ion-item>
+          
+      <ion-card-content>
         <p>住址：{{ employ.Person.Address }}</p>
         <p>申请时间：{{ employ.CreateTime | date:"yyyy-MM-dd HH:mm" }}</p>
       </ion-card-content>
     </ion-card>
   
-    <ion-grid *ngIf="employ.Status">
+    <ion-grid>
       <ion-row>
         <ion-col>
-          <button ion-button block (click)="removeItem()">终止用工</button>
+          <button *ngIf="employ.Status" ion-button block (click)="removeItem('终止')">终止用工</button>
+          <button *ngIf="!employ.Status && !employ.Comment && !employ.Evaluate" ion-button block (click)="removeItem('评价')">评价</button>
         </ion-col>
       </ion-row>
     </ion-grid>

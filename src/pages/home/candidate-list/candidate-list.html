@@ -19,12 +19,15 @@
       <h6>
         <ion-icon class="icon-color" name="paper-outline"></ion-icon>
           {{hotelEmploy.DepartmentName}} - {{hotelEmploy.WorkTypeName}}
-          <span style="padding-left: 5%">{{hotelEmploy.CreateTime | date:"yyyy-MM-dd HH:mm"}}</span> 
+          <span style="padding-left: 5%">发布于 {{hotelEmploy.CreateTime | date:"yyyy-MM-dd HH:mm"}}</span> 
       </h6>
     </ion-item-divider>
     <ion-list>
       <ion-item-sliding *ngFor="let person of hotelEmploy.Employs; let j = index">
         <button ion-item (click)="itemTapped(person)">
+          <ion-avatar item-start>
+            <img [src]="API_ROOT + person.Person.Icon">
+          </ion-avatar>
           <div class="recruit-title">
             <p>{{ person.Person.RealName }}</p>
             <p>申请时间：{{person.CreateTime | date:"yyyy-MM-dd HH:mm"}}</p>

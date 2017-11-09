@@ -30,6 +30,6 @@
       <ion-textarea name="desc"  id="desc" [(ngModel)]="desc"></ion-textarea>
     </div> -->
     <ion-textarea name="desc" class="desc-box" id="desc" [(ngModel)]="desc"></ion-textarea>
-    <button class="finish-btn" ion-button block (click)="askFinishWork()">终止</button>
+    <button class="finish-btn" ion-button block (click)="askFinishWork(message)">{{message}}</button>
   
   </ion-content>

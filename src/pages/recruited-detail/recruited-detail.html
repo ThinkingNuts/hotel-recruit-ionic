@@ -61,7 +61,7 @@
         <ion-list>
           <button ion-item *ngFor="let item of Candidates.Persons; let i = index" (click)="itemTapped(item)">
             <ion-avatar item-start>
-              <img [src]="'http://123.56.15.145:5000/' + item.Person.Icon">
+              <img [src]="API_ROOT + item.Person.Icon">
             </ion-avatar>
             <div class="recruit-title">
               <p>{{ item.Person.RealName }}</p>

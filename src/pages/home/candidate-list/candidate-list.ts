@@ -4,6 +4,7 @@ import { ResourceService } from '../../../api/resource';
 import { Storage } from '@ionic/storage';
 import { EmployDetailPage } from '../employ-detail/employ-detail';
 import { FinishWorkPage } from '../finish-work/finish-work';
+import { API_ROOT } from '../../../api/config';
 
 /**
  * Generated class for the CandidataListPage page.
@@ -19,7 +20,8 @@ import { FinishWorkPage } from '../finish-work/finish-work';
 })
 export class CandidateListPage {
   public hotelEmploies
-
+  public API_ROOT = API_ROOT
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

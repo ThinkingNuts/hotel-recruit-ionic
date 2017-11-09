@@ -4,6 +4,7 @@ import { ResourceService } from '../../api/resource';
 import { OrderModel } from '../../view-model/order-model';
 import { CandidateDetailPage } from '../candidate-detail/candidate-detail';
 import { Storage } from '@ionic/storage';
+import { API_ROOT } from '../../api/config'
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ import { Storage } from '@ionic/storage';
 })
 export class RecruitedDetailPage {
   public orderData: OrderModel = new OrderModel()
-
+  public API_ROOT = API_ROOT
   public RecruitedDetail: any
   public Candidates: any = new Object()
   pet: string = "用工详情";

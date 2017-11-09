@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
 import { OrderModel } from '../../view-model/order-model';
+import { API_ROOT } from '../../api/config'
 
 /**
  * Generated class for the CandidateDetailPage page.
@@ -16,7 +17,7 @@ import { OrderModel } from '../../view-model/order-model';
   templateUrl: 'candidate-detail.html',
 })
 export class CandidateDetailPage {
-
+  public API_ROOT = API_ROOT
   public orderData: OrderModel = new OrderModel()
   public candidate: any
   public RecruitedDetail: any

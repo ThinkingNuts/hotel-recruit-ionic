@@ -13,17 +13,41 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <span>{{ candidate.Person.RealName }}</span>
-      <span style="padding-left: 5%">{{ candidate.Person.Sex }}</span>
-    </ion-card-header>
-    <ion-card-content>
-      <p>联系电话：{{ candidate.Person.Phone }}</p>
-      <p>住址：{{ candidate.Person.Address }}</p>
-      <p>申请时间：{{ candidate.ApplyTime }}</p>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="adv-map">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="API_ROOT + candidate.Person.Icon">
+          </ion-avatar>
+          <h2>{{ candidate.Person.RealName }}<span style="padding-left: 5%">{{ candidate.Person.Sex }}</span></h2>
+          <p>联系电话：{{ candidate.Person.Phone }}</p>
+        </ion-item>
+          
+        <ion-card-content>
+          <p>住址：{{ candidate.Person.Address }}</p>
+          <p>申请时间：{{ candidate.ApplyTime }}</p>
+        </ion-card-content>
+          
+            <!-- <ion-row>
+              <ion-col>
+                <button ion-button icon-left clear small>
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>12 Likes</div>
+                </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button icon-left clear small>
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </button>
+              </ion-col>
+              <ion-col center text-center>
+                <ion-note>
+                  11h ago
+                </ion-note>
+              </ion-col>
+            </ion-row> -->
+        
+        </ion-card>
 
   <ion-grid>
     <ion-row>
@@ -38,4 +62,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>

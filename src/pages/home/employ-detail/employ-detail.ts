@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App  } from 'ionic-angular';
 import { ResourceService } from '../../../api/resource';
 import { FinishWorkPage } from '../finish-work/finish-work';
+import { API_ROOT } from '../../../api/config'
 
 /**
  * Generated class for the EmployDetailPage page.
@@ -17,7 +18,8 @@ import { FinishWorkPage } from '../finish-work/finish-work';
 })
 export class EmployDetailPage {
   public employ: any
-
+  public API_ROOT = API_ROOT
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -27,9 +29,10 @@ export class EmployDetailPage {
     this.employ = navParams.get('item');
   }
 
-  removeItem() {
+  removeItem(message) {
     this.app.getRootNav().push(FinishWorkPage, {
-      item: this.employ
+      item: this.employ,
+      message: message
     });
   }
 }

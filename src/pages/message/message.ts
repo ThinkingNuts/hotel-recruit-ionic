@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ResourceService } from '../../api/resource';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the MessagePage page.
@@ -16,14 +18,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class MessagePage {
   items: Array<any> = new Array<any>();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.items = [{NOTICE_TITLE: '您有新消息', NOTICE_CONTENT: '倪海杰应聘你的酒店客房打扫...', NOTICE_DATE: '2017-11-07 10:00:00'},
-    {NOTICE_TITLE: '您有新消息', NOTICE_CONTENT: '倪海杰应聘你的酒店客房打扫...', NOTICE_DATE: '2017-11-07 10:00:00'}
-  ];
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public rs: ResourceService,
+    public storage: Storage,
+  ) {
+    this.storage.get('AUTH_GUID').then(res => {
+      if (res) {
+        this.rs.HotelMessage(res).subscribe((res) => {
+          console.log(res.json());
+          this.items = res.json();
+        });
+      }
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MessagePage');
+  systemDetail(message) {
+    console.log(message);
   }
 
 }

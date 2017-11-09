@@ -7,9 +7,9 @@
 <ion-header>
     <ion-navbar>
       <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      <ion-title>系统公告</ion-title>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>消息通知</ion-title>
     </ion-navbar>
   </ion-header>
   
@@ -18,12 +18,11 @@
     <ion-list  >
       <ion-item *ngFor="let message of items" (click)="systemDetail(message)" >
         <ion-thumbnail item-start>
-  
           <img src="assets/icon/notification.png">
         </ion-thumbnail>
-        <h2 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{message.NOTICE_TITLE}}</h2>
-        <div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis" [innerHtml]="message.NOTICE_CONTENT"></div>
-        <ion-note item-end>{{message.NOTICE_DATE|date: "HH:mm:ss"}}</ion-note>
+        <h2 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{message.Type}}</h2>
+        <div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size: 14px" [innerHtml]="message.Context"></div>
+        <ion-note item-end>{{message.CreateTime|date: "HH:mm:ss"}}</ion-note>
       </ion-item>
     </ion-list>
   </ion-content>

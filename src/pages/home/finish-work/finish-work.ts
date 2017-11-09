@@ -22,6 +22,7 @@ export class FinishWorkPage {
     starMap: ["不满意", "还行", "一般", "满意", "很满意"]
   };
   private desc: string;
+  private message: string;
 
   constructor(
     public navCtrl: NavController,
@@ -30,6 +31,7 @@ export class FinishWorkPage {
     public rs: ResourceService,
   ) {
     this.person = navParams.get('item');
+    this.message = navParams.get('message');
   }
 
   chooseStar(ev) {
@@ -37,11 +39,15 @@ export class FinishWorkPage {
     this.score.star = star;
   }
 
-  askFinishWork() {
-    this.showConfirm(this.person);
+  askFinishWork(mes) {
+    if (mes == '终止') {
+      this.showConfirm();
+    } else {
+      this.evaluate();
+    }
   }
 
-  showConfirm(item) {
+  showConfirm() {
     let confirm = this.alertCtrl.create({
       title: '确定终止?',
       buttons: [
@@ -54,17 +60,7 @@ export class FinishWorkPage {
         {
           text: '是',
           handler: () => {
-            let data = {
-              Evaluate: this.score.star,
-              Comment: this.desc
-            };
-            this.rs.HotelEmployUpdate(item.GUID, data).subscribe((res) => {
-              if (res.json().state) {
-                this.person.Status = 0;
-                this.navCtrl.push(CandidateListPage);
-              }
-            });
-            console.log('Agree clicked');
+            this.evaluate();
           }
         }
       ]
@@ -72,4 +68,16 @@ export class FinishWorkPage {
     confirm.present();
   }
 
+  evaluate() {
+    let data = {
+      Evaluate: this.score.star,
+      Comment: this.desc
+    };
+    this.rs.HotelEmployUpdate(this.person.GUID, data).subscribe((res) => {
+      if (res.json().state) {
+        this.person.Status = 0;
+        this.navCtrl.push(CandidateListPage);
+      }
+    });
+  }
 }

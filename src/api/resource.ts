@@ -84,4 +84,13 @@ export class ResourceService {
     return this.http.put(`${API_ROOT}api/HotelEmploy/${GUID}`.replace(/"/g,""), data, this.opts)
   }
   
+  // 修改密码
+  UpdatePassword(id: string, data: Object): Observable<any> {
+    return this.http.put(`${API_ROOT}api/HotelLogin/${id}`.replace(/"/g,""), data, this.opts)
+  }
+
+  // 获取酒店所有消息
+  HotelMessage(GUID: string): Observable<any> {
+    return this.http.get(`${API_ROOT}api/HotelMessage/${GUID}`.replace(/"/g,""), this.opts)
+  }
 }
