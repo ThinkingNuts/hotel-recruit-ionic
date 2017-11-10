@@ -28,8 +28,6 @@ export class ResourceService {
 
   //登录请求.
   Login(data: Object): Observable<any> {
-    //data = objectToSerialize(data);
-    //this.opts.headers.append('Content-Type', 'application/x-www-form-urlencoded')
     return this.http.post(API_ROOT + 'api/HotelLogin', data, this.opts)
   }
 

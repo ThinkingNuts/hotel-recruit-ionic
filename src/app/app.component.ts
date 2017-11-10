@@ -45,7 +45,7 @@ export class MyApp {
 
   // 判断是否登录
   check_auth(): void {
-    this.storage.get('AUTH_TOKEN').then(res => {
+    this.storage.get('AUTH_GUID').then(res => {
       if (res != null) {
         this.nav.setRoot(TabsPage);
       } else {

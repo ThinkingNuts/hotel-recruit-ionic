@@ -30,7 +30,7 @@
           </ion-avatar>
           <div class="recruit-title">
             <p>{{ person.Person.RealName }}</p>
-            <p>申请时间：{{person.CreateTime | date:"yyyy-MM-dd HH:mm"}}</p>
+            <p>申请时间： {{person.CreateTime | amLocale:'zh-cn' | amTimeAgo}}</p>
           </div>
           <div class="recruit-time">
             <button *ngIf="!person.Status" ion-button>已终止</button>

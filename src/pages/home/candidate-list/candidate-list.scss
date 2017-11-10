@@ -15,4 +15,15 @@ page-candidate-list {
   .content-background {
     background-color: #f4f4f4;
   }
+  #bg {
+    margin-left: 10%;
+    width: 60px;
+    height: 16px;
+    margin-top: 1%;
+    background: url("../../assets/images/star_gray.png");
+  }  
+  #over {
+    height: 16px;
+    background: url("../../assets/images/star_org.png") no-repeat;
+  }
 }

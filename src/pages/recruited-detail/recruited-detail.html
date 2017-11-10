@@ -65,6 +65,9 @@
             </ion-avatar>
             <div class="recruit-title">
               <p>{{ item.Person.RealName }}</p>
+              <div id="bg">
+                <div id="over" [style]="'width:' + item.Evaluate*60/5 + 'px'"></div>
+              </div>
               <p>申请时间：{{ item.ApplyTime | date:"yyyy-MM-dd HH:mm"}}</p>
             </div>
             <div class="recruit-time">

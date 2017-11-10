@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordUpdateModel } from '../../../view-model/password-model';
 import { ResourceService } from '../../../api/resource';
@@ -28,7 +28,8 @@ export class UpdatePasswordPage {
     public rs: ResourceService,
     private platform: Platform,
     public storage: Storage,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
   ) {
   }
 
@@ -41,17 +42,20 @@ export class UpdatePasswordPage {
   }
 
   update() {
-    this.storage.get('AUTH_GUID').then(res => {
+    this.storage.get('AUTH_ACCOUNT_GUID').then(res => {
       if (res) {
-        console.log(JSON.parse(res));
-        delete this.user.newPasswordConfirmation;
-        this.rs.UpdatePassword(res, this.user).subscribe((res) => {
-          if (res.json().state) {
-            
-          } else {
-            this.showAlert(res.json().message);
-          }
-        });
+        if (this.user.newPasswordConfirmation === this.user.newPassword) {
+          delete this.user.newPasswordConfirmation;
+          this.rs.UpdatePassword(res, this.user).subscribe((res) => {
+            if (res.json().state) {
+              this.presentToast(res.json().message);
+            } else {
+              this.showAlert(res.json().message);
+            }
+          });
+        } else {
+          this.showAlert('两次输入的新密码不匹配');
+        }
       }
     });
   }
@@ -65,4 +69,12 @@ export class UpdatePasswordPage {
     alert.present();
   }
 
+  presentToast(mes) {
+    let toast = this.toastCtrl.create({
+      message: mes,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
 }
