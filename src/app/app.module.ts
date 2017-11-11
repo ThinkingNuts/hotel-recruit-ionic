@@ -11,7 +11,7 @@ import { RecruitedDetailPage } from '../pages/recruited-detail/recruited-detail'
 import { RecruitCreatePage } from '../pages/recruit-create/recruit-create';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
-import { RecruitedListPage } from '../pages/recruited-list/recruited-list';
+import { RecruitedListPageModule } from '../pages/recruited-list/recruited-list.module';
 import { CandidateDetailPage } from '../pages/candidate-detail/candidate-detail';
 import { AboutPage } from '../pages/home/about/about';
 import { SettingsPage } from '../pages/home/settings/settings';
@@ -45,10 +45,10 @@ export function provideStorage() {
     LoginPage,
     TabsPage,
     WelcomePage,
-    RecruitedListPage,
+    //RecruitedListPage,
     CandidateDetailPage,
     AboutPage,
-    SettingsPage,
+    //SettingsPage,
     MinePage,
     CandidateListPage,
     EmployDetailPage,
@@ -61,6 +61,7 @@ export function provideStorage() {
     HttpModule,
     FormsModule,
     IonicModule.forRoot(MyApp),
+    RecruitedListPageModule,
     MomentModule
   ],
   bootstrap: [IonicApp],
@@ -72,10 +73,10 @@ export function provideStorage() {
     LoginPage,
     TabsPage,
     WelcomePage,
-    RecruitedListPage,
+    //RecruitedListPage,
     CandidateDetailPage,
     AboutPage,
-    SettingsPage,
+    //SettingsPage,
     MinePage,
     CandidateListPage,
     EmployDetailPage,

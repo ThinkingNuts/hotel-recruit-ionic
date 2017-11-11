@@ -3,7 +3,7 @@ import { App, IonicPage, NavController, Platform, AlertController } from 'ionic-
 import { AboutPage } from './about/about';
 import { Storage } from "@ionic/storage";
 import { LoginPage } from '../login/login';
-import { SettingsPage } from './settings/settings';
+//import { SettingsPage } from './settings/settings';
 import { MinePage } from './mine/mine';
 import { CandidateListPage } from './candidate-list/candidate-list';
 
@@ -81,7 +81,7 @@ export class HomePage {
   }
 
   setting() {
-    this.navCtrl.push(SettingsPage);
+    this.navCtrl.push('SettingsPage');
   }
 
   about() {
