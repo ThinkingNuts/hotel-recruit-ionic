@@ -31,6 +31,7 @@ import { AppMinimize } from "@ionic-native/app-minimize";
 import { Network } from "@ionic-native/network";
 import { HttpModule } from '@angular/http';
 import { MomentModule } from 'angular2-moment';
+import { NaticeBackServiceProvider } from '../providers/natice-back-service/natice-back-service';
 
 export function provideStorage() {
   return new Storage({});
@@ -47,7 +48,7 @@ export function provideStorage() {
     WelcomePage,
     //RecruitedListPage,
     CandidateDetailPage,
-    AboutPage,
+    //AboutPage,
     //SettingsPage,
     MinePage,
     CandidateListPage,
@@ -75,7 +76,7 @@ export function provideStorage() {
     WelcomePage,
     //RecruitedListPage,
     CandidateDetailPage,
-    AboutPage,
+   // AboutPage,
     //SettingsPage,
     MinePage,
     CandidateListPage,
@@ -93,7 +94,8 @@ export function provideStorage() {
     AppMinimize,
     Network,
     { provide: Storage, useFactory: provideStorage },
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    NaticeBackServiceProvider
   ]
 })
 export class AppModule {}

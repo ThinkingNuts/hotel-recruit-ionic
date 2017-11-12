@@ -7,6 +7,7 @@ import { AlertController } from 'ionic-angular';
 import { UserViewModel } from '../../view-model/user-model';
 import { ResourceService } from '../../api/resource';
 import { TabsPage } from '../../pages/tabs/tabs';
+import { NaticeBackServiceProvider } from '../../providers/natice-back-service/natice-back-service';
 
 /**
  * Generated class for the LoginPage page.
@@ -34,9 +35,14 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     public storage: Storage,
     private platform: Platform,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public backButtonService: NaticeBackServiceProvider,
+    
   ) {
     this.canLeave = false;
+    platform.ready().then(() => {
+      this.backButtonService.registerBackButtonAction(null);
+    });
   }
 
   ngOnInit() {
@@ -80,7 +86,7 @@ export class LoginPage implements OnInit {
         this.storage.set('AUTH_ACCOUNT_GUID', JSON.stringify(res.json().AccoutGUID));
         this.storage.set('AUTH_GUID', JSON.stringify(res.json().data.GUID));
         this.storage.set('AUTH_INFO', JSON.stringify(res.json().data));
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.setRoot(TabsPage);
       } else {
         this.showAlert(res.json().message);
       }

@@ -85,6 +85,6 @@ export class HomePage {
   }
 
   about() {
-    this.app.getRootNav().push(AboutPage);
+    this.navCtrl.push("AboutPage");
   }
 }

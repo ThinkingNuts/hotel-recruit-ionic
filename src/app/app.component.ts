@@ -37,7 +37,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       //注册返回键事件
-      this.registerBackButtonAction();//注册返回按键事件
+     // this.registerBackButtonAction();//注册返回按键事件
       this.assertNetwork();//检测网络
       this.check_auth();
     });
@@ -65,10 +65,12 @@ export class MyApp {
   }
 
   registerBackButtonAction() {
+
     if (!this.nativeService.isAndroid()) {
       return;
     }
     this.platform.registerBackButtonAction(() => {
+      console.log("backButton is active");
       if (this.keyboard.isOpen()) {//如果键盘开启则隐藏键盘
         this.keyboard.close();
         return;
@@ -81,9 +83,20 @@ export class MyApp {
         return;
       }
       let activeVC = this.nav.getActive();
-      let tabs = activeVC.instance.tabs;
-      let activeNav = tabs.getSelected();
-      return activeNav.canGoBack() ? activeNav.pop() : this.nativeService.minimize();//this.showExit()
+      let page = activeVC.instance;
+
+      if (!(page instanceof TabsPage)) {
+        if (!this.nav.canGoBack()) {
+          console.log('检测到在根视图点击了返回按钮。');
+          return this.platform.exitApp();
+        }
+        console.log('检测到在子路径中点击了返回按钮。');
+        return this.nav.pop();
+      }
+      // let activeVC = this.nav.getActive();
+      // let tabs = activeVC.instance.tabs;
+      // let activeNav = tabs.getSelected();
+      // return activeNav.canGoBack() ? activeNav.pop() : this.nativeService.minimize();//this.showExit()
 
     }, 1);
   }

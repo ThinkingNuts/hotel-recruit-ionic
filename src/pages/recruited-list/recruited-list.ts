@@ -49,7 +49,7 @@ export class RecruitedListPage {
   }
 
   itemTapped(item) {
-    this.app.getRootNav().push(RecruitedDetailPage, {
+    this.navCtrl.push(RecruitedDetailPage, {
       item: item
     });
   }
