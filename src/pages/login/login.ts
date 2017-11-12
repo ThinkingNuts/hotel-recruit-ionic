@@ -80,7 +80,7 @@ export class LoginPage implements OnInit {
         this.storage.set('AUTH_ACCOUNT_GUID', JSON.stringify(res.json().AccoutGUID));
         this.storage.set('AUTH_GUID', JSON.stringify(res.json().data.GUID));
         this.storage.set('AUTH_INFO', JSON.stringify(res.json().data));
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.setRoot(TabsPage);
       } else {
         this.showAlert(res.json().message);
       }
