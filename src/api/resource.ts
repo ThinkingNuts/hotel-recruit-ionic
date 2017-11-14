@@ -91,4 +91,9 @@ export class ResourceService {
   HotelMessage(GUID: string): Observable<any> {
     return this.http.get(`${API_ROOT}api/HotelMessage/${GUID}`.replace(/"/g,""), this.opts)
   }
+
+  // 获取酒店评价
+  GetEvaluates(GUID: string): Observable<any> {
+    return this.http.get(`${API_ROOT}api/HotelEvaluate/${GUID}`.replace(/"/g,""), this.opts)
+  }
 }

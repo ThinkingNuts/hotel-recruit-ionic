@@ -1,0 +1,28 @@
+<!--
+  Generated template for the MessageDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+    <ion-navbar color="my">
+      <ion-title *ngIf="messages">{{messages.Type}}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+    <ion-card class="card" *ngIf="messages">
+  
+      <ion-card-content class="card-content">
+        <p class="message">
+          <ion-icon color="primary" class="message-icon" name="megaphone"></ion-icon>
+          &nbsp;&nbsp; {{messages.Context}}
+        </p>
+        <p class="create-time">{{messages.CreateTime | date:"yyyy-MM-dd HH:mm"}}</p>
+      </ion-card-content>
+  
+    </ion-card>
+  </ion-content>

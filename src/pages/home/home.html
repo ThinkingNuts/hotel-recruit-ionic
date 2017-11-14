@@ -21,23 +21,19 @@
       <ion-icon name="list" item-left color="primary"></ion-icon>
       我的录用列表
     </button>
-    <button ion-item (click)="setting()">
-      <ion-icon name="settings" item-left color="primary"></ion-icon>
-      设置
-    </button>
-    <button ion-item (click)="map()">
-      <ion-icon name="map" item-left color="bright"></ion-icon>
-      所在位置
+    <button ion-item (click)="evaluate_list()">
+      <ion-icon name="chatbubbles" item-left color="primary"></ion-icon>
+      我的评价列表
     </button>
   </ion-list>
   <ion-list>
-    <button ion-item (click)="exitSoftware()" detail-none>
-      <ion-icon name="log-out" item-left color="danger"></ion-icon>
-      退出软件
-    </button>
     <button ion-item (click)="loginOut()" detail-none>
       <ion-icon name="log-in" item-left color="danger"></ion-icon>
-      重新登录
+      退出登录
+    </button>
+    <button ion-item (click)="setting()">
+      <ion-icon name="settings" item-left color="primary"></ion-icon>
+      设置
     </button>
   </ion-list>
   <ion-list>

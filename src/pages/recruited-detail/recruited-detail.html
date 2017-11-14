@@ -63,16 +63,22 @@
             <ion-avatar item-start>
               <img [src]="API_ROOT + item.Person.Icon">
             </ion-avatar>
-            <div class="recruit-title">
-              <p>{{ item.Person.RealName }}</p>
-              <div id="bg">
-                <div id="over" [style]="'width:' + item.Evaluate*60/5 + 'px'"></div>
-              </div>
-              <p>申请时间：{{ item.ApplyTime | date:"yyyy-MM-dd HH:mm"}}</p>
-            </div>
-            <div class="recruit-time">
-              <button ion-button>{{ item.Status == 3 ? '已' + item.StatusStr : item.StatusStr }}</button>
-            </div>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-8>
+                  <div class="parent">
+                    <div class="name"><p>{{ item.Person.RealName }}</p></div>
+                    <div id="bg">
+                      <div id="over" [style]="'width:' + item.Evaluate*60/5 + 'px'"></div>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-col col-4 class="state">
+                  {{ item.Status == 3 ? '已' + item.StatusStr : item.StatusStr }}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <p>申请时间：{{ item.ApplyTime | date:"yyyy-MM-dd HH:mm"}}</p>
           </button>
         </ion-list>
        </div>

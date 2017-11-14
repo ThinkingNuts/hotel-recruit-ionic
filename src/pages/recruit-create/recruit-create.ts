@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, Select } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ResourceService } from '../../api/resource';
 import { RecruitViewModel } from '../../view-model/recruit-model';
@@ -73,7 +73,10 @@ export class RecruitCreatePage {
     });
   }
 
+  @ViewChild('select') select: Select;
+
   ionViewCanLeave(): Boolean {
+    this.select.close();
     if (!this.recruit.Billing) {
       return true;
     }
@@ -91,7 +94,7 @@ export class RecruitCreatePage {
       this.rs.RecruitCreate(this.recruit).subscribe((res) => {
         if (res.json().state) {
           this.alertMessage('发布成功');
-          this.navCtrl.push(RecruitedListPage);
+          this.navCtrl.pop();
         } else {
           this.alertMessage(res.json().message);
           return;

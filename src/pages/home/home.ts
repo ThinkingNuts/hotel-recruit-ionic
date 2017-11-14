@@ -65,7 +65,7 @@ export class HomePage {
           text: '确定',
           handler: () => {
             this.storage.clear();
-            this.app.getRootNav().push(LoginPage);
+            this.navCtrl.push(LoginPage);
           }
         }
       ]
@@ -78,6 +78,10 @@ export class HomePage {
 
   candidate_list() {
     this.navCtrl.push(CandidateListPage);
+  }
+
+  evaluate_list() {
+    this.navCtrl.push('EvaluateListPage');
   }
 
   setting() {

@@ -1,0 +1,50 @@
+<!--
+  Generated template for the EvaluateListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>我的评价列表</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="comments">
+    <div *ngFor="let item of comments" class="list">
+      <ion-card *ngIf="item.HotelEvaluate || item.HotelComment">
+        <ion-card-content>
+          <div>
+            <p class="comment-time"><span style="padding-right: 2%">匿名用户</span> {{item.CommentTime}}</p>
+
+            <div class="evaluate-line">
+              <div><p>评分：</p></div>
+              <div class="star-bg" *ngIf="item.HotelEvaluate">
+                <div class="star-over" [style.width]="item.HotelEvaluate/5*60+'px'"></div>
+              </div>
+              <!-- <div style="padding-left: 2%">
+                <p *ngIf="item.HotelEvaluate" style="color: tomato">
+                  {{item.HotelEvaluate}}
+                </p>
+              </div> -->
+              <p class="no-hotel-evaluate" *ngIf="!item.HotelEvaluate">
+                该用户未评分
+              </p>
+            </div>
+
+            <p class="hotel-comment" *ngIf="item.HotelComment">{{item.HotelComment}}</p>
+            <p class="hotel-comment" *ngIf="!item.HotelComment">该用户未评论</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="!comments" class="candidate-apply">
+    <p>暂时还没有人申请该职位~</p>
+  </div>
+</ion-content>

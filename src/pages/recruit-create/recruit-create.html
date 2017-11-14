@@ -13,7 +13,7 @@
     <ion-list>
       <ion-item>
         <ion-label><span class="color-need">*</span>部门：</ion-label>
-        <ion-select cancelText="取消" okText="确定" [(ngModel)]="recruit.DepartID" formControlName="DepartID">
+        <ion-select cancelText="取消" okText="确定" [(ngModel)]="recruit.DepartID" formControlName="DepartID" #select>
           <ion-option *ngFor="let item of data.departments" [value]="item.id">{{ item.text }}</ion-option>
         </ion-select>
       </ion-item>

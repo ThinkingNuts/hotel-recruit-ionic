@@ -1,0 +1,35 @@
+page-evaluate-list {
+  .list {
+    .comment-time {
+      color: #B5B2B2;
+    }
+    .evaluate-line {
+      display: flex;
+      align-items: flex-start;
+      .star-bg {
+        width: 60px;
+        height: 16px;
+        background: url("/assets/images/star_gray.png");
+        .star-over {
+          height: 16px;
+          background: url("/assets/images/star_org.png") no-repeat;
+        }
+      }
+      .no-hotel-evaluate {
+        margin-left: 3%;
+        color: #898787;
+      }
+    }
+    .hotel-comment {
+      margin-top: 3%;
+      color: black;
+      line-height: 20px;
+    }
+  }
+  .candidate-apply {
+    p {
+      padding-top: 5%;
+      text-align: center;
+    }
+  }
+}

@@ -21,13 +21,14 @@ export class NaticeBackServiceProvider {
       if (activeNav.canGoBack()) {
         activeNav.pop();
       } else {
-        if (tabRef == null || tabRef._selectHistory[tabRef._selectHistory.length - 1] === tabRef.getByIndex(0).id) {
-          //执行退出
-          this.showExit();
-        } else {
-          //选择首页第一个的标签
-          tabRef.select(0);
-        }
+        this.showExit();
+        // if (tabRef == null || tabRef._selectHistory[tabRef._selectHistory.length - 1] === tabRef.getByIndex(0).id) {
+        //   //执行退出
+        //   this.showExit();
+        // } else {
+        //   //选择首页第一个的标签
+        //   tabRef.select(0);
+        // }
       }
     });
   }

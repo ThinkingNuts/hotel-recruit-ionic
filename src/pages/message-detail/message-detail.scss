@@ -1,0 +1,16 @@
+page-message-detail {
+    .card {
+        position: relative;
+        .card-content {
+          .message {
+            line-height: 25px;
+          }
+          .create-time {
+            padding-top: 2%;
+            text-align: right;
+            color: #ccc;
+            font-size: 12px;
+          }
+        }
+      }
+}

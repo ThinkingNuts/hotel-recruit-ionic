@@ -36,7 +36,7 @@ export class SettingsPage {
         text: '确定',
         handler: () => {
           this.storage.clear();
-          this.app.getRootNav().push(LoginPage);
+          this.navCtrl.push(LoginPage);
         }
       }
       ]
@@ -44,7 +44,7 @@ export class SettingsPage {
   }
 
   changePassword() {
-    this.app.getRootNav().push(UpdatePasswordPage);
+    this.navCtrl.push(UpdatePasswordPage);
   }
 
 }

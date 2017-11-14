@@ -1,3 +1,27 @@
 page-employ-detail {
-
+  .star-box {
+    padding: 3% 0 2% 20%;
+    height: 40px;
+    p {
+      color: tomato; 
+      font-size: 13px;
+      line-height: 0px;
+    }
+    ion-icon {
+      float: left;
+      font-size: 30px;
+    }
+  }
+  .desc-box {
+    height: 15%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 1% 0 1% 0;
+  }
+  .default {
+    color: tomato;
+    padding-top: 3%;
+    padding-left: 0;
+    background-color: #fff;
+  }
 }

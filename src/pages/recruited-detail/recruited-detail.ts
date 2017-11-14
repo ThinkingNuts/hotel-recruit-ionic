@@ -37,7 +37,7 @@ export class RecruitedDetailPage {
   }
 
   itemTapped(item) {
-    this.app.getRootNav().push(CandidateDetailPage, {
+    this.navCtrl.push(CandidateDetailPage, {
       item: item,
       recruitedDetail: this.RecruitedDetail
     });

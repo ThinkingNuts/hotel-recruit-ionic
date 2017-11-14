@@ -16,7 +16,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'message.html',
 })
 export class MessagePage {
-  items: Array<any> = new Array<any>();
+  messages: Array<any> = new Array<any>();
 
   constructor(
     public navCtrl: NavController,
@@ -24,18 +24,29 @@ export class MessagePage {
     public rs: ResourceService,
     public storage: Storage,
   ) {
+    this.getMessage(null);
+  }
+
+  getMessage(refresher) {
     this.storage.get('AUTH_GUID').then(res => {
       if (res) {
         this.rs.HotelMessage(res).subscribe((res) => {
-          console.log(res.json());
-          this.items = res.json();
+          this.messages = res.json();
+          if (refresher) {
+            refresher.complete();
+          }
         });
       }
     });
   }
 
-  systemDetail(message) {
-    console.log(message);
+  showMessage(item): void {
+    this.navCtrl.push("MessageDetailPage", { "message": item });
+  }
+
+  doRefresh(refresher): void {
+    console.log("doRefresh ");
+    this.getMessage(refresher);
   }
 
 }

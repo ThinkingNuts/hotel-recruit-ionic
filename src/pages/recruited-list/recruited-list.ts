@@ -24,10 +24,10 @@ export class RecruitedListPage {
     public app: App,
     public storage: Storage
   ) {
-    this.getHotelOrders()
+    this.getHotelOrders(null)
   }
 
-  getHotelOrders() {
+  getHotelOrders(refresher) {
     let current_time = handleTime("yyyy-MM-dd hh:mm:ss")
     this.storage.get('PRE_TIME').then(res => {
       if (res) {
@@ -40,8 +40,10 @@ export class RecruitedListPage {
           this.storage.set('PRE_TIME', current_time);
           this.rs.HotelOrders(res, this.preTime).subscribe((res) => {
             this.HotelOrders = res.json();
-            console.log(this.HotelOrders);
-            this.HotelOrders_copy = this.HotelOrders
+            this.HotelOrders_copy = this.HotelOrders;
+            if (refresher) {
+              refresher.complete();
+            }
           });
         }
       });
@@ -75,8 +77,7 @@ export class RecruitedListPage {
   }
 
   doRefresh(refresher) {
-    this.getHotelOrders()
-    refresher.complete();
+    this.getHotelOrders(refresher)
   }
 
   add() {

@@ -1,15 +1,4 @@
 page-recruited-detail {
-  .recruit-title {
-    float: left;
-    p {
-      float: left;
-    }
-    position: absolute;
-  }
-  .recruit-time {
-    text-align: right;
-    margin-top: 1%
-  }
   .candidate {
     float: right;
     span {
@@ -28,16 +17,23 @@ page-recruited-detail {
       color: tomato;
     }
   }
-
-  #bg {
-    margin-left: 15%;
-    width: 60px;
-    height: 16px;
-    margin-top: 1%;
-    background: url("../assets/images/star_gray.png");
-  }  
-  #over {
-    height: 16px;
-    background: url("../assets/images/star_org.png") no-repeat;
+  .parent {
+    display: flex;
+    align-items: center;
+    #bg {
+      width: 60px;
+      height: 16px;
+      margin-left: 5%;
+      background: url("../assets/images/star_gray.png");
+    }
+    #over {
+      height: 16px;
+      background: url("../assets/images/star_org.png") no-repeat;
+    }
+  }
+  .state {
+    text-align:right;
+    color: tomato;
+    font-size: 14px;
   }
 }

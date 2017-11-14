@@ -2,4 +2,25 @@ page-message {
   .content-background {
     background-color: #f4f4f4;
   }
+  .list {
+    ion-avatar {
+      text-align: center;
+    }
+    .message-icon {
+      width: 100%;
+      height: 100%;
+      font-size: 240%;
+    }
+    .time-note {
+      font-size: 12px;
+    }
+    .right-options {
+      ion-icon {
+        font-size: 24px;
+      }
+      button {
+        font-size: 14px;
+      }
+    }
+  }
 }

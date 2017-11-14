@@ -61,9 +61,12 @@ export function provideStorage() {
     BrowserModule,
     HttpModule,
     FormsModule,
-    IonicModule.forRoot(MyApp),
     RecruitedListPageModule,
-    MomentModule
+    MomentModule,
+    IonicModule.forRoot(MyApp, {
+      mode: 'ios',
+      backButtonText: ''
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -6,12 +6,7 @@ import { EmployDetailPage } from '../employ-detail/employ-detail';
 import { FinishWorkPage } from '../finish-work/finish-work';
 import { API_ROOT } from '../../../api/config';
 
-/**
- * Generated class for the CandidataListPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -21,6 +16,7 @@ import { API_ROOT } from '../../../api/config';
 export class CandidateListPage {
   public hotelEmploies
   public API_ROOT = API_ROOT
+  public isShow = []
   
   constructor(
     public navCtrl: NavController,
@@ -33,21 +29,35 @@ export class CandidateListPage {
       if (res) {
         this.rs.HotelEmploy(res).subscribe((res) => {
           this.hotelEmploies = res.json();
-          console.log(this.hotelEmploies);
+          for (var index in this.hotelEmploies) {
+            this.isShow.push(0);
+          }
+          this.isShow[0] = 1;
         });
       }
     });
   }
 
   itemTapped(item) {
-    this.app.getRootNav().push(EmployDetailPage, {
+    this.navCtrl.push(EmployDetailPage, {
       item: item
     });
   }
 
   removeItem(i, j, item) {
-    this.app.getRootNav().push(FinishWorkPage, {
+    this.navCtrl.push(FinishWorkPage, {
       item: item
     });
+  }
+
+  show(i) {
+    for (let index in this.isShow) {
+      this.isShow[index] = 0;
+    }
+    this.isShow[i] = 1;
+  }
+
+  notShow(i) {
+    this.isShow[i] = 0;
   }
 }

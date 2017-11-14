@@ -14,32 +14,49 @@
 
 
 <ion-content class="content-background">
+
   <ion-item-group *ngFor="let hotelEmploy of hotelEmploies; let i = index">
-    <ion-item-divider color="light">
-      <h6>
-        <ion-icon class="icon-color" name="paper-outline"></ion-icon>
-          {{hotelEmploy.DepartmentName}} - {{hotelEmploy.WorkTypeName}}
-          <span style="padding-left: 5%">发布于 {{hotelEmploy.CreateTime | date:"yyyy-MM-dd HH:mm"}}</span> 
-      </h6>
+
+    <ion-item-divider style="background-color: #fff; border-bottom: 1px solid #ddd">
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-8>
+            <h6>
+              <ion-icon class="icon-color" name="paper-outline"></ion-icon>
+              {{hotelEmploy.DepartmentName}} - {{hotelEmploy.WorkTypeName}}
+              <span style="padding-left: 5%">{{hotelEmploy.CreateTime | amLocale:'zh-cn' | amTimeAgo}}</span>
+            </h6>
+          </ion-col>
+          <ion-col col-4 style="text-align: center">
+            <button class="default" *ngIf="isShow[i]" (click)="notShow(i)"><ion-icon color="primary" name="arrow-down"></ion-icon></button>
+            <button class="default" *ngIf="! isShow[i]" (click)="show(i)"><ion-icon color="primary" name="arrow-up"></ion-icon></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item-divider>
-    <ion-list>
+
+    <ion-list *ngIf="isShow[i]" style="margin: 0 0 0 0">
       <ion-item-sliding *ngFor="let person of hotelEmploy.Employs; let j = index">
         <button ion-item (click)="itemTapped(person)">
           <ion-avatar item-start>
             <img [src]="API_ROOT + person.Person.Icon">
           </ion-avatar>
           <div class="recruit-title">
-            <p>{{ person.Person.RealName }}</p>
+            <p>{{ person.Person.RealName }}
+              <span style="padding-left: 5%">{{person.Person.Sex}}</span>
+            </p>
             <p>申请时间： {{person.CreateTime | amLocale:'zh-cn' | amTimeAgo}}</p>
           </div>
           <div class="recruit-time">
             <button *ngIf="!person.Status" ion-button>已终止</button>
-          </div>
+        </div>
         </button>
         <ion-item-options>
           <button *ngIf="person.Status" ion-button color="default" (click)="removeItem(i, j, person)">终止用工</button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
+
   </ion-item-group>
+
 </ion-content>
