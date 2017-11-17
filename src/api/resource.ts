@@ -96,4 +96,14 @@ export class ResourceService {
   GetEvaluates(GUID: string): Observable<any> {
     return this.http.get(`${API_ROOT}api/HotelEvaluate/${GUID}`.replace(/"/g,""), this.opts)
   }
+
+  // 酒店用工上下线
+  HotelOrderOnline(GUID: string): Observable<any> {
+    return this.http.put(`${API_ROOT}api/HotelOrderOnline/${GUID}`.replace(/"/g,""), this.opts)
+  }
+
+  // 工人的评价
+  PersonEvaluate(GUID: string): Observable<any> {
+    return this.http.get(`${API_ROOT}api/PersonEvaluate/${GUID}`.replace(/"/g,""), this.opts)
+  }
 }

@@ -40,6 +40,7 @@ export class RecruitedListPage {
           this.storage.set('PRE_TIME', current_time);
           this.rs.HotelOrders(res, this.preTime).subscribe((res) => {
             this.HotelOrders = res.json();
+            console.log(this.HotelOrders);
             this.HotelOrders_copy = this.HotelOrders;
             if (refresher) {
               refresher.complete();
@@ -56,10 +57,16 @@ export class RecruitedListPage {
     });
   }
 
-  modifyItem(index, item) {
+  edit(index, item) {
     console.log(item);
     this.navCtrl.push(RecruitCreatePage, {
       item: item
+    });
+  }
+
+  modifyItem(index, item) {
+    this.rs.HotelOrderOnline(item.GUID).subscribe((res) => {
+      this.HotelOrders = res.json();
     });
   }
 
@@ -108,5 +115,4 @@ export class RecruitedListPage {
     });
     confirm.present();
   }
-
 }

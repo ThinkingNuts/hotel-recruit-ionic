@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App, AlertController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, AlertController, ToastController } from 'ionic-angular';
 import { ResourceService } from '../../../api/resource';
 import { FinishWorkPage } from '../finish-work/finish-work';
 import { API_ROOT } from '../../../api/config'
@@ -34,9 +34,13 @@ export class EmployDetailPage {
     public navParams: NavParams,
     public rs: ResourceService,
     public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
     private app: App,
   ) {
     this.employ = navParams.get('item');
+    if (navParams.get('show')) {
+      this.show = true;
+    }
     this.hasEvaluate = (this.employ.Comment || this.employ.Evaluate);
     this.score.star = this.employ.Evaluate;
     this.desc = this.employ.Comment;
@@ -52,7 +56,7 @@ export class EmployDetailPage {
   }
 
   showEvaluate() {
-    this.show = true;
+    this.show = !this.show;
   }
 
   chooseStar(ev) {
@@ -89,7 +93,21 @@ export class EmployDetailPage {
     this.rs.HotelEmployUpdate(this.employ.GUID, data).subscribe((res) => {
       if (res.json().state) {
         this.employ.Status = 0;
+        this.employ.Evaluate = this.score.star;
+        this.employ.Comment = this.desc;
+        this.hasEvaluate = true;
+        this.presentToast('操作成功');
       }
     });
+  }
+
+  presentToast = (mes) => {
+    let toast = this.toastCtrl.create({
+      message: mes,
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.present();
   }
 }

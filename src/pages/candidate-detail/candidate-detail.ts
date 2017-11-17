@@ -60,6 +60,12 @@ export class CandidateDetailPage {
     }
   }
 
+  showEvaluate() {
+    this.navCtrl.push('CandidateCommentPage', {
+      item: this.candidate.Person.GUID
+    });
+  }
+
   presentToast = (mes) => {
     let toast = this.toastCtrl.create({
       message: mes,

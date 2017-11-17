@@ -39,7 +39,7 @@
                 <span style="padding-left: 5%">酬劳：{{item.Billing}}</span>
               </ion-col>
               <ion-col col-4 style="text-align:right; color: #777; font-size: 14px">
-                <span *ngIf="item.Status !== '审核通过'"><button class="btn">{{ item.Status }}</button></span>
+                <span *ngIf="item.Status !== '审核通过'"><button class="btn">已{{ item.Status }}</button></span>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -47,7 +47,9 @@
       </button>
 
       <ion-item-options>
-        <button ion-button color="light" style="color: tomato" (click)="modifyItem(i, item)">修改</button>
+        <button ion-button *ngIf="item.Status == '下线' || item.Status == '审核通过'" color="light" style="color: tomato" (click)="modifyItem(i, item)">上线</button>
+        <button ion-button *ngIf="item.Status == '上线'" color="light" style="color: tomato" (click)="modifyItem(i, item)">下线</button>
+        <button ion-button style="color: #fff; background-color: #FFB90F" (click)="edit(i, item)">修改</button>
         <button ion-button color="danger" (click)="removeItem(i, item)">删除</button>
       </ion-item-options>
 

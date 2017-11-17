@@ -45,8 +45,9 @@ export class CandidateListPage {
   }
 
   removeItem(i, j, item) {
-    this.navCtrl.push(FinishWorkPage, {
-      item: item
+    this.navCtrl.push(EmployDetailPage, {
+      item: item,
+      show: true
     });
   }
 

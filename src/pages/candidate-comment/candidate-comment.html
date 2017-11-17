@@ -1,0 +1,50 @@
+<!--
+  Generated template for the CandidateCommentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    
+      <ion-navbar>
+        <ion-title>Ta 的工作评价</ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    <ion-content>
+    
+      <div *ngIf="comments">
+        <div *ngFor="let item of comments" class="list">
+          <ion-card *ngIf="item.Evaluate || item.Comment">
+            <ion-card-content>
+              <div>
+                <p class="comment-time">{{item.CommentTime}}</p>
+    
+                <div class="evaluate-line">
+                  <div><p>评分：</p></div>
+                  <div class="star-bg" *ngIf="item.Evaluate">
+                    <div class="star-over" [style.width]="item.Evaluate/5*60+'px'"></div>
+                  </div>
+                  <!-- <div style="padding-left: 2%">
+                    <p *ngIf="item.HotelEvaluate" style="color: tomato">
+                      {{item.HotelEvaluate}}
+                    </p>
+                  </div> -->
+                  <p class="no-hotel-evaluate" *ngIf="!item.Evaluate">
+                    该评价未评分
+                  </p>
+                </div>
+    
+                <p class="hotel-comment" *ngIf="item.Comment">{{item.Comment}}</p>
+                <p class="hotel-comment" *ngIf="!item.Comment">该评价未评论</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+    
+      <div *ngIf="!comments" class="candidate-apply">
+        <p>暂时还没有公司对 Ta 评价~</p>
+      </div>
+    </ion-content>
