@@ -60,6 +60,9 @@ export class EmployDetailPage {
   }
 
   chooseStar(ev) {
+    if (this.hasEvaluate) {
+      return;
+    }
     let star = parseInt(ev.target.dataset.index);
     this.score.star = star;
   }

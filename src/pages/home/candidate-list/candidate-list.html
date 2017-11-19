@@ -17,7 +17,7 @@
 
   <ion-item-group *ngFor="let hotelEmploy of hotelEmploies; let i = index">
 
-    <ion-item-divider style="background-color: #fff; border-bottom: 1px solid #ddd">
+    <ion-item-divider style="background-color: #fff; border-bottom: 1px solid #ddd" (click)="isShow[i] ? notShow(i) : show(i)">
       <ion-grid no-padding>
         <ion-row>
           <ion-col col-8>
@@ -28,8 +28,8 @@
             </h6>
           </ion-col>
           <ion-col col-4 style="text-align: center">
-            <button class="default" *ngIf="isShow[i]" (click)="notShow(i)"><ion-icon color="primary" name="arrow-down"></ion-icon></button>
-            <button class="default" *ngIf="! isShow[i]" (click)="show(i)"><ion-icon color="primary" name="arrow-up"></ion-icon></button>
+            <button class="default" *ngIf="isShow[i]"><ion-icon color="primary" name="arrow-down"></ion-icon></button>
+            <button class="default" *ngIf="! isShow[i]"><ion-icon color="primary" name="arrow-up"></ion-icon></button>
           </ion-col>
         </ion-row>
       </ion-grid>

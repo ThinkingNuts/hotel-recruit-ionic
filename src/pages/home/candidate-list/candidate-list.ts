@@ -7,7 +7,6 @@ import { FinishWorkPage } from '../finish-work/finish-work';
 import { API_ROOT } from '../../../api/config';
 
 
-
 @IonicPage()
 @Component({
   selector: 'page-candidate-list',

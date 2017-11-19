@@ -55,8 +55,8 @@
     </div>
     <br><br>
 
-    <p>补充描述：</p>
-    <ion-textarea name="desc" class="desc-box" id="desc" [(ngModel)]="desc"></ion-textarea>
+    <p>评价：</p>
+    <ion-textarea name="desc" class="desc-box" id="desc" [(ngModel)]="desc" [disabled]="hasEvaluate ? 'true' : 'false'"></ion-textarea>
   </div>
 
   <ion-grid *ngIf="show">

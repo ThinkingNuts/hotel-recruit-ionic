@@ -98,8 +98,9 @@ export class ResourceService {
   }
 
   // 酒店用工上下线
-  HotelOrderOnline(GUID: string): Observable<any> {
-    return this.http.put(`${API_ROOT}api/HotelOrderOnline/${GUID}`.replace(/"/g,""), this.opts)
+  HotelOrderOnline(data, GUID: string): Observable<any> {
+    this.headers.append('Content-Type', 'application/json')
+    return this.http.put(`${API_ROOT}api/HotelOrderOnline/${GUID}`.replace(/"/g,""), data, this.opts)
   }
 
   // 工人的评价

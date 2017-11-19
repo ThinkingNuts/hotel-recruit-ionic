@@ -14,7 +14,7 @@
     
     <ion-content>
     
-      <div *ngIf="comments">
+      <div *ngIf="comments !== null">
         <div *ngFor="let item of comments" class="list">
           <ion-card *ngIf="item.Evaluate || item.Comment">
             <ion-card-content>
@@ -44,7 +44,7 @@
         </div>
       </div>
     
-      <div *ngIf="!comments" class="candidate-apply">
+      <div *ngIf="!(comments == null)" class="candidate-apply">
         <p>暂时还没有公司对 Ta 评价~</p>
       </div>
     </ion-content>

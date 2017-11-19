@@ -35,11 +35,20 @@
           <ion-grid no-padding>
             <ion-row>
               <ion-col col-8 style="font-size: 13px; color: #777">
-                <span style="color: tomato">{{item.EmployNum}}</span> / <span>{{item.AppliedNum}}</span> / <span>{{item.Num}}</span>
+                <span style="color: tomato">{{item.AppliedNum}}</span> / <span>{{item.EmployNum}}</span> / <span>{{item.Num}}</span>
                 <span style="padding-left: 5%">酬劳：{{item.Billing}}</span>
               </ion-col>
-              <ion-col col-4 style="text-align:right; color: #777; font-size: 14px">
-                <span *ngIf="item.Status !== '审核通过'"><button class="btn">已{{ item.Status }}</button></span>
+              <ion-col col-4 style="text-align:right; color: #777; font-size: 14px" *ngIf="item.Status == '上线' || item.Status == '下线'">
+                <span><button [class]="item.Status == '上线' ? 'btn-up' : 'btn-down'">已{{ item.Status }}</button></span>
+              </ion-col>
+              <ion-col col-4 style="text-align:right; color: #777; font-size: 14px" *ngIf="item.Status == '审核通过'">
+                <span><button class="btn-success">{{ item.Status }}</button></span>
+              </ion-col>
+              <ion-col col-4 style="text-align:right; color: #777; font-size: 14px" *ngIf="item.Status == '待审核'">
+                <span><button class="btn-down">{{ item.Status }}</button></span>
+              </ion-col>
+              <ion-col col-4 style="text-align:right; color: #777; font-size: 14px" *ngIf="item.Status == '审核未通过'">
+                <span><button class="btn-failure">{{ item.Status }}</button></span>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -47,8 +56,8 @@
       </button>
 
       <ion-item-options>
-        <button ion-button *ngIf="item.Status == '下线' || item.Status == '审核通过'" color="light" style="color: tomato" (click)="modifyItem(i, item)">上线</button>
-        <button ion-button *ngIf="item.Status == '上线'" color="light" style="color: tomato" (click)="modifyItem(i, item)">下线</button>
+        <button ion-button *ngIf="item.Status == '下线' || item.Status == '审核通过'" color="light" style="color: tomato" (click)="modifyItem(1, item)">上线</button>
+        <button ion-button *ngIf="item.Status == '上线'" color="light" style="color: tomato" (click)="modifyItem(0, item)">下线</button>
         <button ion-button style="color: #fff; background-color: #FFB90F" (click)="edit(i, item)">修改</button>
         <button ion-button color="danger" (click)="removeItem(i, item)">删除</button>
       </ion-item-options>

@@ -24,7 +24,7 @@ export class CandidateCommentPage {
   ) {
     this.rs.PersonEvaluate(navParams.get('item')).subscribe((res) => {
       this.comments = res.json().Details;
-      console.log(this.comments);
+      console.log(this.comments == null);
     });
   }
 }

@@ -16,7 +16,7 @@ export class RecruitedDetailPage {
   public API_ROOT = API_ROOT
   public RecruitedDetail: any
   public Candidates: any = new Object()
-  pet: string = "用工详情";
+  pet: string = "申请人列表";
 
   constructor(
     public navCtrl: NavController,

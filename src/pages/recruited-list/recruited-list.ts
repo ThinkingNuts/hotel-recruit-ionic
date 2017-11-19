@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, App, ToastController } from 'ionic-angular';
 import { RecruitedDetailPage } from '../recruited-detail/recruited-detail';
 import { RecruitCreatePage } from '../recruit-create/recruit-create';
 import { ResourceService } from '../../api/resource';
@@ -22,7 +22,8 @@ export class RecruitedListPage {
     public rs: ResourceService,
     public alertCtrl: AlertController,
     public app: App,
-    public storage: Storage
+    public storage: Storage,
+    public toastCtrl: ToastController
   ) {
     this.getHotelOrders(null)
   }
@@ -64,9 +65,19 @@ export class RecruitedListPage {
     });
   }
 
-  modifyItem(index, item) {
-    this.rs.HotelOrderOnline(item.GUID).subscribe((res) => {
-      this.HotelOrders = res.json();
+  modifyItem(data, item) {
+    this.rs.HotelOrderOnline(data, item.GUID).subscribe((res) => {
+      if (res.json().state) {
+        if (data) {
+          this.getHotelOrders(null)
+          this.presentToast('上线成功');
+        } else {
+          this.getHotelOrders(null)
+          this.presentToast('下线成功');
+        }
+      } else {
+        this.presentToast(res.json().message);
+      }
     });
   }
 
@@ -114,5 +125,15 @@ export class RecruitedListPage {
       ]
     });
     confirm.present();
+  }
+
+  presentToast = (mes) => {
+    let toast = this.toastCtrl.create({
+      message: mes,
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.present();
   }
 }
