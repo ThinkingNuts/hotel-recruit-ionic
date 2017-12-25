@@ -22,10 +22,24 @@
   <div [ngSwitch]="pet">
     <div *ngSwitchCase="'用工详情'">
       <div class="recruited-detail">
-        <h3>{{RecruitedDetail.DepartMentName}} - {{RecruitedDetail.WorkTypeName}}</h3>
-        <small style="color: #999">创建于 {{RecruitedDetail.CreateTime | date:"yyyy-MM-dd HH:mm"}} </small>
-        <h6 class="billing">{{RecruitedDetail.Billing}}</h6>
+        <p>
+          <span style="font-size: 18px">{{RecruitedDetail.DepartMentName}} - {{RecruitedDetail.WorkTypeName}}</span>
+          <small style="color: #999; padding-left: 3%">{{RecruitedDetail.CreateTime | amLocale:'zh-cn' | amTimeAgo}} </small>
+        </p>
       </div>
+
+      <ion-grid no-padding>
+        <ion-row style="text-align: center; font-size: 18px; line-height: 15px; padding-bottom: 10px">
+          <ion-col col-6>
+            <p style="color: tomato">{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
+            <p>工作时间</p>
+          </ion-col>
+          <ion-col col-6>
+            <p style="color: tomato">{{RecruitedDetail.Num - RecruitedDetail.AppliedNum}}</p>
+            <p>剩余打扫(间)</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
       <ion-item-group>
         <ion-item-divider color="light">
@@ -34,24 +48,24 @@
           </h6>
         </ion-item-divider>
         <div class="recruited-detail">
-          <p>已录用人数：<span style="color: red">{{RecruitedDetail.EmployNum}}</span></p>
-          <p>已申请人数：<span style="color: tomato">{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}</p>
-          <p>工作排班：{{RecruitedDetail.ScheduleName}}</p>
-          <p>工作类型：{{RecruitedDetail.WorkTypeName}}</p>
+          <p>单价：{{RecruitedDetail.Billing}}</p>
+          <p>已申请人数：
+            <span style="color: tomato">{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}
+          </p>
           <p>工作地点：{{RecruitedDetail.address}}</p>
-          <p *ngIf="RecruitedDetail.Mark !== null">技能要求：{{RecruitedDetail.Mark}}</p>
+          <p *ngIf="RecruitedDetail.Mark !== null">工作描述：{{RecruitedDetail.Mark}}</p>
         </div>
       </ion-item-group>
 
       <ion-item-group>
         <ion-item-divider color="light">
           <h6>
-            <ion-icon class="icon-color" name="time-outline"></ion-icon> 工作时间：
+            <ion-icon class="icon-color" name="time-outline"></ion-icon> 申请限制：
           </h6>
         </ion-item-divider>
         <div class="recruited-detail">
-          <p>开始时间：{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
-          <p>结束时间：{{RecruitedDetail.End | date:"yyyy-MM-dd"}}</p>
+          <p>申请上限：{{RecruitedDetail.Max}} 间</p>
+          <p>申请下限：{{RecruitedDetail.Min}} 间</p>
         </div>
       </ion-item-group>
     </div>
@@ -65,23 +79,35 @@
             </ion-avatar>
             <ion-grid no-padding>
               <ion-row>
-                <ion-col col-8>
+                <ion-col col-12>
                   <div class="parent">
-                    <div class="name"><p>{{ item.Person.RealName }}</p></div>
-                    <div id="bg">
-                      <div id="over" [style]="'width:' + item.Evaluate*60/5 + 'px'"></div>
+                    <div class="name">
+                      <p>{{ item.Person.RealName }}</p>
                     </div>
+                    <!-- <div id="bg">
+                      <div id="over" [style]="'width:' + item.Evaluate*60/5 + 'px'"></div>
+                    </div> -->
                   </div>
                 </ion-col>
-                <ion-col col-4 class="state">
+                <!-- <ion-col col-4 class="state">
                   {{ item.Status == 3 ? '已' + item.StatusStr : item.StatusStr }}
-                </ion-col>
+                </ion-col> -->
               </ion-row>
             </ion-grid>
             <p>申请时间：{{ item.ApplyTime | date:"yyyy-MM-dd HH:mm"}}</p>
+            <ion-item>
+                <ion-avatar item-start>
+                  <img [src]="API_ROOT + candidate.Person.Icon">
+                </ion-avatar>
+                <h2>{{ candidate.Person.RealName }}<span style="padding-left: 5%">{{ candidate.Person.Sex }}</span></h2>
+                <p>联系电话：{{ candidate.Person.Phone }}</p>
+              </ion-item>
+                
+              <p>住址：{{ candidate.Person.Address }}</p>
+                <p>申请时间：{{ candidate.ApplyTime }}</p>
           </button>
         </ion-list>
-       </div>
+      </div>
       <div *ngIf="! Candidates.TotalApply" class="candidate-apply">
         <p>暂时还没有人申请该职位~</p>
       </div>

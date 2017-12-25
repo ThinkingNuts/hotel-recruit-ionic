@@ -12,8 +12,8 @@ import { NaticeBackServiceProvider } from '../../providers/natice-back-service/n
 })
 export class TabsPage {
   @ViewChild('mainTabs') tabs: Tabs;
-  tab1Root = MessagePage;
-  //tab2Root = WelcomePage;
+  //tab1Root = MessagePage;
+  tab2Root = WelcomePage;
   tab3Root = RecruitedListPage;
   tab4Root = HomePage;
 

@@ -56,7 +56,7 @@ export class ResourceService {
   }
 
   HotelOrders(GUID: string, preTime): Observable<any> {
-    let transformUrl = `${API_ROOT}api/HotelWorkOrder?HotelGUID=${GUID}&preTime=${preTime}`.replace(/"/g,"");
+    let transformUrl = `${API_ROOT}api/HotelWorkOrder?HotelGUID=${GUID}&PreTime=${preTime}&OrderType=1`.replace(/"/g,"");
     return this.http.get(transformUrl, this.opts)
   }
 

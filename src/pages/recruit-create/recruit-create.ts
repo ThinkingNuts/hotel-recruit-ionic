@@ -19,13 +19,11 @@ export class RecruitCreatePage {
   }
   public data = {
     currentTime: this.ToDate(new Date()),
-    workTypes: '',
-    schedules: '',
-    departments: '',
+    tomorrowTime: this.ToDate(+ new Date() + 24 * 3600 * 1000),
     units: ['元/小时', '元/间'],
-    unit: '元/小时',
-    nums: ['/人'],
-    num: '/人',
+    unit: '元/间',
+    nums: ['/间'],
+    num: '/间',
     edit: false
   }
   private createForm: FormGroup
@@ -38,45 +36,19 @@ export class RecruitCreatePage {
     private alertCtrl: AlertController,
     public storage: Storage,
   ) {
-    this.recruit.Mark = '';
-    this.rs.WorkTypes().subscribe((res) => {
-      this.data.workTypes = res.json();
-    });
-    this.rs.Schedules().subscribe((res) => {
-      this.data.schedules = res.json();
-    });
-    this.rs.Department().subscribe((res) => {
-      this.data.departments = res.json();
-    });
     if (navParams.get('item')) {
       this.recruit = navParams.get('item');
       this.data.unit = this.recruit.Billing.replace(/[0-9]/ig, '');
       this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
       this.recruit.Start = this.ToDate(navParams.get('item').Start);
-      this.recruit.End = this.ToDate(navParams.get('item').End);
       this.data.edit = true
     }
   }
 
-  ngOnInit() {
-    this.createForm = this.formBuilder.group({
-      DepartID: ['', [Validators.required]],
-      WorkTypeId: ['', [Validators.required]],
-      ScheduleId: ['', [Validators.required]],
-      num: ['', [Validators.required]],
-      unit: ['', [Validators.required]],
-      Start: ['', [Validators.required]],
-      End: ['', [Validators.required]],
-      Mark: ['', [Validators.required]],
-      Billing: ['', [Validators.required]],
-      Num: ['', [Validators.required]],
-    });
-  }
-
-  @ViewChild('select') select: Select;
+  //@ViewChild('select') select: Select;
 
   ionViewCanLeave(): Boolean {
-    this.select.close();
+    //this.select.close();
     if (!this.recruit.Billing) {
       return true;
     }
@@ -91,6 +63,7 @@ export class RecruitCreatePage {
     }
     this.storage.get('AUTH_INFO').then((res) => {
       this.recruit.HotelId = JSON.parse(res).Id;
+      this.recruit.OrderType = 1;
       this.rs.RecruitCreate(this.recruit).subscribe((res) => {
         if (res.json().state) {
           this.alertMessage('发布成功');
@@ -110,7 +83,6 @@ export class RecruitCreatePage {
     }
     this.storage.get('AUTH_INFO').then((res) => {
       this.recruit.HotelId = JSON.parse(res).Id;
-      console.log(this.recruit);
       this.rs.RecruitEdit(this.recruit).subscribe((res) => {
         if (res.json().state) {
           //this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');

@@ -9,59 +9,74 @@
 
 <ion-content class="content-background">
 
-  <form [formGroup]="createForm" novalidate>
+  <form>
     <ion-list>
       <ion-item>
-        <ion-label><span class="color-need">*</span>部门：</ion-label>
-        <ion-select cancelText="取消" okText="确定" [(ngModel)]="recruit.DepartID" formControlName="DepartID" #select>
-          <ion-option *ngFor="let item of data.departments" [value]="item.id">{{ item.text }}</ion-option>
-        </ion-select>
+        <ion-label>
+          <span class="color-need">*</span>部门：</ion-label>
+        <ion-input type="text" value="客房部"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label><span class="color-need">*</span>工种：</ion-label>
-        <ion-select cancelText="取消" okText="确定" [(ngModel)]="recruit.WorkTypeId" formControlName="WorkTypeId">
-          <ion-option *ngFor="let item of data.workTypes" [value]="item.id">{{ item.text }}</ion-option>
-        </ion-select>
+        <ion-label>
+          <span class="color-need">*</span>工种：</ion-label>
+        <ion-input type="text" value="客房打扫"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label><span class="color-need">*</span>工作排班：</ion-label>
-        <ion-select cancelText="取消" okText="确定" [(ngModel)]="recruit.ScheduleId" formControlName="ScheduleId">
-          <ion-option *ngFor="let item of data.schedules" [value]="item.id">{{ item.text }}</ion-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-item>
-        <ion-label><span class="color-need">*</span>招聘人数：</ion-label>
-        <ion-input type="text" [(ngModel)]="recruit.Num" formControlName="Num"></ion-input>
-        <ion-select cancelText="取消" okText="确定" [(ngModel)]="data.num" formControlName="num">
+        <ion-label>
+          <span class="color-need">*</span>数量：</ion-label>
+        <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Num"></ion-input>
+        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
           <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label><span class="color-need">*</span>单价：</ion-label>
-        <ion-input type="text" [(ngModel)]="recruit.Billing" formControlName="Billing"></ion-input>
-        <ion-select cancelText="取消" okText="确定" [(ngModel)]="data.unit" formControlName="unit">
+        <ion-label>
+          <span class="color-need">*</span>单价：</ion-label>
+        <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Billing" ></ion-input>
+        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.unit">
           <ion-option *ngFor="let item of data.units" [value]="item">{{ item }}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label><span class="color-need">*</span>开始时间：</ion-label>
-        <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [min]="data.currentTime"
-          [(ngModel)]="recruit.Start" formControlName="Start"></ion-datetime>
+        <ion-label>
+          <span class="color-need">*</span>单人上限：</ion-label>
+        <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Max"></ion-input>
+        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
+          <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label><span class="color-need">*</span>结束时间：</ion-label>
-        <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [min]="recruit.Start"
-          [(ngModel)]="recruit.End" formControlName="End"></ion-datetime>
+        <ion-label>
+          <span class="color-need">*</span>单人下限：</ion-label>
+        <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Min"></ion-input>
+        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
+          <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label>技能要求：</ion-label>
-        <ion-input type="text" [(ngModel)]="recruit.Mark" value='' formControlName="Mark"></ion-input>
+        <div style="display: flex">
+          <div style="flex: 1">
+            <span class="color-need">*</span>工作时间：
+          </div>
+          <div style="flex: 2">
+            <label>
+              <input type="radio" name="recruit.Start" [(ngModel)]="recruit.Start" [value]="data.currentTime"> 今天
+            </label>
+            <label style="padding-left: 5%">
+              <input type="radio" name="recruit.Start" [(ngModel)]="recruit.Start" [value]="data.tomorrowTime" checked> 明天
+            </label>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>工作描述：</ion-label>
+        <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Mark" value=''></ion-input>
       </ion-item>
     </ion-list>
 
