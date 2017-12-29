@@ -42,7 +42,7 @@ export function provideStorage() {
     MyApp,
     HomePage,
     RecruitedDetailPage,
-    RecruitCreatePage,
+    //RecruitCreatePage,
     LoginPage,
     TabsPage,
     WelcomePage,
@@ -54,7 +54,7 @@ export function provideStorage() {
     CandidateListPage,
     EmployDetailPage,
     FinishWorkPage,
-    MessagePage,
+    //MessagePage,
     UpdatePasswordPage
   ],
   imports: [
@@ -73,7 +73,7 @@ export function provideStorage() {
     MyApp,
     HomePage,
     RecruitedDetailPage,
-    RecruitCreatePage,
+    //RecruitCreatePage,
     LoginPage,
     TabsPage,
     WelcomePage,
@@ -85,7 +85,7 @@ export function provideStorage() {
     CandidateListPage,
     EmployDetailPage,
     FinishWorkPage,
-    MessagePage,
+    //MessagePage,
     UpdatePasswordPage
   ],
   providers: [

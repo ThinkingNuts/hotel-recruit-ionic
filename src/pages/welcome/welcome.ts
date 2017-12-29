@@ -19,35 +19,43 @@ export class WelcomePage {
   }
 
   slides = [
-    { title: "风景-1", image: "assets/images/001.jpg" },
-    { title: "风景-2", image: "assets/images/002.jpg" },
-    { title: "风景-3", image: "assets/images/003.jpg" }
+    { title: "风景-1", image: "assets/images/01.jpg" },
+    { title: "风景-2", image: "assets/images/02.jpg" },
+    { title: "风景-3", image: "assets/images/03.jpg" }
   ];
 
   private gridMenu = [
     {
       rowId: 1,
       cols: [{
-        title: "发布列表",
-        icon: "briefcase",
+        title: "消息",
+        icon: "ios-volume-up-outline",
         color: "primary",
-        linkPage: "RecruitedListPage",
-        isImage: false,
-        imageUrl: ""
+        linkPage: "MessagePage",
+        isImage: true,
+        imageUrl: "./assets/images/2.png"
+      }, 
+      {
+        title: "增加用工",
+        icon: "md-add-circle",
+        color: "primary",
+        linkPage: "RecruitCreatePage",
+        isImage: true,
+        imageUrl: "./assets/images/1.png"
+      }, {
+        title: "今日用工",
+        icon: "ios-list-outline",
+        color: "primary",
+        linkPage: "log-out",
+        isImage: true,
+        imageUrl: "./assets/images/3.png"
       }, {
         title: "设置",
         icon: "settings",
         color: "primary",
         linkPage: "SettingsPage",
-        isImage: false,
-        imageUrl: ""
-      }, {
-        title: "退出登录",
-        icon: "log-out",
-        color: "primary",
-        linkPage: "log-out",
-        isImage: false,
-        imageUrl: ""
+        isImage: true,
+        imageUrl: "./assets/images/4.png"
       }]
     }];
 

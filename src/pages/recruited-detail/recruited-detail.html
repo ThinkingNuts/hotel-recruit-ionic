@@ -29,13 +29,13 @@
       </div>
 
       <ion-grid no-padding>
-        <ion-row style="text-align: center; font-size: 18px; line-height: 15px; padding-bottom: 10px">
+        <ion-row style="text-align: center; line-height: 15px; padding-bottom: 10px">
           <ion-col col-6>
-            <p style="color: tomato">{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
+            <p style="color: tomato; font-size: 20px;">{{RecruitedDetail.Start | date:"yyyy-MM-dd"}}</p>
             <p>工作时间</p>
           </ion-col>
           <ion-col col-6>
-            <p style="color: tomato">{{RecruitedDetail.Num - RecruitedDetail.AppliedNum}}</p>
+            <p style="color: tomato; font-size: 20px;">{{RecruitedDetail.Num - RecruitedDetail.AppliedNum}}</p>
             <p>剩余打扫(间)</p>
           </ion-col>
         </ion-row>
@@ -49,7 +49,7 @@
         </ion-item-divider>
         <div class="recruited-detail">
           <p>单价：{{RecruitedDetail.Billing}}</p>
-          <p>已申请人数：
+          <p>已申请：
             <span style="color: tomato">{{RecruitedDetail.AppliedNum}}</span> / {{RecruitedDetail.Num}}
           </p>
           <p>工作地点：{{RecruitedDetail.address}}</p>
@@ -73,39 +73,28 @@
     <ion-list *ngSwitchCase="'申请人列表'">
       <div *ngIf="Candidates.TotalApply">
         <ion-list>
-          <button ion-item *ngFor="let item of Candidates.Persons; let i = index" (click)="itemTapped(item)">
-            <ion-avatar item-start>
-              <img [src]="API_ROOT + item.Person.Icon">
-            </ion-avatar>
-            <ion-grid no-padding>
-              <ion-row>
-                <ion-col col-12>
-                  <div class="parent">
-                    <div class="name">
-                      <p>{{ item.Person.RealName }}</p>
-                    </div>
-                    <!-- <div id="bg">
-                      <div id="over" [style]="'width:' + item.Evaluate*60/5 + 'px'"></div>
-                    </div> -->
-                  </div>
-                </ion-col>
-                <!-- <ion-col col-4 class="state">
-                  {{ item.Status == 3 ? '已' + item.StatusStr : item.StatusStr }}
-                </ion-col> -->
-              </ion-row>
-            </ion-grid>
-            <p>申请时间：{{ item.ApplyTime | date:"yyyy-MM-dd HH:mm"}}</p>
-            <ion-item>
+          <ion-item *ngFor="let item of Candidates.Persons; let i = index">
+            <div>
+              <div style="float: left">
                 <ion-avatar item-start>
-                  <img [src]="API_ROOT + candidate.Person.Icon">
+                  <img [src]="API_ROOT + item.Person.Icon">
                 </ion-avatar>
-                <h2>{{ candidate.Person.RealName }}<span style="padding-left: 5%">{{ candidate.Person.Sex }}</span></h2>
-                <p>联系电话：{{ candidate.Person.Phone }}</p>
-              </ion-item>
-                
-              <p>住址：{{ candidate.Person.Address }}</p>
-                <p>申请时间：{{ candidate.ApplyTime }}</p>
-          </button>
+              </div>
+              <div style="padding-top: 2%">
+                <div style="display: flex; justify-content: space-between;">
+                  <div>{{ item.Person.RealName }}
+                    <span style="padding-left: 10px">{{ item.Person.Sex }}</span>
+                  </div>
+                  <div style="font-size: 14px; color: tomato">
+                    申请：5 间
+                  </div>
+                </div>
+                <p>联系电话：{{ item.Person.Phone }}</p>
+              </div>
+            </div>
+            <p style="clear: both">申请时间：{{ item.ApplyTime }}</p>
+            <!-- <p>住址：{{ item.Person.Address }}</p> -->
+          </ion-item>
         </ion-list>
       </div>
       <div *ngIf="! Candidates.TotalApply" class="candidate-apply">

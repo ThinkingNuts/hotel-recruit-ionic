@@ -42,6 +42,8 @@ export class RecruitCreatePage {
       this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
       this.recruit.Start = this.ToDate(navParams.get('item').Start);
       this.data.edit = true
+    } else {
+      this.recruit.Start = this.data.tomorrowTime;
     }
   }
 
@@ -82,8 +84,17 @@ export class RecruitCreatePage {
       this.recruit.Billing = this.recruit.Billing + this.data.unit;
     }
     this.storage.get('AUTH_INFO').then((res) => {
-      this.recruit.HotelId = JSON.parse(res).Id;
-      this.rs.RecruitEdit(this.recruit).subscribe((res) => {
+      const date = {
+        HotelId: JSON.parse(res).Id,
+        Num: this.recruit.Num,
+        Start: this.recruit.Start,
+        Billing: this.recruit.Billing,
+        Mark: this.recruit.Mark,
+        Min: this.recruit.Min,
+        Max: this.recruit.Max,
+        OrderType: this.recruit.OrderType
+      } 
+      this.rs.RecruitEdit(date).subscribe((res) => {
         if (res.json().state) {
           //this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
           this.alertMessage('修改成功');

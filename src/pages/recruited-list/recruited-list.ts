@@ -99,7 +99,7 @@ export class RecruitedListPage {
   }
 
   add() {
-    this.navCtrl.push(RecruitCreatePage);
+    this.navCtrl.push('RecruitCreatePage');
   }
 
   showConfirm(index, item) {
