@@ -56,9 +56,9 @@
       </button>
 
       <ion-item-options>
-        <button ion-button *ngIf="item.Status == '下线' || item.Status == '审核通过'" color="light" style="color: tomato" (click)="modifyItem(1, item)">上线</button>
+        <button ion-button *ngIf="(item.Status == '下线' && !item.AutoOffline) || item.Status == '审核通过'" color="light" style="color: tomato" (click)="modifyItem(1, item)">上线</button>
         <button ion-button *ngIf="item.Status == '上线'" color="light" style="color: tomato" (click)="modifyItem(0, item)">下线</button>
-        <button ion-button style="color: #fff; background-color: #FFB90F" (click)="edit(i, item)">修改</button>
+        <!-- <button ion-button style="color: #fff; background-color: #FFB90F" (click)="edit(i, item)">修改</button> -->
         <button ion-button color="danger" (click)="removeItem(i, item)">删除</button>
       </ion-item-options>
 

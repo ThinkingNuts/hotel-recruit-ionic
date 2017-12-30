@@ -15,7 +15,11 @@ export class RecruitCreatePage {
 
   private recruit: RecruitViewModel = new RecruitViewModel();
   public ToDate(date): string {
-    return new Date(+ new Date(date) + 8 * 3600 * 1000).toISOString()
+    let newdDate = new Date(+ new Date(date) + 8 * 3600 * 1000)
+    let year = newdDate.getFullYear();
+    let month = newdDate.getMonth() + 1;
+    let day = newdDate.getDate();
+    return year + "-" + month + "-" + day;
   }
   public data = {
     currentTime: this.ToDate(new Date()),
@@ -41,9 +45,11 @@ export class RecruitCreatePage {
       this.data.unit = this.recruit.Billing.replace(/[0-9]/ig, '');
       this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
       this.recruit.Start = this.ToDate(navParams.get('item').Start);
-      this.data.edit = true
+      this.data.edit = true;
     } else {
       this.recruit.Start = this.data.tomorrowTime;
+      this.recruit.Max = 30;
+      this.recruit.Min = 5;
     }
   }
 
@@ -69,7 +75,9 @@ export class RecruitCreatePage {
       this.rs.RecruitCreate(this.recruit).subscribe((res) => {
         if (res.json().state) {
           this.alertMessage('发布成功');
-          this.navCtrl.pop();
+          this.navCtrl.push(RecruitedListPage, {
+            item: 'refresh'
+          });
         } else {
           this.alertMessage(res.json().message);
           return;

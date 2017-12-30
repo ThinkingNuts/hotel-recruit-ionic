@@ -20,7 +20,7 @@ export class AboutPage {
     value: "星加酒店管理平台"
   }, {
     name: "软件版本",
-    value: "V0.1.0"
+    value: "V1.1.0"
   }, {
     name: "公司名称",
     value: "上海金代软件开发有限公司"

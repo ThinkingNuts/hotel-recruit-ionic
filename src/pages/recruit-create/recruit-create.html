@@ -26,7 +26,7 @@
         <ion-label>
           <span class="color-need">*</span>数量：</ion-label>
         <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Num"></ion-input>
-        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
+        <ion-select interface="popover" cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
           <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
         </ion-select>
       </ion-item>
@@ -35,7 +35,7 @@
         <ion-label>
           <span class="color-need">*</span>单价：</ion-label>
         <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Billing" ></ion-input>
-        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.unit">
+        <ion-select interface="popover" cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.unit">
           <ion-option *ngFor="let item of data.units" [value]="item">{{ item }}</ion-option>
         </ion-select>
       </ion-item>
@@ -44,7 +44,7 @@
         <ion-label>
           <span class="color-need">*</span>单人上限：</ion-label>
         <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Max"></ion-input>
-        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
+        <ion-select interface="popover" cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
           <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
         </ion-select>
       </ion-item>
@@ -53,7 +53,7 @@
         <ion-label>
           <span class="color-need">*</span>单人下限：</ion-label>
         <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Min"></ion-input>
-        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
+        <ion-select interface="popover" cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.num">
           <ion-option *ngFor="let item of data.nums" [value]="item">{{ item }}</ion-option>
         </ion-select>
       </ion-item>
@@ -62,7 +62,7 @@
         <ion-label>
           <span class="color-need">*</span>工作时间：
         </ion-label>
-        <ion-select cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Start">
+        <ion-select interface="popover" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Start">
           <ion-option [value]="data.currentTime">今天</ion-option>
           <ion-option [value]="data.tomorrowTime">明天</ion-option>
         </ion-select>
