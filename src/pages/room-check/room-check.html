@@ -1,0 +1,42 @@
+<!--
+  Generated template for the RoomCheckPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>room-check</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<div>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <div class="headers grey"></div>待完成
+        </ion-col>
+        <ion-col col-4>
+          <div class="headers yellow"></div>已完成
+        </ion-col>
+        <ion-col col-4>
+          <div class="headers green"></div>已确认
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div style="margin-top: 20px">
+    <button *ngFor="let item of data; let i = index"
+            class="bodys" (click)="change(i)"
+            [class.yellow]="item.color === 'yellow'"
+            [class.green]="item.color === 'green'">
+      {{ i+1 }}      
+    </button>
+  </div>
+</div>
+</ion-content>
