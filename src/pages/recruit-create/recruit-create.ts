@@ -15,7 +15,7 @@ export class RecruitCreatePage {
 
   private recruit: RecruitViewModel = new RecruitViewModel();
   public ToDate(date): string {
-    let newdDate = new Date(+ new Date(date) + 8 * 3600 * 1000)
+    let newdDate = new Date(+ new Date(date))
     let year = newdDate.getFullYear();
     let month = newdDate.getMonth() + 1;
     let day = newdDate.getDate();

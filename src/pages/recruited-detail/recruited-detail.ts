@@ -31,15 +31,10 @@ export class RecruitedDetailPage {
     });
     this.rs.PersonOrders(this.RecruitedDetail.Id).subscribe((res) => {
       this.Candidates = res.json();
-      console.log(this.Candidates);
     });
   }
 
-  itemTapped(item) {
-    this.navCtrl.push(CandidateDetailPage, {
-      item: item,
-      recruitedDetail: this.RecruitedDetail
-    });
+  itemTapped(id) {
+    this.navCtrl.push("RoomCheckPage", { id: id });
   }
-
 }

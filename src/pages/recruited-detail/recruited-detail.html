@@ -73,7 +73,7 @@
     <ion-list *ngSwitchCase="'申请人列表'">
       <div *ngIf="Candidates.TotalApply">
         <ion-list>
-          <ion-item *ngFor="let item of Candidates.Persons; let i = index">
+          <button ion-item *ngFor="let item of Candidates.Persons; let i = index" (click)="itemTapped(item.POrderId)">
             <div>
               <div style="float: left">
                 <ion-avatar item-start>
@@ -94,7 +94,7 @@
             </div>
             <p style="clear: both">申请时间：{{ item.ApplyTime }}</p>
             <!-- <p>住址：{{ item.Person.Address }}</p> -->
-          </ion-item>
+          </button>
         </ion-list>
       </div>
       <div *ngIf="! Candidates.TotalApply" class="candidate-apply">

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ResourceService } from '../../api/resource';
 
 /**
  * Generated class for the RoomCheckPage page.
@@ -14,18 +15,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'room-check.html',
 })
 export class RoomCheckPage {
-  public data: any;
+  public Rooms: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.data = [{color: 'yellow'},{color: 'yellow'},{color: 'yellow'},{color: 'grey'},{color: 'grey'},{color: 'grey'},];
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public rs: ResourceService,
+  ) {
+    this.rs.GetGrabOrder(navParams.get('id')).subscribe((res) => {
+      this.Rooms = res.json();
+    });
   }
 
   change(index) {
-    if (this.data[index].color === 'yellow') {
-      this.data[index].color = 'green';
-    } else if (this.data[index].color === 'green') {
-      this.data[index].color = 'yellow';
+    if (this.Rooms[index].RommStatus === 1) {
+      this.Rooms[index].RommStatus = 2;
+    } else if (this.Rooms[index].RommStatus === 2) {
+      this.Rooms[index].RommStatus = 1;
     }
   }
-
 }

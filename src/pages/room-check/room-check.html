@@ -31,11 +31,11 @@
     </ion-grid>
   </div>
   <div style="margin-top: 20px">
-    <button *ngFor="let item of data; let i = index"
+    <button *ngFor="let item of Rooms; let i = index"
             class="bodys" (click)="change(i)"
-            [class.yellow]="item.color === 'yellow'"
-            [class.green]="item.color === 'green'">
-      {{ i+1 }}      
+            [class.yellow]="item.RommStatus === 1"
+            [class.green]="item.RommStatus === 2">
+      {{ i+1 }}
     </button>
   </div>
 </div>

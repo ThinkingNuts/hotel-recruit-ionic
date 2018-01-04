@@ -107,4 +107,9 @@ export class ResourceService {
   PersonEvaluate(GUID: string): Observable<any> {
     return this.http.get(`${API_ROOT}api/PersonEvaluate/${GUID}`.replace(/"/g,""), this.opts)
   }
+
+  //获取服务员申请的房间
+  GetGrabOrder(id: number): Observable<any> {
+    return this.http.get(`${API_ROOT}api/GrabOrder/${id}`, this.opts)
+  }
 }
