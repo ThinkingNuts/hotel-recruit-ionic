@@ -112,4 +112,14 @@ export class ResourceService {
   GetGrabOrder(id: number): Observable<any> {
     return this.http.get(`${API_ROOT}api/GrabOrder/${id}`, this.opts)
   }
+
+  //获取今日抢单人员
+  HotelTodayGrab(GUID: string): Observable<any> {
+    return this.http.get(`${API_ROOT}api/HotelTodayGrab/${GUID}`.replace(/"/g,""), this.opts)
+  }
+
+  //更改服务人员抢单房间
+  UpdateGrabOrder(id: number, rooms: any): Observable<any> {
+    return this.http.put(`${API_ROOT}api/GrabOrder/${id}`, rooms, this.opts)
+  }
 }

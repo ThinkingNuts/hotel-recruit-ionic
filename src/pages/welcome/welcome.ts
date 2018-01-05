@@ -46,7 +46,7 @@ export class WelcomePage {
         title: "今日用工",
         icon: "ios-list-outline",
         color: "primary",
-        linkPage: "RoomCheckPage",
+        linkPage: "TodayEmploiesPage",
         isImage: true,
         imageUrl: "./assets/images/3.png"
       }, {

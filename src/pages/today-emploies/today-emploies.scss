@@ -1,0 +1,41 @@
+page-today-emploies {
+ .recruited-detail {
+    padding-left: 4%;
+  }
+  h6 {
+    color: tomato;
+  }
+  .recruit-title {
+    float: left
+  }
+  .recruit-time {
+    text-align: right;
+    margin-top: 1%
+  }
+  .content-background {
+    background-color: #f4f4f4;
+  }
+  #bg {
+    margin-left: 10%;
+    width: 60px;
+    height: 16px;
+    margin-top: 1%;
+    background: url("../../assets/images/star_gray.png");
+  }  
+  #over {
+    height: 16px;
+    background: url("../../assets/images/star_org.png") no-repeat;
+  }
+  .default {
+    color: tomato;
+    font-size: bold;
+    background-color: #fff;
+  }
+
+  .no-employ {
+    p {
+      margin-left: 5%;
+      color: #777;
+    }
+  }
+}

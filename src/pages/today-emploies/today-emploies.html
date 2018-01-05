@@ -1,0 +1,62 @@
+<!--
+  Generated template for the CandidataListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>我的录用列表</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content-background">
+
+  <ion-item-group *ngFor="let hotelEmploy of hotelEmploies; let i = index">
+
+    <ion-item-divider style="background-color: #fff; border-bottom: 1px solid #ddd" (click)="isShow[i] ? notShow(i) : show(i)">
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-8>
+            <h6>
+              <ion-icon class="icon-color" name="paper-outline"></ion-icon>
+              客房部 - 客房打扫
+              <span style="padding-left: 5%">{{hotelEmploy.Start}}</span>
+            </h6>
+          </ion-col>
+          <ion-col col-4 style="text-align: center">
+            <button class="default" *ngIf="isShow[i]"><ion-icon color="primary" name="arrow-up"></ion-icon></button>
+            <button class="default" *ngIf="! isShow[i]"><ion-icon color="primary" name="arrow-down"></ion-icon></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item-divider>
+
+    <ion-list *ngIf="isShow[i]" style="margin: 0 0 0 0">
+      <ion-item-sliding *ngFor="let person of hotelEmploy.POrders; let j = index">
+        <button *ngIf="hotelEmploy.POrders.length" ion-item (click)="itemTapped(person)">
+          <ion-avatar item-start>
+            <img [src]="API_ROOT + person.Person.Icon">
+          </ion-avatar>
+          <div class="recruit-title">
+            <p>{{ person.Person.RealName }}
+              <span style="padding-left: 5%">{{person.Person.Sex}}</span>
+            </p>
+            <p>申请数量： {{person.ApplyNum}} 间</p>
+          </div>
+        </button>
+        <!-- <ion-item-options>
+          <button *ngIf="person.Status" ion-button color="default" (click)="removeItem(i, j, person)">终止用工</button>
+        </ion-item-options> -->
+      </ion-item-sliding>
+      <div class="no-employ" *ngIf="!hotelEmploy.POrders.length">
+        <p>暂无服务人员申请该工作</p>
+      </div>
+    </ion-list>
+
+  </ion-item-group>
+
+</ion-content>

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>room-check</ion-title>
+    <ion-title>工作完成确认</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,10 +19,10 @@
     <ion-grid>
       <ion-row>
         <ion-col col-4>
-          <div class="headers grey"></div>待完成
+          <div class="headers grey" style="margin-left: 15%"></div>待完成
         </ion-col>
         <ion-col col-4>
-          <div class="headers yellow"></div>已完成
+          <div class="headers yellow" style="margin-left: 6%"></div>已完成
         </ion-col>
         <ion-col col-4>
           <div class="headers green"></div>已确认
@@ -30,13 +30,17 @@
       </ion-row>
     </ion-grid>
   </div>
-  <div style="margin-top: 20px">
+  <div style="margin-top: 20px; margin-left: 4%">
     <button *ngFor="let item of Rooms; let i = index"
             class="bodys" (click)="change(i)"
             [class.yellow]="item.RommStatus === 1"
-            [class.green]="item.RommStatus === 2">
+            [class.green]="item.RommStatus === 2"
+            [disabled]="item.RommStatus === 0">
       {{ i+1 }}
     </button>
+  </div>
+  <div style="clear: both; padding-top: 10%">
+    <button block ion-button (click)=submit()>提交</button>
   </div>
 </div>
 </ion-content>
