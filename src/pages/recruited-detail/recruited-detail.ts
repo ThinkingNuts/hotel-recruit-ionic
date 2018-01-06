@@ -34,7 +34,7 @@ export class RecruitedDetailPage {
     });
   }
 
-  itemTapped(id) {
-    this.navCtrl.push("RoomCheckPage", { id: id });
+  itemTapped(item) {
+    this.navCtrl.push("RoomCheckPage", { id: item.POrderId, isOffline: item.IsOffline});
   }
 }

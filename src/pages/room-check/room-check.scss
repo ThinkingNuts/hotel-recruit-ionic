@@ -7,6 +7,17 @@ page-room-check {
   margin-right: 5px
 }
 
+.icon-define {
+  color: #fff;
+  padding-left: 5px;
+  padding-top: 2px
+}
+
+.icon-define-big {
+  color: #fff;
+  font-size: 35px;
+}
+
 .grey {
   background-color: #ccc;
 }
@@ -20,11 +31,31 @@ page-room-check {
 }
 
 .bodys {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border-radius: 5px;
   float: left;
   margin-right: 8px;
   margin-bottom: 8px
+}
+
+.btns-box {
+  position: fixed;
+  height: 50px;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+  font-size: 16px;
+  * {
+    padding: 0;
+  }
+  button {
+    width: 100%;
+    border-radius: 0;
+  }
+  .add-room-btn {
+    border-right: 1px solid white;
+  }
 }
 }

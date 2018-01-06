@@ -37,7 +37,7 @@
 
     <ion-list *ngIf="isShow[i]" style="margin: 0 0 0 0">
       <ion-item-sliding *ngFor="let person of hotelEmploy.POrders; let j = index">
-        <button *ngIf="hotelEmploy.POrders.length" ion-item (click)="itemTapped(person)">
+        <button style="border-bottom: 1px solid  #ddd" *ngIf="hotelEmploy.POrders.length" ion-item (click)="itemTapped(person)">
           <ion-avatar item-start>
             <img [src]="API_ROOT + person.Person.Icon">
           </ion-avatar>
@@ -45,7 +45,7 @@
             <p>{{ person.Person.RealName }}
               <span style="padding-left: 5%">{{person.Person.Sex}}</span>
             </p>
-            <p>申请数量： {{person.ApplyNum}} 间</p>
+            <p>申请数量： {{person.GrabNum}} 间</p>
           </div>
         </button>
         <!-- <ion-item-options>

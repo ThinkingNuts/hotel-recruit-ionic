@@ -7,40 +7,56 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>工作完成确认</ion-title>
+    <ion-title>工作确认</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+<ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
 <div>
   <div>
     <ion-grid>
       <ion-row>
-        <ion-col col-4>
-          <div class="headers grey" style="margin-left: 15%"></div>待完成
+        <ion-col col-3>
+          <div class="headers grey"></div>待完成
         </ion-col>
-        <ion-col col-4>
-          <div class="headers yellow" style="margin-left: 6%"></div>已完成
+        <ion-col col-3>
+          <div class="headers yellow"></div>已完成
         </ion-col>
-        <ion-col col-4>
-          <div class="headers green"></div>已确认
+        <ion-col col-3>
+          <div class="headers green"><ion-icon class="icon-define" name="md-checkmark"></ion-icon>
+          </div>已确认
+        </ion-col>
+        <ion-col col-3>
+          <div class="headers green"><ion-icon class="icon-define" name="md-help"></ion-icon>
+          </div>待复核
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-  <div style="margin-top: 20px; margin-left: 4%">
+  <div style="margin-top: 20px; margin-left: 5%">
     <button *ngFor="let item of Rooms; let i = index"
             class="bodys" (click)="change(i)"
             [class.yellow]="item.RommStatus === 1"
-            [class.green]="item.RommStatus === 2"
-            [disabled]="item.RommStatus === 0">
-      {{ i+1 }}
+            [class.green]="item.RommStatus === 2 || item.RommStatus === 3"
+            [disabled]="isOffline || item.RommStatus === 0">
+      <span *ngIf="item.RommStatus == 0 || item.RommStatus == 1">{{ i+1 }}</span>
+      <ion-icon *ngIf="item.RommStatus == 2" class="icon-define-big" name="md-checkmark"></ion-icon>
+      <ion-icon *ngIf="item.RommStatus == 3" class="icon-define-big" name="md-help"></ion-icon>
     </button>
   </div>
-  <div style="clear: both; padding-top: 10%">
+  <!-- <div style="clear: both; padding-top: 10%">
     <button block ion-button (click)=submit()>提交</button>
-  </div>
+  </div> -->
 </div>
 </ion-content>
+
+<ion-footer style="margin-left: 4%; width: 92%">
+  <button *ngIf="!isOffline" block ion-button (click)=submit()>提交</button>
+</ion-footer>

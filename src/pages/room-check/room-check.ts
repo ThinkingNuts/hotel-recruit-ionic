@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
+import $ from 'jquery'
 
 /**
  * Generated class for the RoomCheckPage page.
@@ -16,6 +17,7 @@ import { ResourceService } from '../../api/resource';
 })
 export class RoomCheckPage {
   public Rooms: any;
+  public isOffline: Boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -23,18 +25,36 @@ export class RoomCheckPage {
     public rs: ResourceService,
     public toastCtrl: ToastController,
   ) {
-    this.rs.GetGrabOrder(navParams.get('id')).subscribe((res) => {
+    this.roomCheck(null)
+    if (navParams.get('isOffline')) {
+      this.isOffline = true;
+    } else {
+      this.isOffline = false;
+    }
+
+  }
+
+  roomCheck(refresher) {
+    this.rs.GetGrabOrder(this.navParams.get('id')).subscribe((res) => {
       this.Rooms = res.json();
-      console.log(this.Rooms);
+      if (refresher) {
+        refresher.complete();
+      }
     });
+  }
+
+  doRefresh(refresher) {
+    this.roomCheck(refresher)
   }
 
   change(index) {
     if (this.Rooms[index].RommStatus === 1) {
       this.Rooms[index].RommStatus = 2;
     } else if (this.Rooms[index].RommStatus === 2) {
-      this.Rooms[index].RommStatus = 1;
-    }
+      this.Rooms[index].RommStatus = 3;
+    } else if (this.Rooms[index].RommStatus === 3) {
+      this.Rooms[index].RommStatus = 2;
+    } 
   }
 
   submit() {
@@ -64,7 +84,7 @@ export class RoomCheckPage {
     let toast = this.toastCtrl.create({
       message: mes,
       duration: 2500,
-      position: 'bottom'
+      position: 'bottom',
     });
   
     toast.present();
