@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ResourceService } from '../../api/resource';
-import $ from 'jquery'
 
 /**
  * Generated class for the RoomCheckPage page.
