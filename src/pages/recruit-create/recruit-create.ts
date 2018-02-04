@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage';
 export class RecruitCreatePage {
 
   private recruit: RecruitViewModel = new RecruitViewModel();
+  private Billing: string;
   public ToDate(date): string {
     let newdDate = new Date(+ new Date(date))
     let year = newdDate.getFullYear();
@@ -28,7 +29,8 @@ export class RecruitCreatePage {
     unit: '元/间',
     nums: ['/间'],
     num: '/间',
-    edit: false
+    edit: false,
+    schedules: '',
   }
   private createForm: FormGroup
 
@@ -40,39 +42,45 @@ export class RecruitCreatePage {
     private alertCtrl: AlertController,
     public storage: Storage,
   ) {
+    this.rs.Schedules().subscribe((res) => {
+      this.data.schedules = res.json();
+    });
     if (navParams.get('item')) {
       this.recruit = navParams.get('item');
       this.data.unit = this.recruit.Billing.replace(/[0-9]/ig, '');
-      this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
+      this.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
       this.recruit.Start = this.ToDate(navParams.get('item').Start);
       this.data.edit = true;
     } else {
       this.recruit.Start = this.data.tomorrowTime;
       this.recruit.Max = 30;
       this.recruit.Min = 5;
+      this.recruit.ScheduleId = 1;
     }
   }
 
   //@ViewChild('select') select: Select;
 
-  ionViewCanLeave(): Boolean {
-    //this.select.close();
-    if (!this.recruit.Billing) {
-      return true;
-    }
-    if (this.recruit.Billing.indexOf('/') === -1) {
-      this.recruit.Billing = this.recruit.Billing + this.data.unit;
-    }
-  }
+  // ionViewCanLeave(): Boolean {
+  //   //this.select.close();
+  //   if (!this.recruit.Billing) {
+  //     return true;
+  //   }
+  //   if (this.recruit.Billing.indexOf('/') === -1) {
+  //     this.recruit.Billing = this.Billing + this.data.unit;
+  //   }
+  // }
 
   create(): void {
-    if (this.recruit.Billing) {
-      this.recruit.Billing = this.recruit.Billing + this.data.unit;
-    }
+    // if (this.recruit.Billing) {
+    //   this.recruit.Billing = this.Billing + this.data.unit;
+    // }
+    this.recruit.Billing = this.Billing + this.data.unit;
     this.storage.get('AUTH_INFO').then((res) => {
       this.recruit.HotelId = JSON.parse(res).Id;
       this.recruit.OrderType = 1;
       this.rs.RecruitCreate(this.recruit).subscribe((res) => {
+        //this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
         if (res.json().state) {
           this.alertMessage('发布成功');
           this.navCtrl.push(RecruitedListPage, {
@@ -82,7 +90,6 @@ export class RecruitCreatePage {
           this.alertMessage(res.json().message);
           return;
         }
-        this.recruit.Billing = this.recruit.Billing.replace(/[^0-9]/ig, '');
       });
     });
   }

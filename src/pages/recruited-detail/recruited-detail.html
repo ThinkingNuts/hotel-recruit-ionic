@@ -73,28 +73,42 @@
     <ion-list *ngSwitchCase="'申请人列表'">
       <div *ngIf="Candidates.TotalApply">
         <ion-list>
-          <button ion-item *ngFor="let item of Candidates.Persons; let i = index" (click)="itemTapped(item)">
-            <div>
-              <div style="float: left">
-                <ion-avatar item-start>
-                  <img [src]="API_ROOT + item.Person.Icon">
-                </ion-avatar>
-              </div>
-              <div style="padding-top: 2%">
-                <div style="display: flex; justify-content: space-between;">
-                  <div>{{ item.Person.RealName }}
-                    <span style="padding-left: 10px">{{ item.Person.Sex }}</span>
-                  </div>
+          <ion-item-sliding *ngFor="let item of Candidates.Persons; let i = index">
+            <button ion-item (click)="itemTapped(item)">
+              <div>
+                <div style="float: left">
+                  <ion-avatar item-start>
+                    <img [src]="API_ROOT + item.Person.Icon">
+                  </ion-avatar>
+                </div>
+                <div style="padding-top: 2%">
+                  <div style="display: flex; justify-content: space-between;">
+                    <div>{{ item.Person.RealName }}
+                      <span style="padding-left: 10px">{{ item.Person.Sex }}</span>
+                    </div>
                   <div style="font-size: 14px; color: tomato">
                     申请：{{ item.GrabNum }} 间
                   </div>
                 </div>
                 <p>联系电话：{{ item.Person.Phone }}</p>
+                </div>
               </div>
-            </div>
-            <p style="clear: both">申请时间：{{ item.ApplyTime }}</p>
-            <!-- <p>住址：{{ item.Person.Address }}</p> -->
-          </button>
+              <p style="clear: both">申请时间：{{ item.ApplyTime }}</p>
+              <!-- <p>住址：{{ item.Person.Address }}</p> -->
+            </button>
+
+            <ion-item-options>
+              
+            </ion-item-options>
+            <ion-item-options side="right">
+              <button ion-button color="light">
+                <!-- <ion-icon name="mail"></ion-icon> -->
+                <a class="phone" [href]="'tel:' + item.Person.Phone">
+                  <ion-icon name="call"></ion-icon>
+                </a>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
         </ion-list>
       </div>
       <div *ngIf="! Candidates.TotalApply" class="candidate-apply">

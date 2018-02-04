@@ -25,8 +25,11 @@ export class TodayEmploiesPage {
     this.storage.get('AUTH_GUID').then(res => {
       if (res) {
         this.rs.HotelTodayGrab(res).subscribe((res) => {
-          this.hotelEmploies = res.json()[0].Orders;
-          console.log(this.hotelEmploies)
+          if (! res.json()) {
+            this.hotelEmploies = [];
+          } else {
+            this.hotelEmploies = res.json()[0].Orders;
+          }
           for (var index in this.hotelEmploies) {
             this.isShow.push(0);
           }
@@ -37,6 +40,7 @@ export class TodayEmploiesPage {
   }
 
   itemTapped(item) {
+    console.log(item);
     this.navCtrl.push("RoomCheckPage", {
       id: item.POrderId
     });

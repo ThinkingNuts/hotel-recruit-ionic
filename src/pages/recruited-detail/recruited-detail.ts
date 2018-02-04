@@ -27,7 +27,7 @@ export class RecruitedDetailPage {
   ) {
     this.RecruitedDetail = navParams.get('item');
     this.storage.get('AUTH_INFO').then((res) => {
-      this.RecruitedDetail.address = JSON.parse(res).MailingAddress
+      this.RecruitedDetail.address = JSON.parse(res).MailingAddress;
     });
     this.rs.PersonOrders(this.RecruitedDetail.Id).subscribe((res) => {
       this.Candidates = res.json();

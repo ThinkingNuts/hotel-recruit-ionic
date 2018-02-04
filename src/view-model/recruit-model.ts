@@ -7,4 +7,5 @@ export class RecruitViewModel {
   public Min: Number;
   public Max: Number;
   public OrderType: Number;
+  public ScheduleId: Number;
 }

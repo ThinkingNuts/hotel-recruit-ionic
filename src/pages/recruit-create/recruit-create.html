@@ -23,6 +23,13 @@
       </ion-item>
 
       <ion-item>
+        <ion-label><span class="color-need">*</span>工作排班：</ion-label>
+        <ion-select interface="popover" cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.ScheduleId">
+          <ion-option *ngFor="let item of data.schedules" [value]="item.id">{{ item.text }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
         <ion-label>
           <span class="color-need">*</span>数量：</ion-label>
         <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Num"></ion-input>
@@ -34,7 +41,7 @@
       <ion-item>
         <ion-label>
           <span class="color-need">*</span>单价：</ion-label>
-        <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="recruit.Billing" ></ion-input>
+        <ion-input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="Billing" ></ion-input>
         <ion-select interface="popover" cancelText="取消" okText="确定" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.unit">
           <ion-option *ngFor="let item of data.units" [value]="item">{{ item }}</ion-option>
         </ion-select>

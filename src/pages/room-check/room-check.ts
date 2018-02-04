@@ -17,6 +17,7 @@ import { ResourceService } from '../../api/resource';
 export class RoomCheckPage {
   public Rooms: any;
   public isOffline: Boolean;
+  public phone: any;
 
   constructor(
     public navCtrl: NavController,
@@ -30,7 +31,6 @@ export class RoomCheckPage {
     } else {
       this.isOffline = false;
     }
-
   }
 
   roomCheck(refresher) {
